@@ -1,0 +1,43 @@
+// 文档教程: https://uniapp.dcloud.net.cn/uniCloud/schema
+{
+	"bsonType": "object",
+	"required": [],
+	"permission": {
+		"read": true,
+		"create": true,
+		"update": true,
+		"delete": true
+	},
+	"properties": {
+		"_id": {
+			"description": "ID，系统自动生成"
+		},
+		"name": {
+			"bsonType": "string",
+			"description": "must be a string and is required"
+		},
+		"year": {
+			"bsonType": "int",
+			"minimum": 2017,
+			"maximum": 3017,
+			"description": "must be an integer in [ 2017, 3017 ] and is required"
+		},
+		"role": {
+			"bsonType": "array",
+			"description": "角色，不允许重复",
+			"label": "角色",
+			"enum": [{
+					"value": 1,
+					"text": "角色1"
+				},
+				{
+					"value": 2,
+					"text": "角色2"
+				}
+			]
+		}
+	},
+	"fieldRules": [
+		// 字段之间的约束关系。比如字段开始时间小于字段结束时间。也可以只校验一个字段。支持表达式
+	]
+}

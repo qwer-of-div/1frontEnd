@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>详情页-天涯明月刀周边商城</title>
+    <link rel="stylesheet" href="/css/details.css">
+</head>
+
+<body>
+    <header></header>
+    <div class="wrap" id="wrap">
+       
+    </div>
+    <script type="text/html" id="wrap-template">
+        <div class="mainwrap">
+            <div class="comm-tit" id="blk_detail_crumbs">
+                <a class="index-link m15" href="/index.html">商城首页></a>
+                <!-- <a class="index-link m15" href="">服饰配饰></a>
+                <a class="index-link m15" href="">首饰></a> -->
+                <em>{{name}}</em>
+            </div>
+            <div id="blk_detail_main">
+                <!-- 商品展示 -->
+                <div class="product-intro clearfix">
+                    <!-- 细节图展示 -->
+                    <div class="fl product-preview">
+                        <div class="good-imgs">
+                            <!-- <ul>
+                                   
+                                <li class="picshow"> -->
+                                    <!-- <a class="product-image image-zoom MagicZoom" id="main-image" href=""> -->
+                                        <img class="zoom-img" src="{{img[0].smallImg}}" data-zoom-image="{{img[0].smallImg}}" alt="">
+                                        <!-- <div></div>
+                                    </a> -->
+                                <!-- </li>
+                               
+                            </ul> -->
+                        </div>
+                        <div class="picdetails" id="js-more-views">
+                            <ul class="picdetail-list clearfix"  id="gal1">
+                                    {{each img item}}
+                                <li class="active">
+                                    <a href="javascript:;"  data-image="{{item.smallImg}}" data-zoom-image="{{item.smallImg}}">
+                                        <img src="{{item.smallImg}}" alt="" >
+                                    </a>
+                                </li>
+                                {{/each}}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 商品信息 -->
+                    <div class="fl product-info">
+                        <h3 class="pord-name">{{name}}</h3>
+                        <div class="pord-tips">全场订单满百包邮</div>
+                        <div class="pord-price clearfix">
+                            <span class="fl pord-dispri">￥<strong>{{price}}</strong>
+                            </span>
+                            <span class="fl pord-orpri">￥{{priceDel}}</span>
+                            <a href="">
+                                <i class="icon-detail ico-lqarr"></i>
+                            </a>
+                        </div>
+                        <div class="pord-saleinfo clearfix">
+                            <div class="fl pord-salebox">
+                                <i class="ico-detail ico-judou"></i>
+                                <span>
+                                    可用20聚豆抵扣2.00元
+                                    <span style="color:red;">（限时）</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="pord-detailbox clearfix">
+                            <div class="fl pord-sold">
+                                已售：<span>167</span>
+                            </div>
+                            <div class="fl pord-totalcom">
+                                累计评价：<span class="commentNum">6</span>
+                            </div>
+                            <div class="fr pord-starbox">
+                                <i class="ico-detail i-star10"></i>
+                                <span>5.0</span>
+                            </div>
+                        </div>
+                        <div id="blk_detail_main_spec">
+                            <div class="mt10 pord-color pord-sellist clearfix">
+                                <label class="fl">规格</label>
+                                <ul class="fl ml28 spec">
+                                    {{each img item}}
+                                    <li class="current" attrid="290">
+                                        <div class="pord-selbox">{{item.name}}</div>
+                                    </li>
+                                    {{/each}}
+                                </ul>
+                             
+                            </div>
+                        </div>
+                        <div id="blk_detail_main_btn">
+                            <div class="mt10 pord-num clearfix">
+                                <label class="fl pt10">数量</label>
+                                <div class="fl ml42">
+                                    <a class="fl num-plus numbtn num-plus btn_detail_main_buy_min" href="javascript:;">
+                                        <i class="ico-detail"></i>
+                                    </a>
+                                    <input class="fl nummidbtn num inpt_detail_main_buy_num" type="text" value="1">
+                                    <a class="fl numbtn num-minus btn_detail_main_buy_plus" href="javascript:;">
+                                        <i class="ico-detail"></i>
+                                    </a>
+                                </div>
+                                <span class="pord-stock">(还剩43件)</span>
+                            </div>
+                            <div class="pord-btn clearfix">
+
+                                <a id="btn_detail_cart_add" href="javascript:;" class="fl joincart-btn">加入购物车</a>
+                                <a id="btn_detail_cart_buy" href="/html/details.html" class="fl ml30 buy-btn">立即购买</a>
+                                <a href="javascript:;" class="fl btn-collect">
+                                    <i class="ico-detail ico-collect"></i>
+                                    <span>收藏</span>
+                                </a>
+                                <a href="javascript:;" class="fl btn-collected">
+                                    <i class="ico-detail ico-collect"></i>
+                                    <span>已收藏</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 商品具体相关信息 -->
+            <div class="mt20 porduct-detail" id="blk_detail_tab">
+                <div class="pord-tab">
+                    <ul>
+                        <li class="curtab">商品详情<i class="i-tabline"></i></li>
+                        <li>用户点评<span>(5)</span><i class="i-tabline"></i></li>
+                        <li>联系商家<i class="i-tabline"></i></li>
+                    </ul>
+                </div>
+                <div class="tabcont">
+                    <!-- 商品详情 -->
+                    <div id="blk_detail_tab_desc" class="pordcont pord-detail">
+                        <!--单品详情参数-->
+                        <div class="parameter">
+                            <ul>
+                                <li>
+                                    <label class="fl">商品名称：</label>
+                                    <span class="fl par-name">八荒毛绒娃娃</span>
+                                </li>
+                                <!--
+                        <li>
+                            <label class="fl">黑色商品编号：</label>
+                            <span class="fl">1735858900</span>
+                        </li>
+                        -->
+                                <li>
+                                    <label class="fl">店铺：</label>
+                                    <span class="fl">魔匠文化</span>
+                                </li>
+                                <li>
+                                    <label class="fl">上架时间：</label>
+                                    <span class="fl mr70">2018-11-09</span>
+                                </li>
+                                <li>
+                                    <label class="fl">商品毛重：</label>
+                                    <span class="fl">1g</span>
+                                </li>
+                                <li>
+                                    <label class="fl">商城：</label>
+                                    <span class="fl mr70">天涯明月刀</span>
+                                </li>
+                                <li>
+                                    <label class="fl">周边分类：</label>
+                                    <span class="fl mr70">
+                                        毛绒玩偶
+                                        /八荒抱枕
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--单品详情图-->
+                        <div class="detailbox">
+                            <p style="text-align: center;">
+                                <img title="201805020407_47390.jpg" alt="八荒抱枕详情页.jpg"
+                                    src="/images/a1.jpg">
+                                    <img title="201805020407_47390.jpg" alt="八荒抱枕详情页.jpg"
+                                    src="/images/a2.jpg">
+                                    <img title="201805020407_47390.jpg" alt="八荒抱枕详情页.jpg"
+                                    src="/images/a3.jpg">
+                                    <img title="201805020407_47390.jpg" alt="八荒抱枕详情页.jpg"
+                                    src="/images/a4.jpg">
+                                    <img title="201805020407_47390.jpg" alt="八荒抱枕详情页.jpg"
+                                    src="/images/a5.jpg">
+                                    <img title="201805020407_47390.jpg" alt="八荒抱枕详情页.jpg"
+                                    src="/images/a6.jpg">
+                                </p>
+                        </div>
+                    </div>
+                    <!-- 用户点评 -->
+                    <div id="blk_detail_tab_comment" class="pordcont pord-comment" style="display:none;">
+                        <div class="pordcont pord-comment">
+                            <div class="all-comment clearfix">
+                                <span class="fl">玩家综合评分：</span>
+                                <span class="pord-starall fl">
+                                    <!-- 分数乘以2 -->
+                                    <i class="ico-detail i-star10"></i>
+                                </span>
+                                <span class="fl all-point">5.0</span>
+                            </div>
+                            <div class="comment-list clearfix">
+                                <ul class="cent-ul">
+                                    <li>
+                                        <div class="fl headimg">
+                                            <div class="imgbox">
+                                                <img src="/images/a2.jpg"
+                                                    width="58" height="58" title="瑽瑢">
+                                            </div>
+                                            <p class="qqnick">瑽瑢</p>
+                                        </div>
+                                        <div class="fl comment-text">
+                                            <div class="comment-point clearfix">
+                                                <span class="fl">商品评分</span>
+                                                <div class="fl pord-starbox">
+                                                    <i class="ico-detail i-star10"></i>
+                                                </div>
+                                                <span class="fl all-point ml5">5.0分</span>
+                                                <div class="fr comment-time">2018-10-16 18:45:06</div>
+                                            </div>
+                                            <p class="text-detail">默认好评</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="fl headimg">
+                                            <div class="imgbox">
+                                                <img src="/images/a3.jpg"
+                                                    width="58" height="58" title="Mine.苏文">
+                                            </div>
+                                            <p class="qqnick">Mine.苏文</p>
+                                        </div>
+                                        <div class="fl comment-text">
+                                            <div class="comment-point clearfix">
+                                                <span class="fl">商品评分</span>
+                                                <div class="fl pord-starbox">
+                                                    <i class="ico-detail i-star10"></i>
+                                                </div>
+                                                <span class="fl all-point ml5">5.0分</span>
+                                                <div class="fr comment-time">2018-10-01 00:26:45</div>
+                                            </div>
+                                            <p class="text-detail">默认好评</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="fl headimg">
+                                            <div class="imgbox">
+                                                <img src="" width="58"
+                                                    height="58" title="匿名用户">
+                                            </div>
+                                            <p class="qqnick">匿名用户</p>
+                                        </div>
+                                        <div class="fl comment-text">
+                                            <div class="comment-point clearfix">
+                                                <span class="fl">商品评分</span>
+                                                <div class="fl pord-starbox">
+                                                    <i class="ico-detail i-star10"></i>
+                                                </div>
+                                                <span class="fl all-point ml5">5.0分</span>
+                                                <div class="fr comment-time">2018-06-07 00:42:18</div>
+                                            </div>
+                                            <p class="text-detail">默认好评</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="fl headimg">
+                                            <div class="imgbox">
+                                                <img src="/images/a4.jpg"
+                                                    width="58" height="58" title="秋水洛">
+                                            </div>
+                                            <p class="qqnick">秋水洛</p>
+                                        </div>
+                                        <div class="fl comment-text">
+                                            <div class="comment-point clearfix">
+                                                <span class="fl">商品评分</span>
+                                                <div class="fl pord-starbox">
+                                                    <i class="ico-detail i-star10"></i>
+                                                </div>
+                                                <span class="fl all-point ml5">5.0分</span>
+                                                <div class="fr comment-time">2018-05-30 12:39:48</div>
+                                            </div>
+                                            <p class="text-detail">非常好看，很大</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="fl headimg">
+                                            <div class="imgbox">
+                                                <img src="/images/a5.jpg"
+                                                    width="58" height="58" title="若流年拨动你心弦i">
+                                            </div>
+                                            <p class="qqnick">若流年拨动你心弦i</p>
+                                        </div>
+                                        <div class="fl comment-text">
+                                            <div class="comment-point clearfix">
+                                                <span class="fl">商品评分</span>
+                                                <div class="fl pord-starbox">
+                                                    <i class="ico-detail i-star10"></i>
+                                                </div>
+                                                <span class="fl all-point ml5">5.0分</span>
+                                                <div class="fr comment-time">2018-05-18 01:37:22</div>
+                                            </div>
+                                            <p class="text-detail">默认好评</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- 分页按钮  -->
+                            <div class="page pagesmar" id="page_detail_tab_comment"></div>
+                        </div>
+                    </div>
+
+                    <!-- 联系商家 -->
+                    <div id="blk_detail_tab_supplier" class="pordcont pord-contact" style="display:none;">
+                        <dl class="contact-company">
+                            <dt>商家：魔匠文化</dt>
+                            <dd>
+                                <div></div>
+                            </dd>
+                        </dl>
+
+                        <dl class="contact-method">
+                            <dt>商家联系方式</dt>
+                            <dd>
+                                <div>电话：400-0188656</div>
+                                <div>ＱＱ：1909273330</div>
+                                <div>微信：暂无</div>
+                                <div class="contact-service"><a target="_blank"
+                                        href=""
+                                        id="onlineServiceDetail656">联系客服</a></div>
+                            </dd>
+                        </dl>
+                        <dl class="contact-time">
+                            <dt>商家服务时间</dt>
+                            <dd>
+                                <div>在线时间：9:00--18:00</div>
+                                <div class="concat-notice"></div>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <footer></footer>
+    <script src="/libs/require/require.min.js" data-main="/js/details"></script>
+</body>
+
+</html>

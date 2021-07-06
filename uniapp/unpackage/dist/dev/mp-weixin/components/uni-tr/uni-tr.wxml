@@ -1,0 +1,1 @@
+<view class="uni-table-tr"><block wx:if="{{selection==='selection'}}"><checkbox-group data-event-opts="{{[['change',[['change',['$event']]]]]}}" class="{{['checkbox',(border)?'tr-table--border':'']}}" bindchange="__e"><label><checkbox value="check" checked="{{value}}"></checkbox></label></checkbox-group></block><slot></slot></view>

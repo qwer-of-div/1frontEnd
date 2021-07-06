@@ -1,0 +1,22 @@
+{
+    "code": 200,
+    "body": {
+        "details":
+            {
+                "id": 10001,
+                "name": "天刀门派手链",
+                "price": 268,
+                "priceDel": 268.00,
+                "link": "/html/details.html",
+                "spec": ["丐帮","天香","神刀","五毒","真武"],
+                "smallImg": [
+                    "/images/details1.jpg",
+                    "/images/details2.jpg",
+                    "/images/details3.jpg",
+                    "/images/details4.jpg",
+                    "/images/details5.jpg"
+                ]
+            }
+      
+    }
+}

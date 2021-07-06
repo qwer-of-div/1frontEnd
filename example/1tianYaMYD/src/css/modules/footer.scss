@@ -1,0 +1,194 @@
+
+@mixin font( $size:16px, $color:#333, $weight:500){
+	font-size: $size;
+	color: $color;
+	font-weight: $weight;
+};
+
+@mixin margin( $top:0, $right:0, $bottom:0, $left:0){
+	margin-top: $top;
+	margin-right: $right;
+	margin-bottom: $bottom;
+	margin-left: $left;
+};
+
+//footer
+.footer{
+    min-width: 1280px;
+    background-color: #1b1b1b;
+    @include font(12px,#777);
+    line-height: 24px;
+    margin-top: 40px;
+    .footer-djc {
+        
+        width: 213px;
+        height: 64px;
+        position: absolute;
+        top: 51px;
+        left: 80px;
+        img{
+            display: block;
+            width: 169px;
+            height: 60px;
+        }
+    }
+    a{
+        color: #a8a8a8;
+    }
+    .mid{
+        position: relative;
+        border-bottom: 1px solid #606060;
+        
+        
+        .footer-info{
+            width: 395px;
+            height: 135px;
+            font-size: 14px;
+            line-height: 30px;
+            @include margin(50px, 0, 0, 317px);
+            border-left: 1px solid #606060;
+            border-right: 1px solid #606060;
+            li{
+                float: left;
+                width: 118px;
+                height: 55px;
+                padding: 0 38px;
+                a{
+                    display: block;
+                    width: 118px;
+                    height: 30px;
+                    &:hover {
+                        color: #fff;
+                    }
+                    .ic04,.ic05,.ic06,.ic07,.ic08{
+                        width: 30px;
+                        height: 30px;
+                        margin-right: 9px;
+                    }
+                    .ic04{
+                        background-position: 0 -61px;
+                    }
+                    .ic07{
+                        background-position: -90px -61px;
+                    }
+                    .ic05{
+                        background-position: -30px -61px;
+                    }
+                    .ic06{
+                        background-position: -60px -61px;
+                    }
+                    .ic08{
+                        background-position: -120px -61px;
+                    }
+                }
+            }
+        }
+        .footer-code{
+            line-height: 62px;
+            padding: 50px 0 20px 33px;
+            li{
+                float: left;
+                @include font(16px,#fff);
+                padding: 0 45px;
+                text-align: center;
+            }
+            .pr0{
+                padding-right: 0;
+            }
+        }
+    }
+}
+//底部帮助栏
+#footer_ied,
+#footer_ied a{
+    color: #777;
+}
+#footer_ied {
+    min-width: 1280px;
+    background: #1b1b1b;
+    font-size: 12px;
+    line-height: 24px;
+    padding: 30px 0 40px;
+    text-align: center;
+    a:hover {
+        color: #dfdfdf;
+    }
+}
+//固定侧边栏
+.fixednav{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 2000;
+    margin: 0 20px 215px 0;
+    a{
+        span{
+            display: none;
+            margin-top: 6px;
+        }
+      
+    }
+    .fixedlink{
+        display: block;
+        border: 1px solid #dfdfdf;
+        border-bottom: none;
+        background: #f5f5f5;
+        width: 44px;
+        height: 44px;
+        text-align: center;
+        overflow: hidden;
+        color: #fff;
+        line-height: 16px;
+        cursor: pointer;
+        &:hover {
+            color: #fff;
+            background: #ff5556;
+            border-bottom-color: #fff;
+        }
+        i{
+            display: block;
+            width: 17px;
+            height: 25px;
+            background-position: -32px -290px;
+            margin: 0 auto;
+            margin-top: 12px;
+        }
+        .navico-address{
+            background-position: -57px -290px;
+            width: 18px;
+        }
+        .navico-cart{
+            background-position: -79px -291px;
+            width: 20px;
+        }
+        .navico-cartnum{
+            background-position: -108px -287px;
+            width: 22px;
+            height: 22px;
+            line-height: 22px;
+            color: #fff;
+            text-align: center;
+        }
+        .navico-service{
+            background-position: -135px -287px;
+            width: 22px;
+            span{
+                margin-top: 13px;
+            }
+        }
+    }
+    .fixedlink.myservice{
+        border-bottom: 1px solid #dfdfdf;
+    }
+    a.mycart{
+        height: 130px;
+        background: #fff;
+        padding: 0;
+        span{
+            display: block;
+            font-size: 13px;
+            color: #3a3f4a;
+        }
+    }
+   
+}

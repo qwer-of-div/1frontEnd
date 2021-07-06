@@ -1,0 +1,37 @@
+{
+  "pages": [
+    "pages/index",
+    "pages/movie/movie",
+    "pages/city/city",
+    "pages/movieCinema/movieCinema"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "猫眼电影",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#E54847",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index",
+        "text": "首页",
+        "iconPath": "static/logo.png",
+        "selectedIconPath": "static/images/logo.png"
+      },
+      {
+        "pagePath": "pages/movie/movie",
+        "text": "首页",
+        "iconPath": "static/logo.png",
+        "selectedIconPath": "static/images/logo.png"
+      }
+    ]
+  },
+  "usingComponents": {},
+  "sitemapLocation": "sitemap28.json"
+}

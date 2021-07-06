@@ -1,0 +1,65 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+            "path" : "pages/index",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/movie/movie",
+            "style" : {
+				"enablePullDownRefresh": true
+			}
+        }
+        ,{
+            "path" : "pages/city/city",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/movieCinema/movieCinema",
+            "style" : {}
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "猫眼电影",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8",
+		"h5": {"titleNView": false} 
+	},
+	"easycom": {
+		"uni-(.*)": "@/components/uni-$1/uni-$1.vue"
+	},
+	"tabBar": {
+	    "color": "#7A7E83",
+	    "selectedColor": "#E54847",
+	    "borderStyle": "black",
+	    "backgroundColor": "#ffffff",
+	   "list": [
+	   			{
+	   				"pagePath":"pages/index",
+	   				"text":"首页",
+	   				"iconPath":"static/logo.png",
+	   				"selectedIconPath":"static/images/logo.png"
+	   			},
+				{
+					"pagePath":"pages/movie/movie",
+					"text":"首页",
+					"iconPath":"static/logo.png",
+					"selectedIconPath":"static/images/logo.png"
+				}
+	   		]	
+	},
+	"condition": { //模式配置，仅开发期间生效
+	    "current": 0, //当前激活的模式（list 的索引项）
+	    "list": [{
+	            "name": "movieCinema", //模式名称
+	            "path": "pages/movieCinema/movieCinema", //启动页面，必选
+	            "query": "id=1210778" //启动参数，在页面的onLoad函数里面得到。
+	        },
+	        {
+	            "name": "test",
+	            "path": "pages/component/switch/switch"
+	        }
+	    ]
+	}
+}

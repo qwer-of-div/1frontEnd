@@ -1,0 +1,43 @@
+{
+  "description": "项目配置文件。",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": false
+  },
+  "compileType": "miniprogram",
+  "libVersion": "",
+  "appid": "touristappid",
+  "projectname": "13maoYan",
+  "condition": {
+    "search": {
+      "current": -1,
+      "list": []
+    },
+    "conversation": {
+      "current": -1,
+      "list": []
+    },
+    "game": {
+      "current": -1,
+      "list": []
+    },
+    "miniprogram": {
+      "current": 0,
+      "list": [
+        {
+          "name": "movieCinema",
+          "query": "id=1210778",
+          "id": 0,
+          "pathName": "pages/movieCinema/movieCinema"
+        },
+        {
+          "name": "test",
+          "id": 1,
+          "pathName": "pages/component/switch/switch"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,155 @@
+{
+    "code": 200,
+    "main":[
+    {
+        "id": 1000,
+        "title": "服装服饰",
+        "smallTitle": "八荒齐聚，谁才是真正的武林萌主",
+        "moreLink": "/html/list.html",
+        "mainImg": "/images/main1.jpg",
+        "smallImg": [
+            {
+                "id": 10001,
+                "src": "/images/fuzhuang1.jpg",
+                "name": "天刀门派手链",
+                "price": 268,
+                "link": "/html/details.html"
+            },
+            {
+                "id": 10002,
+                "src": "/images/fuzhuang2.jpg",
+                "name": "天涯明月刀蓝铮T恤",
+                "price": 88,
+                "link": "/html/details.html"
+            },
+            {
+                "id": 10003,
+                "src": "/images/fuzhuang3.jpg",
+                "name": "三希堂团扇",
+                "price": 69,
+                "link": "/html/details.html"
+            },
+            {
+                "id": 10004,
+                "src": "/images/fuzhuang4.jpg",
+                "name": "天刀曲韵芳华T恤",
+                "price": 88,
+                "link": "/html/details.html"
+            }
+        ]
+    },
+    {
+        "id": 2000,
+        "title": "毛绒玩具",
+        "smallTitle": "软萌八荒弟子等你带回家",
+        "moreLink": "/html/list.html",
+        "mainImg": "/images/main2.jpg",
+        "smallImg": [
+            {
+                "id": 20001,
+                "src": "/images/maorong1.jpg",
+                "name": "天刀门派手链",
+                "price": 268,
+                "link": "/html/details.html"
+            },
+            {
+                "id": 20002,
+                "src": "/images/maorong2.jpg",
+                "name": "天涯明月刀蓝铮T恤",
+                "price": 88,
+                "link": "/html/details.html"
+            },
+            {
+                "id": 20003,
+                "src": "/images/maorong3.jpg",
+                "name": "三希堂团扇",
+                "price": 69,
+                "link": "/html/details.html"
+            },
+            {
+                "id": 20004,
+                "src": "/images/maorong4.jpg",
+                "name": "天刀曲韵芳华T恤",
+                "price": 88,
+                "link": "/html/details.html"
+            }
+        ]
+    },
+    {
+        "id": 3000,
+        "title": "数码3C",
+        "smallTitle": "天下数码萌会",
+        "moreLink": "/html/list.html",
+        "mainImg": "/images/main3.jpg",
+        "smallImg": [
+            {
+                "id": 30001,
+                "src": "/images/shuma1.jpg",
+                "name": "四盟充电宝-水龙吟",
+                "price": 99,
+                "link": "/html/details.html"
+            },
+            {
+                "id": 30002,
+                "src": "/images/shuma2.jpg",
+                "name": "四盟充电宝",
+                "price": 99,
+                "link": "/html/details.html"
+            },
+            {
+                "id": 30003,
+                "src": "/images/shuma3.jpg",
+                "name": "四盟充电宝-寒江城",
+                "price": 99,
+                "link": "/html/details.html"
+            },
+            {
+                "id": 30004,
+                "src": "/images/shuma4.jpg",
+                "name": "心王·醉花阴手机壳",
+                "price": 29,
+                "link": "/html/details.html"
+            }
+        ]
+    },
+    {
+        "id": 4000,
+        "title": "通用日常",
+        "smallTitle": "一路相随，不离不弃",
+        "moreLink": "/html/list.html",
+        "mainImg": "/images/main4.jpg",
+        "smallImg": [
+            {
+                "id": 40001,
+                "src": "/images/richang1.jpg",
+                "name": "红叶折扇",
+                "price": 69,
+                "link": "/html/details.html"
+            },
+            {
+                "id": 40002,
+                "src": "/images/richang2.jpg",
+                "name": "Q版门派徽章",
+                "price": 6,
+                "link": "/html/details.html"
+            },
+            {
+                "id": 40003,
+                "src": "/images/richang3.jpg",
+                "name": "移花灵鹿雨伞",
+                "price": 89,
+                "link": "/html/details.html"
+            },
+            {
+                "id": 40004,
+                "src": "/images/richang4.jpg",
+                "name": "印象笔记本",
+                "price": 59,
+                "link": "/html/details.html"
+            }
+        ]
+    }
+   
+    
+]
+}

@@ -1,0 +1,75 @@
+html,body {
+    
+    width: 100%;
+    height: 100%;
+    outline: none;
+    background: url("/images/login3.jpg") no-repeat;
+    background-size: cover; 
+    transition: all 1s;
+    // animation-name: myfirst;
+    animation-duration: 10s;
+   overflow: hidden;
+    /*变换时间*/
+    // animation-delay: 3s;
+    /*动画开始时间*/
+    animation-iteration-count: infinite;
+    /*下一周期循环播放*/
+    animation-play-state: running;
+    /*动画开始运行*/
+}
+ul{
+    position: absolute;
+    li{
+        list-style: none;
+       position: absolute;
+       width: 15px;
+       height: 2px;
+    }
+}
+
+@keyframes myfirst {
+    0% {
+        background-image: url("/images/login3.jpg");
+    }
+   
+    30% {
+        background-image: url("/images/login4.jpg");
+    }
+    70% {
+        background-image: url("/images/login1.jpg");
+    }
+    100% {
+        background-image: url("/images/login3.jpg");
+    }
+}
+
+.form {
+    background: rgba(255, 255, 255, 0.2);
+    width: 400px;
+    margin: 120px auto;
+    border-radius: 5px;
+    animation-duration: 2s; 
+     animation-delay: .5s; 
+     animation-iteration-count: 1; 
+}
+
+
+/*阴影*/
+
+.fa {
+    display: inline-block;
+    top: 27px;
+    left: 6px;
+    position: relative;
+    color: #69f;
+}
+
+input[type="text"],
+input[type="password"] {
+    padding-left: 26px;
+}
+
+.checkbox {
+    padding-left: 21px;
+    color: red
+}

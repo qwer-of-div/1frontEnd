@@ -1,0 +1,1 @@
+<view class="page-container"><view class="page-content home"><view class="_h2">example</view><view class="_hr"></view><u-button vue-id="5321e8aa-1" type="primary" data-event-opts="{{[['^click',[['e0']]]]}}" bind:click="__e" bind:__l="__l" vue-slots="{{['default']}}">返回</u-button></view></view>

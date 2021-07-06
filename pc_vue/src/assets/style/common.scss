@@ -1,0 +1,104 @@
+// 项目颜色、字体确定
+// 绝对定位
+// 清除浮动
+// flex布局 eg:角色不同布局高度不同
+// 按钮:不同功能不同颜色、确定 取消 查询 修改 下一步 重 置
+// 标签:不同状态不同颜色
+// Fixed relative 不支持大量滑动h5
+
+.page-container.mc-claim-list-page { // 在同一元素上
+  .conts {
+    flex: 1;
+  }
+}
+// 根节点
+// .page-container, .page-content { eg: mc-page-container
+html,body,#app, .page-container, .page-content {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+.bg{
+  background-color: #fff;
+}
+
+// 开发样式
+.dev-wrap {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+}
+
+/* 清除浮动 */
+.clearfix:after {
+  /*伪元素是行内元素 正常浏览器清除浮动方法*/
+  content: "";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.clearfix {
+  *zoom: 1;
+  /*ie6清除浮动的方式 *号只有IE6-IE7执行，其他浏览器不执行*/
+}
+
+// a标签颜色、下划线
+a {
+  color: #69f;
+  text-decoration: none;
+}
+.router-link-active {
+  color: red;
+}
+
+//flex
+.relative {
+  position: relative;
+}
+.f-left {
+  float: left;
+}
+.f-right {
+  float: right;
+}
+.flex {
+display: flex
+}
+.flex-col {
+display: flex;
+flex-direction: column;
+}
+// 横向使用hide 纵向使用flex1
+.flex1 {
+flex: 1;
+}
+.flex1-hide {
+  flex: 1;
+  overflow: hidden;
+  }
+.flex2 {
+flex: 2;
+}
+.flex2-hide {
+  flex: 2;
+  overflow: hidden;
+  }
+.flex3 {
+  flex: 3;
+}
+.flex3-hide {
+  flex: 3;
+  overflow: hidden;
+}
+
+.btn-confirm {
+  color: #69f;
+}
+.btn-cancel {
+  color: #fff;
+}
+.warn-color {
+  color: red;
+}
+

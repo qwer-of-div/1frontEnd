@@ -1,0 +1,1 @@
+<view class="content"><view class="text-area"><text class="title">{{title}}</text></view><image class="logo" src="/static/img/common/template_select.png"></image><u-tabbar vue-id="99df4fd0-1" list="{{tabBar}}" mid-button="{{true}}" bind:__l="__l"></u-tabbar></view>

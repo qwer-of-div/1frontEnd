@@ -1,0 +1,75 @@
+// 在本文件中可配置云数据库初始化，数据格式见：https://uniapp.dcloud.io/uniCloud/hellodb?id=db-init
+// 编写完毕后对本文件点右键，可按配置规则创建表和添加数据
+{
+    "uni-id-roles": {
+        "data": [
+            {
+                "name": "实时6",
+                "role": 2,
+                "year": 2016
+            },
+            {
+                "name": "王五",
+                "role": 2,
+                "year": 2015
+            },
+            {
+                "name": "王五",
+                "role": 1,
+                "year": 2013
+            },
+            {
+                "name": "王五",
+                "role": 1,
+                "year": 2014
+            },
+            {
+                "name": "实时",
+                "role": 1,
+                "year": 2013
+            },
+            {
+                "name": "实时4",
+                "role": 2,
+                "year": 2015
+            },
+            {
+                "name": "王五",
+                "role": 1,
+                "year": 2014
+            },
+            {
+                "name": "王五"
+            },
+            {
+                "name": "aaa"
+            }
+        ]
+    },
+    "uniapp": {
+        "data": [
+            {
+                "name": "李四"
+            }
+        ],
+        "schema": {
+            "bsonType": "object",
+            "required": [],
+            "permission": {
+                "read": false,
+                "create": false,
+                "update": false,
+                "delete": false
+            },
+            "properties": {
+                "_id": {
+                    "description": "ID，系统自动生成"
+                },
+                "name": {
+                    "bsonType": "string",
+                    "description": "must be a string and is required"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,123 @@
+@import "modules/reset";
+@import 'modules/header';
+@import 'modules/footer';
+
+.breadcrumb1{
+    //  width: 1280px;
+    height: 50px;
+    line-height: 50px;
+    @include font(14px,#999);
+    a{
+        color: #999;
+    }
+    .ibcb-first{
+        color: #3a3f4a;
+        &:hover{
+            color: #ff5556;
+        }
+    }
+    background-color: #f5f5f5;
+}
+// 主要内容
+.main .mid{
+    width: 1226px;
+    // width: 1280px;
+    background-color: #f5f5f5;
+    .page-main{
+        .list-filter{
+            background-color: #fff;
+            margin-bottom: 10px;
+            padding-top: 12px;
+            .fltbox{
+                padding: 11px 0;
+                border-bottom: 1px solid #eee;
+                dl{
+                    font-size: 14px;
+                    dt{
+                        float: left;
+                        @include font(14px,#999);
+                        line-height: 30px;
+                    }
+                    dd{
+                        float: left;
+                        padding: 0 20px;
+                        color: #666;
+                        line-height: 30px;
+                        cursor: pointer;
+                        .i-arrgray{
+                            display: inline-block;
+                            width: 8px;
+                            height: 12px;
+                            background-position: -79px -64px;
+                            vertical-align: middle;
+                        }
+                        .i-check{
+                            display: inline-block;
+                            width: 16px;
+                            height: 16px;
+                            vertical-align: middle;
+                            background-position: -2px -2px;
+                        }
+                    }
+                }
+               
+            }
+        }
+        .list{
+            ul{
+              
+              
+                // width: 1200px;
+                li{
+                    
+                    float: left;
+                    padding-bottom: 20px;
+                    background-color: #fff;
+                    border: 1px solid #eee;
+                    margin: 0 10px 20px;
+                    transition: all .2s linear;
+                    &:hover{
+                        box-shadow: 0 15px 30px rgba(0,0,0,.2);
+                        transform: translate3d(0,-2px,0);
+                    }
+                    a{
+                        position: relative;
+                        font-size: 14px;
+                        color: #444;
+                        img{
+                            width: 280px;
+                            height: 268px;
+                        }
+                        .good-name{
+                            margin-top: 18px;
+                            .new-pri{
+                                line-height: 25px;
+                                font-size: 16px;
+                                color: #f7545f;
+                            }
+                            .old-pri{
+                                padding-left: 8px;
+                                font-size: 14px;
+                                color: #999;
+                                text-decoration: line-through;
+
+                            }
+                        }
+                        text-align: center;
+                        .mark1{
+                            position: absolute;
+                            right: 20px;
+                            top: 0;
+                            width: 28px;
+                            height: 40px;
+                            font-weight: 700;
+                            padding: 10px 10px 7px;
+                            background: url(/images/sprite.png) no-repeat;
+                            background-position: -279px -85px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

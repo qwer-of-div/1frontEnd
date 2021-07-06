@@ -1,0 +1,92 @@
+.clearfix:after{/*伪元素是行内元素 正常浏览器清除浮动方法*/
+    content: "";
+    display: block;
+    height: 0;
+    clear:both;
+    visibility: hidden;
+}
+.clearfix{
+    *zoom: 1;/*ie6清除浮动的方式 *号只有IE6-IE7执行，其他浏览器不执行*/
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+input {
+    outline: none;
+}
+.login{
+    height: 100vh;
+    box-sizing: border-box;
+    background: #e2e2e2;
+   
+}
+.login header{
+    width:100%;
+    height: 1.1rem;
+    background-color:#1d1d1d;
+    display: flex;
+    justify-content: center;
+    font-size:.4rem;
+    align-items: center;
+    color:#fff;
+    font-weight: 500;
+}
+.login .container {
+    margin: 14px 12px 0;
+    /* background: #69f; */
+}
+.login .input {
+    position: relative;
+    box-sizing: border-box;
+}
+.login .input-txt {
+    box-sizing: border-box;
+    width: 7rem;
+    height: 0.9rem;
+    font-size:.32rem;
+    padding-left: 0.3rem;
+    border-radius: 0.08rem;
+}
+.login .country-is {
+    position: absolute;
+    bottom: .3rem;
+    right: .2rem;
+    /* transform: translateY(50%); */
+    font-size:.32rem;
+}
+.login .mainland {
+    position: absolute;
+    bottom: .3rem;
+    left: .3rem;
+    /* transform: translateY(50%); */
+    font-size:.32rem;
+}
+.login .iphone {
+    padding-left: 1rem;
+}
+.login .captcha-txt {
+    width: 4rem;
+    margin-right: 0.5rem;
+}
+.login .captcha-btn {
+    width: 2.5rem;
+    background: linear-gradient(#fcfcfc,#f7f7f7);
+    
+}
+.login .login-btn {
+    font-size: 0.36rem;
+    color: #FFF;
+    background: linear-gradient(#6f94e8,#5178df);
+    
+}
+.login .remake-p {
+    color: #7f7f7f;
+    font-size: 0.28rem;
+    /* display: inline-block; */
+    text-align: left;
+    /* float: left; */
+    line-height: 0.36rem;
+    margin-top: .3rem;
+}
+

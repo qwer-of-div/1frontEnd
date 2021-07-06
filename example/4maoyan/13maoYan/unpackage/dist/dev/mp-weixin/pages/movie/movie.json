@@ -1,0 +1,9 @@
+{
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "uni-myheader": "/components/uni-myheader/uni-myheader",
+    "uni-icons": "/components/uni-icons/uni-icons",
+    "uni-mynav": "/components/uni-mynav/uni-mynav",
+    "my-hot-show": "/pages/movie/components/HotShow"
+  }
+}

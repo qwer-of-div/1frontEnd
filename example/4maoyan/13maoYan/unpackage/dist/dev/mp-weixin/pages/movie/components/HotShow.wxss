@@ -1,0 +1,120 @@
+@charset "UTF-8";
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.praise.data-v-19d35f89 {
+  padding: 20rpx 30rpx;
+}
+.praise .title.data-v-19d35f89 {
+  display: block;
+  padding-bottom: 10rpx;
+  color: #333;
+}
+.scroll-x.data-v-19d35f89 {
+  width: 100%;
+  white-space: nowrap;
+}
+.scroll-x .scroll-item.data-v-19d35f89 {
+  display: inline-block;
+  padding: 10rpx;
+  width: 25%;
+  font-weight: 700;
+}
+.scroll-x .scroll-item .img-box.data-v-19d35f89 {
+  width: 100%;
+}
+.scroll-x .scroll-item .img-box image.data-v-19d35f89 {
+  width: 100%;
+  height: 250rpx;
+}
+.scroll-x .scroll-item .desc.data-v-19d35f89 {
+  display: block;
+  width: 100%;
+  color: #000;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.scroll-x .scroll-item .score.data-v-19d35f89 {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  color: #E7A301;
+}
+.movie-list.data-v-19d35f89 {
+  margin-top: 20rpx;
+}
+.movie-list .item > image.data-v-19d35f89 {
+  width: 20%;
+  height: 200rpx;
+  padding: 30rpx;
+  padding-right: 20rpx;
+}
+.movie-list .item .flex1.data-v-19d35f89 {
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  padding: 30rpx;
+  padding-left: 0;
+  border-bottom: 1px solid #ccc;
+}
+.movie-list .item .flex1 button.data-v-19d35f89 {
+  padding: 15rpx;
+  font-size: 26rpx;
+  line-height: 26rpx;
+  color: #fff;
+  border-radius: 10rpx;
+  background-color: #E54847;
+}
+.movie-list .item .flex1 .presell.data-v-19d35f89 {
+  background-color: #3C9FE6;
+}
+.movie-list .item .desc.data-v-19d35f89 {
+  padding-right: 30rpx;
+  font-size: 24rpx;
+  line-height: 40rpx;
+}
+.movie-list .item .desc > text.data-v-19d35f89 {
+  display: block;
+}
+.movie-list .item .desc .name.data-v-19d35f89 {
+  font-size: 35rpx;
+  font-weight: 700;
+  color: #333;
+}
+.movie-list .item .desc .score.data-v-19d35f89 {
+  font-weight: 700;
+  color: #FAAF00;
+  white-space: pre-wrap;
+}
+.movie-list .item .desc .star.data-v-19d35f89 {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+

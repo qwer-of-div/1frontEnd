@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "uni-myheader": "/components/uni-myheader/uni-myheader",
+    "uni-icons": "/components/uni-icons/uni-icons"
+  }
+}

@@ -1,0 +1,1 @@
+<view class="page-container"><view class="page-content"><web-view src="http://localhost:8888/#/components/webview" data-event-opts="{{[['message',[['handleMessage',['$event']]]]]}}" bindmessage="__e"></web-view></view></view>

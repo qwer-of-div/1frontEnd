@@ -1,0 +1,30 @@
+{
+  "setting": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pages/components/components",
+          "pathName": "pages/components/components",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/components/cloud/unicloudDB/unicloudDB",
+          "pathName": "pages/components/cloud/unicloudDB/unicloudDB",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/login/login",
+    "pages/menu/menu",
+    "pages/home/home",
+    "pages/components/components",
+    "pages/components/webview/webview",
+    "pages/404/404",
+    "pages/code/code",
+    "pages/example/example",
+    "pages/components/tabBar/uViewUI/index",
+    "pages/components/tabBar/midBtn/index",
+    "pages/components/tabBar/template/index",
+    "pages/components/tabs/tabs",
+    "pages/components/tabs/goodTabs",
+    "pages/components/refresh/refresh",
+    "pages/components/threeLogin/threeLogin",
+    "pages/components/authCode/authCode",
+    "pages/components/camera/camera",
+    "pages/components/location/location",
+    "pages/components/camera/customCamera/customCamera",
+    "pages/components/camera/customCamera/customCameraSelf",
+    "pages/components/camera/customScan/customScan",
+    "pages/code/form/form",
+    "pages/code/form/upload",
+    "pages/code/form/emptyVerify",
+    "pages/code/form/idVerify",
+    "pages/code/form/phoneVerify",
+    "pages/components/cloud/cloud",
+    "pages/components/cloud/unicloudDB/unicloudDB"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationStyle": "custom",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "permission": {},
+  "usingComponents": {}
+}

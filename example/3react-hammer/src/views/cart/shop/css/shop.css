@@ -1,0 +1,50 @@
+a{
+    text-decoration: none;
+}
+.empty-container{
+    text-align: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #ededed;
+    font-size: 18px;
+}
+.img-container{
+    width: 88px;
+    height: 114px;
+    background: url('~@/assets/imgs/shop.png') no-repeat top;
+    background-size: 100%;
+    margin: 0 auto;
+}
+.empty-container h3{
+    margin: 25px 0px 9px;
+    color: rgba(0,0,0,.15);
+}
+.empty-container p{
+    text-align: center;
+    color: rgba(0,0,0,.15);
+    font-size: 14px;
+}
+.empty-container .buy-btn{
+    display: inline-block;
+    width: 142px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 12px;
+    font-weight: 700;
+    color: rgba(0,0,0,.6);
+    margin: 16px 1px 0;
+    border-radius: 6px;
+    background: linear-gradient(rgba(0,0,0,.01),hsla(0,0%,100%,.01));
+    box-shadow: inset 0 2px 4px hsla(0,0%,100%,.3);
+}
+.empty-container .buy-btn.login {
+    box-shadow: inset 0 -1px 1px rgba(0,0,0,.2), 0 0 1px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.2);
+    background: #5e8bdd;
+    background: linear-gradient(#6f94e8,#5178df);
+    
+    text-shadow: 0 -1px 0 rgba(0,0,0,.15);
+    color: #fff;
+}

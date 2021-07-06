@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>商品列表-天涯明月刀周边商城</title>
+    <link rel="stylesheet" href="/libs/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_1375334_hwre7u4lbl9.css">
+    <link rel="stylesheet" href="/css/list.css">
+    <script src="/libs/jquery/jquery-1.11.3.min.js"></script>
+    <script src="/libs/bootstrap/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+        <header></header>
+
+        <div class="breadcrumb1">
+                <span>
+                    <a class="ibcb-first" href="/index.html">首页></a>
+                </span>
+                <span>
+                    <a href="javascript:;">服饰配饰</a>
+                </span>
+            </div>
+    <div class="main container">
+        <div class="mid">
+            
+            <div class="page-main">
+                <div class="list-filter">
+                    <div class="fltbox clearfix fltbox1">
+                        <dl>
+                            <dt>分类：</dt>
+                            <dd>全部</dd>
+                            <dd>数码3C</dd>
+                            <dd>毛绒玩偶</dd>
+                            <dd>通用日常</dd>
+                            <dd>手办模型</dd>
+                            <dd>服饰配饰</dd>
+                            <dd>新品专区</dd>
+                        </dl>
+                    </div>
+                    <div class="fltbox sort-filter clearfix">
+                        <dl class="sortdl fl">
+                            <dt>排序：</dt>
+                            <dd>默认</dd>
+                            <dd>
+                                <span class="priceRank">价格</span>
+                                <i class="ico-comm i-arrgray"></i>
+                            </dd>
+                            <dd>
+                                <span>新品</span>
+                                <i class="ico-comm i-arrgray"></i>
+                            </dd>
+                            <dd>
+                                <span>人气</span>
+                                <i class="ico-comm i-arrgray"></i>
+                            </dd>
+                            <dd>
+                                <span>销量</span>
+                                <i class="ico-comm i-arrgray"></i>
+                            </dd>
+                        </dl>
+                        <dl class="sortdl fr">
+                            <dt>筛选：</dt>
+                            <dd>
+                                <i class="ico-comm i-check"></i>
+                                <span>有货</span>
+                            </dd>
+                            <dd>
+                                <i class="ico-comm i-check"></i>
+                                <span>包邮</span>
+                            </dd>
+                            <dd>
+                                <i class="ico-comm i-check"></i>
+                                <span>聚豆可抵</span>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+                <div class="list">
+                    <ul class="clearfix" id="list">
+                        <!-- <li>
+                            <a href="">
+                                <img src="/images/fuzhuang1.jpg" alt="">
+                                
+                                <div class="good-name">
+                                        <p class="good-info">四盟充电宝</p>
+                                    <span class="new-pri">￥99.00</span>
+                                    <span class="old-pri">￥129.00</span>
+                                </div>
+                                <div class="mark1">
+                                    <span class="mark-txt">热卖</span>
+                                </div>
+                            </a>
+                        </li>
+                             <li>
+                                            <a href="">
+                                                <img src="/images/fuzhuang1.jpg" alt="">
+                                                
+                                                <div class="good-name">
+                                                        <p class="good-info">四盟充电宝</p>
+                                                    <span class="new-pri">￥99.00</span>
+                                                    <span class="old-pri">￥129.00</span>
+                                                </div>
+                                            </a>
+                                        </li> -->
+                    </ul>
+                    <script type="text/html" id="list-template">
+                        {{each images image}}
+                        <li>
+                                <a href="{{image.href}}">
+                                    <img src="{{image.url}}" alt="">
+                                    
+                                    <div class="good-name">
+                                            <p class="good-info">{{image.name}}</p>
+                                        <span class="new-pri">￥{{image.price}}</span>
+                                        <span class="old-pri">￥{{image.priceDel}}</span>
+                                    </div>
+                                    <div class="mark1">
+                                        <span class="mark-txt">热卖</span>
+                                    </div>
+                                </a>
+                            </li>
+                            {{/each}}
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer></footer>
+
+    <script src="/libs/require/require.min.js" data-main="/js/list"></script>
+</body>
+
+</html>

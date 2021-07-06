@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=WRcy9MoAH4x7A7olsMMA1GoFCGxi1wFh"></script>
+    <script src="/libs/jquery/jquery-1.11.3.min.js"></script>
+    <style>
+            html,body,#allmap{
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+</head>
+<body>
+        <div id = "allmap"></div>
+
+    <script>
+        
+    //    setTimeout(function(){        console.log(1)    })
+    //    console.log(2)
+    
+
+        function showLocation(data) {
+    // console.log(data.content.address_detail.city);
+    console.log(data.address);
+}
+
+// $.getScript("http://api.map.baidu.com/location/ip?ak=WRcy9MoAH4x7A7olsMMA1GoFCGxi1wFh&callback=showLocation");
+$.getJSON(
+                    `http://api.map.baidu.com/location/ip?ak=WRcy9MoAH4x7A7olsMMA1GoFCGxi1wFh&callback=?`,
+                    resp => {
+                       
+                        var b = new BMap.MercatorProjection().pointToLngLat(new BMap.Pixel(resp.content.point.x, resp.content.point.y));
+
+                       
+                        console.log(resp);
+                        console.log(b);
+                         //百度地图API功能
+            var map = new BMap.Map("allmap");
+            map.centerAndZoom(new BMap.Point(b.lng,b.lat),15);//根据坐标初始化地图
+             map.enableScrollWheelZoom(true);
+            map.addControl(new BMap.NavigationControl());   //平移缩放控件
+            map.addControl(new BMap.ScaleControl());        //比例尺
+            map.addControl(new BMap.OverviewMapControl());  //缩略地图
+            map.addControl(new BMap.MapTypeControl());      //地图类型
+            map.setCurrentCity("杭州"); // 仅当设置城市信息时，MapTypeControl的切换功能才能可用
+         
+            //添加标注
+            var marker = new BMap.Marker(new BMap.Point(b.lng,b.lat));        // 创建标注
+            map.addOverlay(marker);  
+                    }
+                )
+
+//浏览器定位
+// var map = new BMap.Map("allmap");    // 创建Map实例
+// var geolocation = new BMap.Geolocation();
+// geolocation.getCurrentPosition(function (r) {
+//     if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+//         map.centerAndZoom(new BMap.Point( r.point.lng , r.point.lat),15);//根据坐标初始化地图
+//              map.enableScrollWheelZoom(true);
+//             map.addControl(new BMap.NavigationControl());   //平移缩放控件
+//             map.addControl(new BMap.ScaleControl());        //比例尺
+//             map.addControl(new BMap.OverviewMapControl());  //缩略地图
+//             map.addControl(new BMap.MapTypeControl());      //地图类型
+//             map.setCurrentCity("杭州"); // 仅当设置城市信息时，MapTypeControl的切换功能才能可用
+         
+//         var mk = new BMap.Marker(r.point);
+//         map.addOverlay(mk);
+//         map.panTo(r.point);
+//         alert('您的位置：' + r.point.lng + ',' + r.point.lat);
+//     }
+//     else {
+//         alert('failed' + this.getStatus());
+//     }
+// }, {enableHighAccuracy: true})
+
+        </script>
+   
+</body>
+</html>

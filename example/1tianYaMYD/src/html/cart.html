@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>我的购物车页-天涯明月刀周边商城</title>
+    <link rel="stylesheet" href="/css/cart.css">
+</head>
+<body>
+    <header></header>
+    <!-- 主体内容 -->
+    <div class="mainwrap">
+            <div class="mycart1" id="blk_cart_list">             <div class="mycart-th clearfix">
+                    <div class="fl sp-1">&nbsp;
+                        <!--<span class="input-check"><i></i></span>-->
+                    </div>
+                    <p class="fl sp-2">&nbsp;
+                        <!--全选-->
+                    </p>
+                    <p class="fl sp-3">
+                        商品信息
+                    </p>
+                    <p class="fl sp-4">
+                        &nbsp;
+                    </p>
+                    <p class="fl sp-5">
+                        单价（元）
+                    </p>
+                    <p class="fl sp-6">
+                        数量
+                    </p>
+                    <p class="fl sp-7">
+                        金额（元）
+                    </p>
+                    <p class="fl sp-8">
+                        操作
+                    </p>
+                </div>
+                <div class="mycart-pack cartbox" supplier_id="656" biz_code="wuxia">
+                   
+                    <div class="noshop">
+                        购物车空空如也，赶紧选购我们的商品吧！
+                        <a href="/html/list.html">【去逛逛】</a>
+                    </div>
+                    <div class="mycart-list" id="mycart-list">
+                          <!-- <div class="mycart-item">
+                            <div class="mycart-item-tb">
+                                <div class="mycart-item-row cartlist clearfix" biz="wuxia" mallid="4578" cartid="49452" price="9900" name="四盟充电宝" pic="https://game.gtimg.cn/images/zb/x5/uploadImg/goods/201908/20190808101145_28627.jpg" type="0">
+                                    <div class="fl sp-1">
+                                        <span class="goodscheck input-check"><i></i></span>
+                                    </div>
+                                    <div class="fl sp-2">
+                                        <div class="mycart-item-img">
+                                            <a href="/html/detail.shtml?id=4578" target="_blank"><img src="https://game.gtimg.cn/images/zb/x5/uploadImg/goods/201908/20190808101145_28627.jpg" alt="商品名称"></a>
+                                        </div>
+                                    </div>
+                                    <div class="fl sp-3">
+                                        <p class="mycart-item-name">
+                                            <a href="/wuxia/detail.shtml?id=4578" target="_blank">四盟充电宝</a>
+                                        </p>
+                                        <div class="mycart-item-tag">19900
+                                            <span data-txt="使用聚豆最高可以抵扣 2.00 元">聚豆抵 2.00 元</span>
+                                          </div>
+                                     </div>
+                                    <div class="fl sp-4">
+                                        <div class="mycart-item-sel disabled">
+                                             <p>规格：寒江城</p>
+                                        </div>
+                                    </div>
+                                    <div class="fl sp-5">
+                                        <p class="mycart-item-per">
+                                            <s>129.00 元</s>99.00 元
+                                        </p>
+                                    </div>
+                                    <div class="fl sp-6">
+                                        <div class="mycart-item-count">
+                                            <span class="num-minus btn_cart_list_buy_min">-</span>
+                                            <input type="text" class="inpt_cart_list_buy_num" value="1" stock_num="27">
+                                            <span class="num-plus btn_cart_list_buy_plus">+</span>
+                                        </div>
+                                    </div>
+                                    <div class="fl sp-7">
+                                        <p class="mycart-item-price">
+                                            99.00 元
+                                        </p>
+                                    </div>
+                                    <div class="fl sp-8">
+                                        <div class="mycart-item-tg">
+                                            <a class="btn-del" href="javascript:;">删除</a>
+                                            <a class="btn-fav" href="javascript:;">移入收藏夹</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                        
+                     </div>
+                     <script type="text/html" id="mycart-list-temp">
+                        <div class="mycart-shop">
+                            <input class="input-check cartcheck" type="checkbox">
+                            <p class="mycart-shop-t">天涯明月刀供应商：魔匠文化</p>
+                            <span class="mycart-shop-coupon coupon-link" data-id="656" style="display: none">领取优惠券</span>
+                            <div class="couponbox" data-id="656" style="display: none"></div>
+                        </div>
+                        {{each cart shop}}
+                        <div class="mycart-item" data-id="{{shop.id}}">
+                            <div class="mycart-item-tb">
+                                <div class="mycart-item-row cartlist clearfix" biz="wuxia" mallid="4578" cartid="49452" price="9900" name="四盟充电宝" pic="" type="0">
+                                    <div class="fl sp-1">
+                                        <input class="goodscheck input-check" type="checkbox" {{shop.checked  && "checked"}}>
+                                    </div>
+                                    <div class="fl sp-2">
+                                        <div class="mycart-item-img">
+                                            <a href="/html/details.html?id={{shop.id}}" target="_blank">
+                                                <img src="{{shop.img[0].smallImg}}" alt="商品名称"></a>
+                                        </div>
+                                    </div>
+                                    <div class="fl sp-3">
+                                        <p class="mycart-item-name">
+                                            <a href="/html/details.html?id={{shop.id}}" target="_blank">{{shop.name}}</a>
+                                        </p>
+                                        <div class="mycart-item-tag">19900
+                                            <span data-txt="使用聚豆最高可以抵扣 2.00 元">聚豆抵 2.00 元</span>
+                                          </div>
+                                     </div>
+                                    <div class="fl sp-4">
+                                        <div class="mycart-item-sel disabled">
+                                             <p>规格：{{shop.img[0].name}}</p>
+                                            <!--<i>修改</i>-->
+                                        </div>
+                                    </div>
+                                    <div class="fl sp-5">
+                                        <p class="mycart-item-per">
+                                            <s>{{shop.priceDel}} 元</s>{{shop.price}} 元
+                                        </p>
+                                    </div>
+                                    <div class="fl sp-6">
+                                        <div class="mycart-item-count">
+                                            <span class="num-minus btn_cart_list_buy_min" onselectstart="return false">-</span>
+                                            <input type="text" class="inpt_cart_list_buy_num" value="{{shop.num}}" stock_num="27">
+                                            <span class="num-plus btn_cart_list_buy_plus" onselectstart="return false">+</span>
+                                        </div>
+                                    </div>
+                                    <div class="fl sp-7">
+                                        <p class="mycart-item-price">
+                                             {{shop.price * shop.num}}元
+                                        </p>
+                                    </div>
+                                    <div class="fl sp-8">
+                                        <div class="mycart-item-tg">
+                                            <a class="btn-del" href="javascript:;">删除</a>
+                                            <a class="btn-fav" href="javascript:;">移入收藏夹</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+                    </script>
+                </div>
+                    <div class="mycart-tb clearfix">
+                        <div class="mycart-tb-tg">
+                            <!--<span class="input-check"><i></i></span>-->
+                            <!--<span>全选</span>-->
+                            <!--<a href="javascript:;">删除选中商品</a>-->
+                            <!--<a href="javascript:;">清除失效商品</a>-->
+                        </div>
+                        <div class="mycart-tb-info" style="margin: 6px 180px 0 0;">
+                            <p>已选商品 <b class="total">0</b> 件&nbsp;&nbsp;总价：<b class="money">0 元</b></p>
+                            <p class="b">不含运费和其他优惠</p>
+                        </div>
+                        <a class="mycart-tb-btn">去结算</a>
+                        <!--<a class="mycart-tb-btn disable" href="#">去结算</a>-->
+                    </div>
+     </div>
+     <div class="myrecomm">
+            <h2 class="myrecomm-tit">为你推荐</h2>
+            <ul id="blk_cart_recommend" class="myrecomm-list clearfix">                 <li>
+                    <div class="myrecomm-pic">
+                        <a href="" target="_blank">
+                            <img width="246" height="236" src="/images/hongye.jpg" alt="">
+                        </a>
+                    </div>
+                    <div class="myrecomm-box">
+                        <p>红叶折扇</p>
+                        <b>69.00 元</b><s>69.00 元</s>
+                        <!--<a href="javascript:;"><i class="comicon"></i>加入购物车</a>-->
+                    </div>
+                </li>
+                <li>
+                    <div class="myrecomm-pic">
+                        <a href="" target="_blank">
+                            <img width="246" height="236" src="/images/tianmen.jpg" alt="">
+                        </a>
+                    </div>
+                    <div class="myrecomm-box">
+                        <p>天刀门派指环</p>
+                        <b>29.00 元</b><s>29.00 元</s>
+                        <!--<a href="javascript:;"><i class="comicon"></i>加入购物车</a>-->
+                    </div>
+                </li>
+                <li>
+                    <div class="myrecomm-pic">
+                        <a href="" target="_blank">
+                            <img width="246" height="236" src="/images/tiandao.jpg" alt="">
+                        </a>
+                    </div>
+                    <div class="myrecomm-box">
+                        <p>天刀心法笔记本</p>
+                        <b>28.00 元</b><s>39.00 元</s>
+                        <!--<a href="javascript:;"><i class="comicon"></i>加入购物车</a>-->
+                    </div>
+                </li>
+                <li>
+                    <div class="myrecomm-pic">
+                        <a href="" target="_blank">
+                            <img width="246" height="236" src="/images/diwang.jpg" alt="">
+                        </a>
+                    </div>
+                    <div class="myrecomm-box">
+                        <p>帝王州手机壳</p>
+                        <b>49.00 元</b><s>49.00 元</s>
+                        <!--<a href="javascript:;"><i class="comicon"></i>加入购物车</a>-->
+                    </div>
+                </li>
+                <li>
+                    <div class="myrecomm-pic">
+                        <a href="" target="_blank">
+                            <img width="246" height="236" src="/images/tianya.jpg" alt="">
+                        </a>
+                    </div>
+                    <div class="myrecomm-box">
+                        <p>天涯明月刀 Q萌表情包贴纸（包邮）</p>
+                        <b>19.80 元</b><s>19.80 元</s>
+                        <!--<a href="javascript:;"><i class="comicon"></i>加入购物车</a>-->
+                    </div>
+                </li>
+</ul>
+          
+        </div>
+    </div>
+
+    <footer></footer>
+    
+    <script src="/libs/require/require.min.js" data-main="/js/cart"></script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+<view class="content"><uni-navbar vue-id="b2930954-1" bind:__l="__l"></uni-navbar><image class="logo" src="/static/img/common/component_select.png"></image><u-tabbar vue-id="b2930954-2" list="{{tabBar}}" mid-button="{{true}}" bind:__l="__l"></u-tabbar></view>

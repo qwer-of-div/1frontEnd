@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "uni-navbar": "/components/uni-navbar/uni-navbar",
+    "u-icon": "/uview-ui/components/u-icon/u-icon",
+    "u-badge": "/uview-ui/components/u-badge/u-badge",
+    "u-tabs": "/uview-ui/components/u-tabs/u-tabs"
+  }
+}
