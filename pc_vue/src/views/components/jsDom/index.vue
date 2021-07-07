@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     // 自定义confirm
-    onClick (type) {
+    async onClick (type) {
       if (type === 'confirm') {
         this.$myConfirm({ title: '删除', message: '确认删除该文件吗？', show: true })
           .then((params) => {
@@ -79,16 +79,17 @@ export default {
           minDate: new Date(2000, 0, 1),
           maxDate: new Date()
         }
-        this.$myDate(date)
-          .then((obj) => {
-            this.date.value = obj.value
-            // 用户点击确认后执行
-            console.log('点击了确定', obj, new Date())
-          })
-          .catch(() => {
-            console.log('点击了取消')
-            // 取消或关闭
-          })
+        try {
+          const dateRes = await this.$myDate(date)
+          this.date.value = dateRes.value
+          console.log('点击了确定', dateRes)
+        } catch (err) {
+          console.log('取消', err)
+        } finally {
+          console.log('finally')
+        }
+        // 错误和成功都会执行
+        console.log('try_catch后')
       }
     }
   }

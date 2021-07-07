@@ -17,6 +17,17 @@
                  @click="onLogin('logout')">退出</el-button>
       <br>
       <br>
+      <el-button type="primary"
+                 @click="onLogin('loading')">请求样式</el-button>
+      <br>
+      <br>
+      <el-button type="primary"
+                 @click="onLogin('noData')">noData请求样式</el-button>
+      <div class="myLoading-wrap">
+        <my-loading :show="flag.loadShow">
+          <div>{{res.message}}</div>
+        </my-loading>
+      </div>
       <div>
         <el-input v-model.trim="md5"
                   placeholder="密码"></el-input>
@@ -31,7 +42,13 @@ export default {
   data () {
     return {
       md5: '',
-      page: 'login'
+      page: 'login',
+      flag: {
+        loadShow: 'initData'
+      },
+      res: {
+        message: ''
+      }
     }
   },
   created () {
@@ -78,6 +95,23 @@ export default {
       // 加载消失
       // 数据展示 错误、无、大量
       this.mixApiParams = { username: `管理员${role}`, password: this.$md5('794621839'), role }
+      // 请求样式
+      if (['loading', 'noData'].includes(role)) {
+        try {
+          this.flag.loadShow = 'loading'
+          const res = await this.$api.localLogin(this.mixApiParams)
+          this.res.message = JSON.stringify(res)
+          if (role === 'loading') {
+            this.flag.loadShow = 'content'
+          } else if (role === 'noData') {
+            this.flag.loadShow = 'noData'
+          }
+        } catch (err) {
+          this.flag.loadShow = 'error'
+          console.log(err.code, '错误捕获')
+        }
+        return
+      }
       this.localLogin()
       console.log('调用async/await函数后', '第二步')
     },

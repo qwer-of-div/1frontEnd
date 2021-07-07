@@ -22,9 +22,11 @@
  * 循环定时器发请求
  * 中文、英文、符号以前面为准
  * 赋值不会触发input事件
- * Logger.log控制台输出
- * 
- * 
+ * Radio字符串
+ * 前端不接受null
+ * 路由传参自动修改为字符串类型
+ * 切换 对每一个数据影响 新增数据 对原来数据的影响 原来数据对它的影响
+ * Watch SettimeOut(0) idtype birthday
  * 
  * @return {listHtml} 列表
  * @return {countDown} 验证码倒计时
@@ -35,7 +37,6 @@
  * @return {formInput} 表单输入
  * @return {listSubmit} 列表提交
  */
-
 
 /**
  * 列表
@@ -48,9 +49,10 @@ export const listHtml = () => {
         <div class="list">
           <div class="item" v-for="item in list"></div>
         </div>
-        <div class="initData"></div>
+        {/* <div class="initData"></div>
         <div class="empty"></div>
-        <div class="error"></div>
+        <div class="error"></div> */}
+        <my-loading></my-loading>
       </div>
     </div>
   </div>
@@ -148,7 +150,7 @@ export const formInput = () => {
   // 禁用 重置放入一个对象 由另一个对象引起
   // computed flagNew计算值变化
 
-  // 纯code 后端无法判断code、name是否匹配 最正确
+  // 纯code 后端无法判断code、name是否匹配 最正确 选择项computed
   // code、name 后端可以判断 最简单
 
   // 使用name判断 统一转换 提交也使用name判断 code判断给后端 最简单

@@ -20,8 +20,8 @@ service.interceptors.request.use(config => {
   config.cancelToken = new axios.CancelToken((cancel) => { // 切换路由取消请求
     store.commit('pushToken', { cancelToken: cancel })
   })
-  const whiteList = ['/common/login'] // 是否使用全局加载样式
-  if (whiteList.includes(config.url)) {
+  const whiteList = ['/common/login'] // 不使用全局加载样式
+  if (!whiteList.includes(config.url)) {
     loadingInstance = Loading.service({ fullscreen: true, background: 'rgba(0, 0, 0, 0.8)', text: '拼命加载中' })
   }
 

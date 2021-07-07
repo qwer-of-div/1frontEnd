@@ -27,7 +27,8 @@ const instance = (content) => {
     }
     instanceDom.onCancel = () => {
       // reject()
-      reject(new Error(0))
+      // reject(new Error({ type: 'date' }))
+      reject(new Error({ type: 'date' }))
       instanceDom.show = false
       document.body.removeChild(instanceDom.$el) // new一个对象，然后插入body里面
       const overlay = document.body.querySelectorAll('.van-overlay')
