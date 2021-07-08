@@ -86,6 +86,11 @@ export default [
         component: () => import('@/views/code/utils/index1')
       },
       {
+        path: 'objCopy',
+        name: 'objCopy',
+        component: () => import('@/views/code/objCopy/index')
+      },
+      {
         path: 'pseudoCode',
         name: 'pseudoCode',
         component: () => import('@/views/code/utils/pseudoCode')

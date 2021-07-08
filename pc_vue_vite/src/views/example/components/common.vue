@@ -50,9 +50,13 @@ export default {
     })
 
     onMounted(() => {
-      copy.page = JSON.parse(JSON.stringify(page))
+      handleInit()
       console.log(copy.page, 'onMounted')
     })
+
+    const handleInit = () => {
+      copy.page = JSON.parse(JSON.stringify(page))
+    }
 
     const onBack = () => {
       emit('fromChild')
@@ -65,6 +69,7 @@ export default {
       form,
       formAccident,
       init,
+      handleInit,
       onBack
     }
   }

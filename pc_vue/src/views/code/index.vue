@@ -17,7 +17,8 @@ const mockNavList = [
   { label: '防抖节流', path: '/code/debThro' },
   { label: '工具函数', path: '/code/utils' },
   { label: '工具函数1', path: '/code/utils1' },
-  { label: '伪代码', path: '/code/pseudoCode' }
+  { label: '伪代码', path: '/code/pseudoCode' },
+  { label: '对象拷贝', path: '/code/objCopy' }
 ]
 
 export default {

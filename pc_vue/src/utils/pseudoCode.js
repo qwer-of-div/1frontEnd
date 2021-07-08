@@ -148,13 +148,15 @@ export const formInput = () => {
   // 数据来源 只属于本系统 来自其他系统
 
   // 禁用 重置放入一个对象 由另一个对象引起
-  // computed flagNew计算值变化
+  // computed pageNew formNew flagNew计算值变化
 
-  // 纯code 后端无法判断code、name是否匹配 最正确 选择项computed
-  // code、name 后端可以判断 最简单
+  // 输入 回显 code+name判断
 
-  // 使用name判断 统一转换 提交也使用name判断 code判断给后端 最简单
+  // 纯code code还原name 后端无法判断code、name是否匹配 最正确 选择项computed
   // 使用code判断 即时转换 最正确
+
+  // code、name 后端可以判断 最简单
+  // 使用name判断 统一转换 提交也使用name判断 code判断给后端 最简单
 }
 
 /**
