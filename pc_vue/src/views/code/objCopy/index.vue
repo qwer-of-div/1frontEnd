@@ -21,11 +21,11 @@
 
 <script>
 const page = {
-  name: '李四',
-  info: {
-    age: '19',
-    aiHao: ['跳远', '跳高', '田径']
-  }
+  name: '李四'
+  // info: {
+  //   age: '19',
+  //   aiHao: ['跳远', '跳高', '田径']
+  // }
 }
 
 export default {
@@ -34,13 +34,18 @@ export default {
       page: {
         name: '张三',
         info: {
-          // age: '18',
+          age: '18',
           aiHao: ['足球', '篮球', '羽毛球']
         }
       },
       form: {
       },
       formParent: {
+      },
+      copy: {
+        page: null,
+        form: null,
+        formParent: null
       },
       flag: {
       },
@@ -49,6 +54,9 @@ export default {
     }
   },
   computed: {
+    pageWatch () {
+      return JSON.parse(JSON.stringify(this.page))
+    },
     pageNew () {
       const page = {
         idTypeName: 'code转name'
@@ -65,7 +73,7 @@ export default {
     }
   },
   watch: {
-    page: {
+    pageWatch: {
       handler (newVal, oldVal) {
         console.log(newVal, oldVal)
       },
@@ -78,10 +86,20 @@ export default {
   },
   methods: {
     handleInit () {
-      // this.page = JSON.parse(JSON.stringify(page))
+      // 重置数据
+      for (const key in this.copy) {
+        this.copy[key] = JSON.parse(JSON.stringify(this[key]))
+      }
+      console.log(this.copy, '重置数据')
+      // 先设置成正确的数据结构
+      // const pageTemp = JSON.parse(JSON.stringify(page))
+      const pageTemp = page
+      pageTemp.info = pageTemp.info || {}
+      pageTemp.info.age = pageTemp.info.age || ''
+      this.page = pageTemp
     },
     onChange () {
-      this.page.info.age++
+      this.page.info.age = 20
       this.page.new = '未定义属性'
     }
   }
