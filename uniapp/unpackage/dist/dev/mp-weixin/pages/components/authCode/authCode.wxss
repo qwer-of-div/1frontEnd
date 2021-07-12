@@ -62,12 +62,14 @@
 	border: none;
 }
 .flex-box .box.data-v-c670bbe2 {
-	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
 	border: 2rpx solid #cccccc;
 	border-radius: 6rpx;
 }
 .flex-box .bottom.data-v-c670bbe2 {
-	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
 	border-bottom: 8rpx solid #212121;
 }
 .flex-box .active.data-v-c670bbe2 {

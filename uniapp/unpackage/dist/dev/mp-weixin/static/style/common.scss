@@ -62,7 +62,7 @@ flex: 1;
 }
 .flex1-hide {
   flex: 1;
-  overflow: hidden;
+  overflow: hidden; // 列表滑动所有父级用配合flex1-scroll
 }
 .flex1-scroll {
 	flex: 1;

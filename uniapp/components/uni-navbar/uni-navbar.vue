@@ -1,6 +1,6 @@
 <template>
-	<view class="page-container uni-navbar">
-		<view class="page-content">
+	<view class="uni-navbar">
+		<view class="">
 			<u-navbar :height="height" :is-back="isBack" back-icon-color="#fff" :title="title" title-color="#fff" :background="background" :custom-back="onBack">
 				<view class="navbar-right" slot="right" v-if="slotRight">
 					<!-- <view class="message-box right-item">

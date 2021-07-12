@@ -18,7 +18,8 @@ export default new Vuex.Store({
 		transNo: '10001', // 流水号
 		queryData: uni.getStorageSync('queryData') ? JSON.parse(uni.getStorageSync('queryData')) : {},
 		g: {
-			idCardType: '居民身份证' ,// 判断常量
+			idCardTypeName: '居民身份证' ,// 判断常量
+			idCardType: '01' ,// 判断常量
 			minDate: new Date(1900,0,1),
 			maxDate: new Date()
 		},

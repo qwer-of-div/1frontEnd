@@ -79,6 +79,16 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  if (_vm.$scope.data.scopedSlotsCompiler === "augmented") {
+    _vm.$setScopedSlotsParams("default", {
+      options: _vm.options,
+      data: _vm.dataList,
+      pagination: _vm.paginationInternal,
+      loading: _vm.loading,
+      hasMore: _vm.hasMore,
+      error: _vm.errorMessage
+    })
+  }
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -428,7 +438,7 @@ var attrs = [
         db = db.action(action);
       }
 
-      db.collection(this.collection).add(value).then(function (res) {
+      db.collection(this._getCollection()).add(value).then(function (res) {
         success && success(res);
         if (showToast) {
           uni.showToast({
@@ -502,7 +512,7 @@ var attrs = [
         db = db.action(action);
       }
 
-      return db.collection(this.collection).doc(id).update(value).then(function (res) {
+      return db.collection(this._getCollection()).doc(id).update(value).then(function (res) {
         success && success(res);
         if (showToast) {
           uni.showToast({
@@ -524,63 +534,7 @@ var attrs = [
         complete && complete();
       });
     },
-    _execLoadData: function _execLoadData(callback, clear) {var _this3 = this;
-      if (this.loading) {
-        return;
-      }
-      this.loading = true;
-      this.errorMessage = '';
-
-      this._getExec().then(function (res) {
-        _this3.loading = false;var _res$result =
-
-
-
-        res.result,data = _res$result.data,count = _res$result.count;
-        _this3._isEnded = data.length < _this3.pageSize;
-        _this3.hasMore = !_this3._isEnded;
-
-        var data2 = _this3.getone ? data.length ? data[0] : undefined : data;
-
-        if (_this3.getcount) {
-          _this3.paginationInternal.count = count;
-        }
-
-        callback && callback(data2, _this3._isEnded, _this3.paginationInternal);
-        _this3._dispatchEvent(events.load, data2);
-
-        if (_this3.getone || _this3.pageData === pageMode.replace) {
-          _this3.dataList = data2;
-        } else {
-          if (clear) {
-            _this3.dataList = data2;
-          } else {var _this3$dataList;
-            (_this3$dataList = _this3.dataList).push.apply(_this3$dataList, _toConsumableArray(data2));
-          }
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-      }).catch(function (err) {
-        _this3.loading = false;
-        _this3.errorMessage = err;
-        callback && callback();
-        _this3.$emit(events.error, err);
-        if (true) {
-          console.error(err);
-        }
-      });
-    },
-    _getExec: function _getExec() {
+    getTemp: function getTemp() {var isTemp = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
       /* eslint-disable no-undef */
       var db = uniCloud.database();
 
@@ -630,9 +584,88 @@ var attrs = [
       if (this.gettreepath) {
         getOptions.getTreePath = treeOptions;
       }
-      db = db.skip(size * (current - 1)).limit(size).get(getOptions);
+      db = db.skip(size * (current - 1)).limit(size);
+
+      if (isTemp) {
+        db = db.getTemp(getOptions);
+        db.udb = this;
+      } else {
+        db = db.get(getOptions);
+      }
 
       return db;
+    },
+    setResult: function setResult(result) {
+      if (result.code === 0) {
+        this._execLoadDataSuccess(result);
+      } else {
+        this._execLoadDataFail(new Error(result.message));
+      }
+    },
+    _execLoadData: function _execLoadData(callback, clear) {var _this3 = this;
+      if (this.loading) {
+        return;
+      }
+      this.loading = true;
+      this.errorMessage = '';
+
+      this._getExec().then(function (res) {
+        _this3.loading = false;
+        _this3._execLoadDataSuccess(res.result, callback, clear);
+
+
+
+
+
+
+
+
+
+
+
+
+      }).catch(function (err) {
+        _this3.loading = false;
+        _this3._execLoadDataFail(err, callback);
+      });
+    },
+    _execLoadDataSuccess: function _execLoadDataSuccess(result, callback, clear) {var
+
+      data =
+
+      result.data,count = result.count;
+      this._isEnded = data.length < this.pageSize;
+      this.hasMore = !this._isEnded;
+
+      var data2 = this.getone ? data.length ? data[0] : undefined : data;
+
+      if (this.getcount) {
+        this.paginationInternal.count = count;
+      }
+
+      callback && callback(data2, this._isEnded, this.paginationInternal);
+      this._dispatchEvent(events.load, data2);
+
+      if (this.getone || this.pageData === pageMode.replace) {
+        this.dataList = data2;
+      } else {
+        if (clear) {
+          this.dataList = data2;
+        } else {var _this$dataList;
+          (_this$dataList = this.dataList).push.apply(_this$dataList, _toConsumableArray(data2));
+        }
+      }
+    },
+    _execLoadDataFail: function _execLoadDataFail(err, callback) {
+      this.errorMessage = err;
+      callback && callback();
+      this.$emit(events.error, err);
+      if (true) {
+        console.error(err);
+      }
+    },
+    _getExec: function _getExec() {
+      return this.getTemp(false);
     },
     _execRemove: function _execRemove(id, action, success, fail, complete, needConfirm, needLoading, loadingTitle) {var _this4 = this;
       if (!this.collection || !id) {
@@ -660,7 +693,7 @@ var attrs = [
         exec = exec.action(action);
       }
 
-      exec.collection(this.collection).where({
+      exec.collection(this._getCollection()).where({
         _id: dbCmd.in(ids) }).
       remove().then(function (res) {
         success && success(res.result);
@@ -683,6 +716,11 @@ var attrs = [
         }
         complete && complete();
       });
+    },
+    _getCollection: function _getCollection() {
+      var index = this.collection.indexOf(',');
+      var collection = index > 0 ? this.collection.substring(0, index) : this.collection;
+      return collection;
     },
     removeData: function removeData(ids) {
       var il = ids.slice(0);

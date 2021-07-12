@@ -144,6 +144,51 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  var m0 = _vm.$hasScopedSlotsParams("1179f231-6")
+  var m1 = m0
+    ? _vm.$getScopedSlotsParams("1179f231-6", "default", "loading")
+    : null
+  var m2 = m0
+    ? _vm.$getScopedSlotsParams("1179f231-6", "default", "error").message ||
+      "没有更多数据"
+    : null
+  var l0 = m0
+    ? _vm.$getScopedSlotsParams("1179f231-6", "default", "data")
+    : null
+
+  if (!_vm._isMounted) {
+    _vm.e0 = function($event, item) {
+      var _temp = arguments[arguments.length - 1].currentTarget.dataset,
+        _temp2 = _temp.eventParams || _temp["event-params"],
+        item = _temp2.item
+
+      var _temp, _temp2
+
+      return _vm.onDel(item._id)
+    }
+
+    _vm.e1 = function($event, item) {
+      var _temp3 = arguments[arguments.length - 1].currentTarget.dataset,
+        _temp4 = _temp3.eventParams || _temp3["event-params"],
+        item = _temp4.item
+
+      var _temp3, _temp4
+
+      return _vm.onUpdate(item._id)
+    }
+  }
+
+  _vm.$mp.data = Object.assign(
+    {},
+    {
+      $root: {
+        m0: m0,
+        m1: m1,
+        m2: m2,
+        l0: l0
+      }
+    }
+  )
 }
 var recyclableRender = false
 var staticRenderFns = []

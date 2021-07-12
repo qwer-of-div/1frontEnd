@@ -128,6 +128,12 @@ var render = function() {
       }
     }
   )
+
+  if (_vm.$scope.data.scopedSlotsCompiler === "augmented") {
+    _vm.$setScopedSlotsParams("file", {
+      file: _vm.lists
+    })
+  }
 }
 var recyclableRender = false
 var staticRenderFns = []

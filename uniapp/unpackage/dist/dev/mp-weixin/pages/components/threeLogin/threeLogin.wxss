@@ -31,6 +31,7 @@
   position: absolute;
   top: 0;
   left: 0;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   width: 200%;
   height: 200%;
@@ -144,6 +145,7 @@ page.data-v-772621cf {
   margin-top: 70rpx;
   height: 96rpx;
   width: 100%;
+  background: -webkit-gradient(linear, right top, left top, from(#5055a8), to(#686ed2));
   background: -webkit-linear-gradient(right, #5055a8, #686ed2);
   background: linear-gradient(-90deg, #5055a8, #686ed2);
   border-radius: 47rpx;

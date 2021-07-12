@@ -2,7 +2,6 @@
   "navigationBarTitleText": "",
   "enablePullDownRefresh": false,
   "usingComponents": {
-    "unicloudDB-unicloud-db-default": "/pages/components/cloud/unicloudDB/unicloudDB-unicloud-db-default",
     "uni-navbar": "/components/uni-navbar/uni-navbar",
     "u-icon": "/uview-ui/components/u-icon/u-icon",
     "u-badge": "/uview-ui/components/u-badge/u-badge",

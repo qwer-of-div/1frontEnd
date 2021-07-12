@@ -8,14 +8,21 @@
 @import url('static/style/iconfont/iconfont.css');
 
 // 根节点
+// page微信小程序
 // .page-container, .page-content {
-.page-container, .page-content {
+page, .page-container, .page-content {
   width: 100%;
   height: 100%;
   text-align: center;
 }
 .bg{
   background-color: #fff;
+}
+.opac{
+	opacity: 0;
+}
+.space {
+	height: 30rpx;
 }
 
 /* 清除浮动 */
@@ -28,7 +35,7 @@
   visibility: hidden;
 }
 .clearfix {
-  *zoom: 1;
+  // *zoom: 1;
   /*ie6清除浮动的方式 *号只有IE6-IE7执行，其他浏览器不执行*/
 }
 
@@ -55,7 +62,11 @@ flex: 1;
 }
 .flex1-hide {
   flex: 1;
-  overflow: hidden;
+  overflow: hidden; // 列表滑动所有父级用配合flex1-scroll
+}
+.flex1-scroll {
+	flex: 1;
+	overflow: scroll;
 }
 .flex2 {
 flex: 2;
@@ -64,12 +75,20 @@ flex: 2;
   flex: 2;
   overflow: hidden;
 }
+.flex2-scroll {
+	flex: 1;
+	overflow: scroll;
+}
 .flex3 {
   flex: 3;
 }
 .flex3-hide {
   flex: 3;
   overflow: hidden;
+}
+.flex3-scroll {
+	flex: 1;
+	overflow: scroll;
 }
 
 .btn-confirm {

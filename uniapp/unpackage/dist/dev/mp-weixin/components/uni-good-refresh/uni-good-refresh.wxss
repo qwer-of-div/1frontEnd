@@ -37,7 +37,8 @@
   width: 100%;
   height: 100%;
   overflow-y: auto;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 .s-pull-scroll .is-fixed {
   z-index: 1;
@@ -83,7 +84,8 @@
   border-radius: 50%;
   border: 2rpx solid #c8c9cc;
   border-bottom-color: transparent;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 .s-pull-scroll .s-pull-loading-icon:first-child {
   margin-right: 16rpx;

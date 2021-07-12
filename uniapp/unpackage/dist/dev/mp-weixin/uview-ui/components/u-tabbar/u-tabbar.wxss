@@ -25,7 +25,8 @@
 /* 透明度 */
 /* 文章场景相关 */
 .u-fixed-placeholder.data-v-180fb800 {
-  box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
 }
 .u-tabbar__content.data-v-180fb800 {
 
@@ -46,7 +47,8 @@
   left: 0;
   width: 100%;
   z-index: 998;
-  box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
 }
 .u-tabbar__content__circle__border.data-v-180fb800 {
   border-radius: 100%;

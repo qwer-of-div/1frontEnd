@@ -31,7 +31,8 @@
   font-weight: 500;
   border-bottom: 1px #ddd solid;
   font-size: 14px;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 .table--border {
   border-right: 1px #ddd solid;
