@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "sanshui-modal": "/components/sanshui-modal/index"
+  }
+}

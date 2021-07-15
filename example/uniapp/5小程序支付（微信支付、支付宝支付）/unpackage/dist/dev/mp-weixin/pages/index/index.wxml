@@ -1,0 +1,1 @@
+<view class="content"><button class="pay-btn" type="primary" data-event-opts="{{[['tap',[['payHandler',['$event']]]]]}}" bindtap="__e"><view class="iconfont iconweixin"></view><text class="title">微信支付</text></button></view>

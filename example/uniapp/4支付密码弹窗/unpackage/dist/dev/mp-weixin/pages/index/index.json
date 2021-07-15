@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "uni-app",
+  "usingComponents": {
+    "ss-payment-password": "/components/sanshui-payment-password/index"
+  }
+}
