@@ -1,0 +1,13 @@
+{
+	"pages": [
+		{
+		    "path" : "pages/index/index"
+		}
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "UNIAPP 源码分享-河浪",
+		"navigationBarBackgroundColor": "#42b983",
+		"backgroundColor": "#f3f3f3"
+	}
+}

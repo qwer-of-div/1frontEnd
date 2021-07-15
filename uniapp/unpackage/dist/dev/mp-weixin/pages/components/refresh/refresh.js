@@ -98,19 +98,19 @@ var components
 try {
   components = {
     uniNavbar: function() {
-      return __webpack_require__.e(/*! import() | components/uni-navbar/uni-navbar */ "components/uni-navbar/uni-navbar").then(__webpack_require__.bind(null, /*! @/components/uni-navbar/uni-navbar.vue */ 247))
+      return __webpack_require__.e(/*! import() | components/uni-navbar/uni-navbar */ "components/uni-navbar/uni-navbar").then(__webpack_require__.bind(null, /*! @/components/uni-navbar/uni-navbar.vue */ 265))
     },
     uIcon: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 254))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 272))
     },
     uBadge: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-badge/u-badge */ "uview-ui/components/u-badge/u-badge").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-badge/u-badge.vue */ 261))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-badge/u-badge */ "uview-ui/components/u-badge/u-badge").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-badge/u-badge.vue */ 279))
     },
     uTabsSwiper: function() {
-      return Promise.all(/*! import() | uview-ui/components/u-tabs-swiper/u-tabs-swiper */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uview-ui/components/u-tabs-swiper/u-tabs-swiper")]).then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-tabs-swiper/u-tabs-swiper.vue */ 296))
+      return Promise.all(/*! import() | uview-ui/components/u-tabs-swiper/u-tabs-swiper */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uview-ui/components/u-tabs-swiper/u-tabs-swiper")]).then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-tabs-swiper/u-tabs-swiper.vue */ 314))
     },
     uniGoodRefresh: function() {
-      return __webpack_require__.e(/*! import() | components/uni-good-refresh/uni-good-refresh */ "components/uni-good-refresh/uni-good-refresh").then(__webpack_require__.bind(null, /*! @/components/uni-good-refresh/uni-good-refresh.vue */ 322))
+      return __webpack_require__.e(/*! import() | components/uni-good-refresh/uni-good-refresh */ "components/uni-good-refresh/uni-good-refresh").then(__webpack_require__.bind(null, /*! @/components/uni-good-refresh/uni-good-refresh.vue */ 340))
     }
   }
 } catch (e) {

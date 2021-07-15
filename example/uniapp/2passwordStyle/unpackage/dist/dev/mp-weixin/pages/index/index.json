@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "uni-app",
+  "usingComponents": {
+    "wakary-input": "/wakary-input/components/wakary-input/wakary-input"
+  }
+}

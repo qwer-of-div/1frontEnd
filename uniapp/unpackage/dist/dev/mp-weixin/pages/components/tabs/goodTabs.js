@@ -98,22 +98,22 @@ var components
 try {
   components = {
     uniNavbar: function() {
-      return __webpack_require__.e(/*! import() | components/uni-navbar/uni-navbar */ "components/uni-navbar/uni-navbar").then(__webpack_require__.bind(null, /*! @/components/uni-navbar/uni-navbar.vue */ 247))
+      return __webpack_require__.e(/*! import() | components/uni-navbar/uni-navbar */ "components/uni-navbar/uni-navbar").then(__webpack_require__.bind(null, /*! @/components/uni-navbar/uni-navbar.vue */ 265))
     },
     uIcon: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 254))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 272))
     },
     uBadge: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-badge/u-badge */ "uview-ui/components/u-badge/u-badge").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-badge/u-badge.vue */ 261))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-badge/u-badge */ "uview-ui/components/u-badge/u-badge").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-badge/u-badge.vue */ 279))
     },
     uTabsSwiper: function() {
-      return Promise.all(/*! import() | uview-ui/components/u-tabs-swiper/u-tabs-swiper */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uview-ui/components/u-tabs-swiper/u-tabs-swiper")]).then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-tabs-swiper/u-tabs-swiper.vue */ 296))
+      return Promise.all(/*! import() | uview-ui/components/u-tabs-swiper/u-tabs-swiper */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uview-ui/components/u-tabs-swiper/u-tabs-swiper")]).then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-tabs-swiper/u-tabs-swiper.vue */ 314))
     },
     uniRefresh: function() {
-      return __webpack_require__.e(/*! import() | components/uni-refresh/uni-refresh */ "components/uni-refresh/uni-refresh").then(__webpack_require__.bind(null, /*! @/components/uni-refresh/uni-refresh.vue */ 303))
+      return __webpack_require__.e(/*! import() | components/uni-refresh/uni-refresh */ "components/uni-refresh/uni-refresh").then(__webpack_require__.bind(null, /*! @/components/uni-refresh/uni-refresh.vue */ 321))
     },
     uLoadmore: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-loadmore/u-loadmore */ "uview-ui/components/u-loadmore/u-loadmore").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-loadmore/u-loadmore.vue */ 310))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-loadmore/u-loadmore */ "uview-ui/components/u-loadmore/u-loadmore").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-loadmore/u-loadmore.vue */ 328))
     }
   }
 } catch (e) {
@@ -261,7 +261,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var myList = function myList() {__webpack_require__.e(/*! require.ensure | pages/components/tabs/components/list */ "pages/components/tabs/components/list").then((function () {return resolve(__webpack_require__(/*! ./components/list.vue */ 317));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var myList = function myList() {__webpack_require__.e(/*! require.ensure | pages/components/tabs/components/list */ "pages/components/tabs/components/list").then((function () {return resolve(__webpack_require__(/*! ./components/list.vue */ 335));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 

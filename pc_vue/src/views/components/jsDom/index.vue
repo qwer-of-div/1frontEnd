@@ -23,10 +23,13 @@ export default {
   data () {
     return {
       picker: {
-        value: ''
+        value: '',
+zhiYe: '',
+country: ''
       },
       date: {
-        value: new Date(2025, 0, 1)
+        value: new Date(2025, 0, 1),
+birthday: new Date(2021,7,14)
       }
     }
   },

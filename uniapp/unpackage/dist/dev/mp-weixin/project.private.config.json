@@ -23,6 +23,12 @@
           "pathName": "pages/components/cloud/unicloudDB/unicloudDB",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/components/userInfo/userInfo",
+          "pathName": "pages/components/userInfo/userInfo",
+          "query": "",
+          "scene": null
         }
       ]
     }

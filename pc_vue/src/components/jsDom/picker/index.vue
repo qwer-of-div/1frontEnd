@@ -18,7 +18,7 @@ export default {
   data () {
     return {
       show: true,
-      index: 1,
+      index: 0,
       title: '',
       columns: ['杭州', '宁波', '温州', '绍兴', '湖州', '嘉兴', '金华', '衢州']
     }

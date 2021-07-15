@@ -1,0 +1,1 @@
+<view class="content"><image class="logo" src="/static/logo.png"></image><view class="text-area"><text class="title">{{title}}</text></view><wakary-input vue-id="8dd740cc-1" type="box" maxlength="{{6}}" bind:__l="__l"></wakary-input></view>

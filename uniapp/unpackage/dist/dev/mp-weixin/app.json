@@ -28,7 +28,10 @@
     "pages/code/form/idVerify",
     "pages/code/form/phoneVerify",
     "pages/components/cloud/cloud",
-    "pages/components/cloud/unicloudDB/unicloudDB"
+    "pages/components/cloud/unicloudDB/unicloudDB",
+    "pages/components/userInfo/userInfo",
+    "pages/components/pay/pay",
+    "pages/components/jsDom/jsDom"
   ],
   "subPackages": [],
   "window": {
@@ -39,5 +42,6 @@
     "backgroundColor": "#F8F8F8"
   },
   "permission": {},
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
 }

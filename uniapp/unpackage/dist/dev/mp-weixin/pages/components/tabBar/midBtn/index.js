@@ -96,10 +96,10 @@ var components
 try {
   components = {
     uniNavbar: function() {
-      return __webpack_require__.e(/*! import() | components/uni-navbar/uni-navbar */ "components/uni-navbar/uni-navbar").then(__webpack_require__.bind(null, /*! @/components/uni-navbar/uni-navbar.vue */ 247))
+      return __webpack_require__.e(/*! import() | components/uni-navbar/uni-navbar */ "components/uni-navbar/uni-navbar").then(__webpack_require__.bind(null, /*! @/components/uni-navbar/uni-navbar.vue */ 265))
     },
     uTabbar: function() {
-      return Promise.all(/*! import() | uview-ui/components/u-tabbar/u-tabbar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uview-ui/components/u-tabbar/u-tabbar")]).then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-tabbar/u-tabbar.vue */ 282))
+      return Promise.all(/*! import() | uview-ui/components/u-tabbar/u-tabbar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uview-ui/components/u-tabbar/u-tabbar")]).then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-tabbar/u-tabbar.vue */ 300))
     }
   }
 } catch (e) {

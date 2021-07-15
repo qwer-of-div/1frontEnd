@@ -94,16 +94,16 @@ var components
 try {
   components = {
     uniNavbar: function() {
-      return __webpack_require__.e(/*! import() | components/uni-navbar/uni-navbar */ "components/uni-navbar/uni-navbar").then(__webpack_require__.bind(null, /*! @/components/uni-navbar/uni-navbar.vue */ 247))
+      return __webpack_require__.e(/*! import() | components/uni-navbar/uni-navbar */ "components/uni-navbar/uni-navbar").then(__webpack_require__.bind(null, /*! @/components/uni-navbar/uni-navbar.vue */ 265))
     },
     uIcon: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 254))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 272))
     },
     uBadge: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-badge/u-badge */ "uview-ui/components/u-badge/u-badge").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-badge/u-badge.vue */ 261))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-badge/u-badge */ "uview-ui/components/u-badge/u-badge").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-badge/u-badge.vue */ 279))
     },
     uniNavList: function() {
-      return __webpack_require__.e(/*! import() | components/uni-navList/uni-navList */ "components/uni-navList/uni-navList").then(__webpack_require__.bind(null, /*! @/components/uni-navList/uni-navList.vue */ 275))
+      return __webpack_require__.e(/*! import() | components/uni-navList/uni-navList */ "components/uni-navList/uni-navList").then(__webpack_require__.bind(null, /*! @/components/uni-navList/uni-navList.vue */ 293))
     }
   }
 } catch (e) {

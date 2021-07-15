@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "uni-navbar": "/components/uni-navbar/uni-navbar",
+    "u-icon": "/uview-ui/components/u-icon/u-icon",
+    "u-badge": "/uview-ui/components/u-badge/u-badge",
+    "u-button": "/uview-ui/components/u-button/u-button",
+    "uni-picker": "/components/uni-picker/uni-picker",
+    "uni-date": "/components/uni-date/uni-date"
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "move-verify": "/components/helang-moveVerify/helang-moveVerify"
+  }
+}

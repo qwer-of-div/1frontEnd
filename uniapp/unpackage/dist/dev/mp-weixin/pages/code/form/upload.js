@@ -94,13 +94,13 @@ var components
 try {
   components = {
     uniNavbar: function() {
-      return __webpack_require__.e(/*! import() | components/uni-navbar/uni-navbar */ "components/uni-navbar/uni-navbar").then(__webpack_require__.bind(null, /*! @/components/uni-navbar/uni-navbar.vue */ 247))
+      return __webpack_require__.e(/*! import() | components/uni-navbar/uni-navbar */ "components/uni-navbar/uni-navbar").then(__webpack_require__.bind(null, /*! @/components/uni-navbar/uni-navbar.vue */ 265))
     },
     uUpload: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-upload/u-upload */ "uview-ui/components/u-upload/u-upload").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-upload/u-upload.vue */ 329))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-upload/u-upload */ "uview-ui/components/u-upload/u-upload").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-upload/u-upload.vue */ 347))
     },
     uButton: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-button/u-button */ "uview-ui/components/u-button/u-button").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-button/u-button.vue */ 268))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-button/u-button */ "uview-ui/components/u-button/u-button").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-button/u-button.vue */ 286))
     }
   }
 } catch (e) {

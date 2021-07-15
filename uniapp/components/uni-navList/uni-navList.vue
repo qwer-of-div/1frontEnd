@@ -3,13 +3,13 @@
 		<view class="page-content">
 			<br />
 			<view v-for="(it,idx) in rows" :key="it">
+				<view class="space"></view>
 				<scroll-view class="btn-scroll" scroll-x="true">
 					<view class="btn-wrap" v-for="(item,index) in parentValue" :key="item.path">
 						<u-button v-if="index > (idx*6 - 1) && index < (idx+1)*6" type="primary"
 							@click="onRoute(item.path)">{{item.label}}</u-button>
 					</view>
 				</scroll-view>
-				<view v-if="!(idx % 2)" class="space"></view>
 			</view>
 		</view>
 	</view>

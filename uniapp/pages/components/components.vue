@@ -57,6 +57,15 @@
 	},{
 		label: '云函数',
 		path: '/pages/components/cloud/cloud'
+	},{
+		label: '权限和用户信息',
+		path: '/pages/components/userInfo/userInfo'
+	},{
+		label: '支付',
+		path: '/pages/components/pay/pay'
+	},{
+		label: 'jsDom',
+		path: '/pages/components/jsDom/jsDom'
 	}]
 
 	export default {

@@ -96,31 +96,31 @@ var components
 try {
   components = {
     uniNavbar: function() {
-      return __webpack_require__.e(/*! import() | components/uni-navbar/uni-navbar */ "components/uni-navbar/uni-navbar").then(__webpack_require__.bind(null, /*! @/components/uni-navbar/uni-navbar.vue */ 247))
+      return __webpack_require__.e(/*! import() | components/uni-navbar/uni-navbar */ "components/uni-navbar/uni-navbar").then(__webpack_require__.bind(null, /*! @/components/uni-navbar/uni-navbar.vue */ 265))
     },
     uIcon: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 254))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 272))
     },
     uBadge: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-badge/u-badge */ "uview-ui/components/u-badge/u-badge").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-badge/u-badge.vue */ 261))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-badge/u-badge */ "uview-ui/components/u-badge/u-badge").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-badge/u-badge.vue */ 279))
     },
     unicloudDb: function() {
-      return Promise.all(/*! import() | node-modules/@dcloudio/uni-cli-shared/components/unicloud-db */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/@dcloudio/uni-cli-shared/components/unicloud-db")]).then(__webpack_require__.bind(null, /*! @dcloudio/uni-cli-shared/components/unicloud-db.vue */ 361))
+      return Promise.all(/*! import() | node-modules/@dcloudio/uni-cli-shared/components/unicloud-db */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/@dcloudio/uni-cli-shared/components/unicloud-db")]).then(__webpack_require__.bind(null, /*! @dcloudio/uni-cli-shared/components/unicloud-db.vue */ 379))
     },
     uniTable: function() {
-      return __webpack_require__.e(/*! import() | components/uni-table/uni-table */ "components/uni-table/uni-table").then(__webpack_require__.bind(null, /*! @/components/uni-table/uni-table.vue */ 375))
+      return __webpack_require__.e(/*! import() | components/uni-table/uni-table */ "components/uni-table/uni-table").then(__webpack_require__.bind(null, /*! @/components/uni-table/uni-table.vue */ 393))
     },
     uniTr: function() {
-      return __webpack_require__.e(/*! import() | components/uni-tr/uni-tr */ "components/uni-tr/uni-tr").then(__webpack_require__.bind(null, /*! @/components/uni-tr/uni-tr.vue */ 382))
+      return __webpack_require__.e(/*! import() | components/uni-tr/uni-tr */ "components/uni-tr/uni-tr").then(__webpack_require__.bind(null, /*! @/components/uni-tr/uni-tr.vue */ 400))
     },
     uniTh: function() {
-      return __webpack_require__.e(/*! import() | components/uni-th/uni-th */ "components/uni-th/uni-th").then(__webpack_require__.bind(null, /*! @/components/uni-th/uni-th.vue */ 389))
+      return __webpack_require__.e(/*! import() | components/uni-th/uni-th */ "components/uni-th/uni-th").then(__webpack_require__.bind(null, /*! @/components/uni-th/uni-th.vue */ 407))
     },
     uniTd: function() {
-      return __webpack_require__.e(/*! import() | components/uni-td/uni-td */ "components/uni-td/uni-td").then(__webpack_require__.bind(null, /*! @/components/uni-td/uni-td.vue */ 396))
+      return __webpack_require__.e(/*! import() | components/uni-td/uni-td */ "components/uni-td/uni-td").then(__webpack_require__.bind(null, /*! @/components/uni-td/uni-td.vue */ 414))
     },
     uButton: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-button/u-button */ "uview-ui/components/u-button/u-button").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-button/u-button.vue */ 268))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-button/u-button */ "uview-ui/components/u-button/u-button").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-button/u-button.vue */ 286))
     }
   }
 } catch (e) {
