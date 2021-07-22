@@ -1,10 +1,13 @@
-// 项目颜色、字体确定
+// 项目颜色、字体确定、主题配置
 // 绝对定位
 // 清除浮动
 // flex布局 eg:角色不同布局高度不同
 // 按钮:不同功能不同颜色、确定 取消 查询 修改 下一步 重 置
 // 标签:不同状态不同颜色
 // Fixed relative 不支持大量滑动h5
+$myColor: #69f;
+$title-color: #096;
+$title-font-size: 16px;
 
 .page-container.mc-claim-list-page { // 在同一元素上
   .conts {

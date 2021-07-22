@@ -52,6 +52,11 @@ module.exports = {
     extract: {
       filename: "assets1/css/[name].min.css",
       chunkFilename: "assets1/css/[name]1.min.css"
+    },
+    loaderOptions: {
+      sass: {
+        prependData: `@import "@/assets/style/common.scss";`
+      }
     }
   },
   configureWebpack: {

@@ -41,7 +41,8 @@ service.interceptors.request.use(config => {
 service.interceptors.response.use(
   response => {
     console.log(response, 'interceptor响应拦截器')
-    if (loadingInstance) loadingInstance.close()
+    // if (loadingInstance) loadingInstance.close()
+    loadingInstance && loadingInstance.close()
     // 返回为json格式数据
     const type = typeof response.data
     let res = response.data

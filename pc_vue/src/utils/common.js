@@ -2,6 +2,7 @@
  * 最多三个参数
  * 标识符使用字符串 具有含义的字符串
  * @return {myPopup} 自定义提示框
+ * @return {myStorage} 数据持久化
  */
 
 /**

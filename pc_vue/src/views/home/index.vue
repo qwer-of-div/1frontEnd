@@ -8,11 +8,14 @@
            class="img-content">
       <el-button type="primary"
                  @click="$router.push('/login')">登录</el-button>
+      <div class="sass-scoped">sass局部变量</div>
+      <div class="sass-common">sass全局变量</div>
     </div>
   </div>
 </template>
 
 <script>
+
 export default {
   data () {
     return {
@@ -38,7 +41,6 @@ export default {
     // })
   },
   beforeunloadHandler () {
-    console.log('111111111111111')
     this.mixApiParams = { username: '管理员1', password: this.$md5('794621839'), role: '1' }
     this.$api.localLogin(this.mixApiParams)
   },
@@ -55,11 +57,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$scopedColor: #096;
 .page-home {
   .img-content {
     margin: 0 auto;
     width: 200px;
     height: 200px;
+  }
+  .sass-common {
+    background-color: $myColor;
+  }
+  .sass-scoped {
+    background-color: $scopedColor;
   }
 }
 </style>

@@ -1,9 +1,6 @@
 <template>
   <div class="page-container">
     <div class="page-content">
-      <myLoading v-if="false"
-                 :noData="noData"
-                 :loading="loading"></myLoading>
       <div ref="chart"
            class="chart"></div>
     </div>
@@ -12,8 +9,8 @@
 
 <script>
 import * as echarts from 'echarts'
-import myLoading from './loading'
 
+// 默认值
 const parentValue = {
   xAxis: {
     type: 'category',
@@ -30,7 +27,6 @@ const parentValue = {
 
 export default {
   name: 'myEcharts',
-  components: { myLoading },
   props: {
     parentValue: {
       type: Object,

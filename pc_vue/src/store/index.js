@@ -28,7 +28,6 @@ const state = {
       data: {}
     },
     reportCase: {
-
     }
   },
   from: {
@@ -39,7 +38,11 @@ const state = {
   g: { // 全局变量
     idCardType: '1000', // 判断常量
     minDate: new Date(1900, 0, 1),
-    maxDate: new Date()
+    maxDate: new Date(),
+    length: { // 限制长度
+      name: 20,
+      phone: 11
+    }
   }
 }
 
@@ -77,7 +80,7 @@ export default new Vuex.Store({
     reducer (val) {
       return {
         // 只储存state中的token
-        userInfo: val.userInfo
+        // userInfo: val.userInfo
       }
     }
   })],

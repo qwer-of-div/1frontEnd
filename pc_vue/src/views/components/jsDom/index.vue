@@ -12,6 +12,13 @@
       <br>
       <el-button type="primary"
                  @click="onClick('date')">自定义date</el-button>
+      <br>
+      <br>
+      <el-button type="primary"
+                 @click="onClick('elTwo')">npm-el-two</el-button>
+      <div>
+        <qe-modal :dialogVisible="true"></qe-modal>
+      </div>
     </div>
   </div>
 
@@ -24,12 +31,12 @@ export default {
     return {
       picker: {
         value: '',
-zhiYe: '',
-country: ''
+        zhiYe: '',
+        country: ''
       },
       date: {
         value: new Date(2025, 0, 1),
-birthday: new Date(2021,7,14)
+        birthday: new Date(2021, 7, 14)
       }
     }
   },
@@ -39,6 +46,9 @@ birthday: new Date(2021,7,14)
   methods: {
     // 自定义confirm
     async onClick (type) {
+      if (type === 'elTwo') {
+        return
+      }
       if (type === 'confirm') {
         this.$myConfirm({ title: '删除', message: '确认删除该文件吗？', show: true })
           .then((params) => {

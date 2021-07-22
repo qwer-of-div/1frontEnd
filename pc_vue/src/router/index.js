@@ -30,6 +30,7 @@ const router = new VueRouter({
 })
 
 // 登录权限、页面进入权限
+// (to路由清空,key清空数组)
 router.beforeEach((to, from, next) => {
   console.log(from, to)
   store.commit('clearToken') // 取消请求
@@ -68,7 +69,8 @@ router.beforeEach((to, from, next) => {
     return
   }
 
-  if (!to.meta.roles.includes(store.state.userInfo.role)) { // 判断登录用户的权限是否满足meta对象中的roles的要求
+  if (!to.meta.roles.includes(store.state.userInfo.role)) {
+    // 判断登录用户的权限是否满足meta对象中的roles的要求
     alert('您没有角色权限进入该页面！')
     next(false)
     return

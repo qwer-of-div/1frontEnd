@@ -57,18 +57,23 @@ export const prevNextDate = (date = '1997-12-29' || new Date(), delay = 7 || -7)
 export const resetObj = {
   func: function (obj) {
     const whiteList = ['type'] // 白名单
+    const objType = {
+      '[object Null]': {},
+      // '[object Undefined]': Undefined,
+      '[object Number]': 0,
+      '[object String]': '',
+      '[object Boolean]': false,
+      '[object Array]': [],
+      '[object Date]': new Date()
+    }
     for (const key in obj) {
       // 白名单不处理
       if (whiteList.includes(key)) continue
-      if (Object.prototype.toString.call(obj[key]) === '[object Array]') {
-        obj[key] = []
-        continue
-      }
-      if (Object.prototype.toString.call(obj[key]) === '[object Object]') {
+      if (objType[Object.prototype.toString.call(obj[key])] === undefined) {
         this.func(obj[key])
-        continue
+      } else {
+        obj[key] = objType[Object.prototype.toString.call(obj[key])]
       }
-      obj[key] = ''
     }
   }
 }

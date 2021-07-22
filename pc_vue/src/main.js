@@ -5,6 +5,7 @@ import router from './router'
 import store from './store'
 import BaiduMap from 'vue-baidu-map'
 import ElementUI from 'element-ui'
+// import EleTwoUI from 'ele-two-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import Vant from 'vant'
 import 'vant/lib/index.css'
@@ -13,6 +14,7 @@ import './components/index.js' // 全局组件
 import './utils/windowInput.js'
 import './utils/windowRes.js'
 
+// singlePop doublePop
 import Toast from './components/toast/index'
 import Confirm from './components/jsDom/confirm/index' // 提交 提示
 import Picker from './components/jsDom/picker/index'
@@ -38,6 +40,7 @@ Vue.mixin(mixin)
 const uses = {
   directives,
   ElementUI,
+  // EleTwoUI,
   Vant
 }
 for (const key in uses) {

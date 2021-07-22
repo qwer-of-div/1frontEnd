@@ -4,7 +4,7 @@ export default {
     return {
       mixVerify: null, // 表单校验结果
       mixApiParams: null, // api请求数据
-      mixType: '', // 弹出框标识
+      mixType: '', // 弹出框标识 定义为属性名
       mixJudgeObj: null, // 判断对象
       mixTest: null // 测试数据
     }

@@ -28,8 +28,9 @@ const mockPage = {
       name: '李四',
       age: 18,
       sex: '男',
-      like: [1, 2, 3, 4],
-      date: new Date() // 无法判断日期类型
+      birth: null,
+      date: new Date(), // 无法判断日期类型
+      like: [1, 2, 3, 4]
     }
   },
   arrObj: [
