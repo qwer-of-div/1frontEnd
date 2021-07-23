@@ -1,19 +1,13 @@
 {
-  "name": "ele-two-ui2",
-  "version": "1.0.1",
+  "name": "ele-two-ui",
+  "version": "1.0.2",
   "private": false,
-  "main": "lib/menu.umd.min.js",
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/",
-    "username": "junzer",
-    "password": "JYQQ794621839",
-    "email": "794621839@qq.com"
-  },
+  "main": "lib/ele-two-ui.umd.min.js",
   "scripts": {
     "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "lib": "vue-cli-service build --target lib --name menu --dest lib packages/index.js"
+    "lib": "vue-cli-service build --target lib --name ele-two-ui --dest lib packages/index.js"
   },
   "dependencies": {
     "core-js": "^3.6.5",

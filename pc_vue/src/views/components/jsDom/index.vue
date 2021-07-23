@@ -17,7 +17,7 @@
       <el-button type="primary"
                  @click="onClick('elTwo')">npm-el-two</el-button>
       <div>
-        <qe-modal :dialogVisible="true"></qe-modal>
+        <qe-modal :dialogVisible="flag.qeModalShow"></qe-modal>
       </div>
     </div>
   </div>
@@ -29,6 +29,9 @@
 export default {
   data () {
     return {
+      flag: {
+        qeModalShow: false
+      },
       picker: {
         value: '',
         zhiYe: '',
@@ -47,6 +50,7 @@ export default {
     // 自定义confirm
     async onClick (type) {
       if (type === 'elTwo') {
+        this.flag.qeModalShow = true
         return
       }
       if (type === 'confirm') {

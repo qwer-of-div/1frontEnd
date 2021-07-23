@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define([], factory);
 	else if(typeof exports === 'object')
-		exports["menu"] = factory();
+		exports["ele-two-ui"] = factory();
 	else
-		root["menu"] = factory();
+		root["ele-two-ui"] = factory();
 })((typeof self !== 'undefined' ? self : this), function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -1239,4 +1239,4 @@ module.exports = NATIVE_SYMBOL
 
 /******/ });
 });
-//# sourceMappingURL=menu.umd.js.map
+//# sourceMappingURL=ele-two-ui.umd.js.map
