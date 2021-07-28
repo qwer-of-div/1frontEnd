@@ -12,7 +12,8 @@ files.keys().forEach(item => {
   modules[module.name] = module
 })
 
-// localStorage页面与页面之间传值不用实时更新 vuex同一页面传值才需要实时更新 queryData 存于localStorage不需要实时更新 不用书写结构
+// localStorage页面与页面之间传值不用实时更新 vuex同一页面传值才需要实时更新
+// queryData 存于localStorage不需要实时更新 不用书写结构
 const state = {
   cancelTokenArr: [], // 取消请求token数组
   userInfo: JSON.parse(localStorage.getItem('userInfo')), // 用户信息 null
@@ -27,18 +28,21 @@ const state = {
       scroll: 0,
       data: {}
     },
-    reportCase: {
+    reportCase: { // 报案
     }
   },
   from: {
-    main: '', // 首屏
+    main: '', // 首屏 都要设置from 流程完成页清空 首页清空
     scan: '', // 待派扫 单页面
     preview: '' // 申请书预览 eg:claimList claimListNew
   },
   g: { // 全局变量
-    idCardType: '1000', // 判断常量
-    minDate: new Date(1900, 0, 1),
-    maxDate: new Date(),
+    idType: '1000', // 判断常量
+    // idTypeLabel: '身份证', // 判断常量
+    date: {
+      birthMin: new Date(1900, 0, 1),
+      birthMax: new Date()
+    },
     length: { // 限制长度
       name: 20,
       phone: 11
@@ -51,6 +55,12 @@ const mutations = {
     for (const key in stateNew) {
       stateNew[key] = state[key]
     }
+  },
+  resetState1 (stateNew) { // 重置
+    for (const key in stateNew) {
+      stateNew[key] = state[key]
+    }
+    localStorage.setItem('queryData', '{}')
   },
   pushToken (state, payload) {
     state.cancelTokenArr.push(payload.cancelToken)

@@ -22,6 +22,10 @@ export default {
         sexName: '',
         sexCodeName: ''
       },
+      page2: {
+        idTypeCode: '',
+        idTypeName: ''
+      },
       flag: {
       },
       init: {
@@ -33,6 +37,7 @@ export default {
   },
   computed: {
     // 取值 计算属性 多变量影响其值时使用 同一对象多值改变引发操作computed-->watch 带出数据无效处理
+    // code list 转 name
     // code 转 name 转 code-name
     codeNew () { // code转name
       const code = {
@@ -41,31 +46,39 @@ export default {
       }
       return code
     },
-    nameNew () { // code name转code-name
-      const name = {
-        idTypeName: this.page.idTypeName,
-        sexName: this.page.sexName
+    nameNew1 () { // code list 转 name
+      const label = {
+        idTypeLabel: this.page.idTypeCode,
+        sexLabel: this.page.sexCode
       }
-      return name
+      return label
     },
+    // nameNew () { // code name转code-name
+    //   const name = {
+    //     idTypeName: this.page.idTypeName,
+    //     sexName: this.page.sexName
+    //   }
+    //   return name
+    // },
     flagNew () {
       const flag = {}
       return flag
     }
   },
   watch: {
-    codeNew: { // code转name
+    codeNew: { // code list转name
       handler (newVal) {
-        if (newVal.sexCode) this.page.sexName = newVal.sexCode // code转name
-        if (newVal.idTypeCode) this.page.idTypeName = newVal.idTypeCode // code转name
-      }
+        if (newVal.sexCode) this.page.sexName = newVal.sexCode // code list转name
+        if (newVal.idTypeCode) this.page.idTypeName = newVal.idTypeCode // code list转name
+      },
+      deep: true
     },
-    nameNew: { // code name转code-name
-      handler (newVal) {
-        if (newVal.sexName) this.page.sexCodeName = this.page.sexCode + '-' + newVal.sexName
-        if (newVal.idTypeCodeName) this.page.idTypeCodeName = this.page.idTypeCode + '-' + newVal.idTypeName
-      }
-    }
+    // nameNew: { // code name转code-name
+    //   handler (newVal) {
+    //     if (newVal.sexName) this.page.sexCodeName = this.page.sexCode + '-' + newVal.sexName
+    //     if (newVal.idTypeCodeName) this.page.idTypeCodeName = this.page.idTypeCode + '-' + newVal.idTypeName
+    //   }
+    // }
   },
   created () {
     this.handleInit()
@@ -78,15 +91,13 @@ export default {
     },
     // 提交
     onSubmit () {
-      // 纯code 后端无法判断code、name是否正确 最正确
-      // code、name 后端可以判断 最简单
+      // 纯code 即时转换 后端无法判断code、name是否正确 最正确
 
       // 使用name判断 统一转换 最简单
-      // 使用code判断 即时转换
 
       // 校验 toast
       // 列表提交：列表操作不要写死、列表数据添加、删除 修改唯一标识可改变传index 是否提示某项未填。
-      // 校验列表有值，列表源头code 无值，输入 全页面组件详情页 点击选择赋值code、name列表提交判断循环判断对象
+      // 校验列表有值，列表源头code 无值，输入 组件详情页 点击选择赋值code、name列表提交判断循环判断对象
     },
     onInput (val, type) { // code name转code-name
       if (type === '1') this.page.idTypeCode = ''

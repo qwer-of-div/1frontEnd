@@ -27,7 +27,7 @@
  * 路由传参自动修改为字符串类型
  * 切换 对每一个数据影响 新增数据 对原来数据的影响 原来数据对它的影响
  * Watch SettimeOut(0) idtype birthday
- * if else if
+ * code name 标识位 写注释
  * 
  * @return {listHtml} 列表
  * @return {countDown} 验证码倒计时
