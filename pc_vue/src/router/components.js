@@ -58,6 +58,10 @@ export default [
         path: 'hookRouter',
         name: 'hookRouter',
         component: () => import('@/views/components/hookRouter')
+      }, {
+        path: 'formLeave',
+        name: 'formLeave',
+        component: () => import('@/views/components/formLeave')
       }
     ]
   }

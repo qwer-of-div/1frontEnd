@@ -2,7 +2,7 @@
 /**
  * 伪代码
  * 
- * 新需求时 多方案可采用时 更要仔细斟酌 一个页面至少三个入口 首次进入 返回 刷新
+ * 个数 新需求时 多方案可采用时 更要仔细斟酌 一个页面至少三个入口 首次进入 返回 刷新
  * 
  * 修改 赤橙黄绿青蓝紫 时间节点
  * 应用场景-->兼容性-->浏览器窗口缩放事件-->宽高适配（自适应）
@@ -36,13 +36,16 @@
  * @return {nextPage} 下一页
  * @return {fromPage} 来自哪个页面
  * @return {formInput} 表单输入
+ * @return {formLeave} 表单分离
  * @return {listSubmit} 列表提交
  */
 
 /**
  * 列表
+ * 分页 拆分组件
  */
 export const listHtml = () => {
+  // watch记录下上次数组长度，下拉进行长度比较
   <div class="page-contatiner">
     <div class="page-content">
       <div class="search-wrap"></div>
@@ -91,7 +94,7 @@ export const queryList = () => {
 export const backList = () => {
   // 保存数据
   // 其他页面进入重置数据
-  // 当前页面刷新、刷新、返回、刷新返回、直接路由进入
+  // 当前页面刷新、返回、刷新返回、直接路由进入
   // 数据、scroll、tabs、单选、多选
   // 刷新是否保存数据？
   // this.$router.go(-1) 返回和首次进入相同 使用路由传参params eg：title
@@ -158,6 +161,13 @@ export const formInput = () => {
 
   // code、name 后端可以判断 最简单
   // 使用name判断 统一转换 提交也使用name判断 code判断给后端 最简单
+}
+
+/**
+ * 表单分离
+ */
+export const formLeave = () => {
+  // 表单分离组件模块 for in 循环 .sync
 }
 
 /**

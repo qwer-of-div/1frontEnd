@@ -12,6 +12,7 @@
 </template>
 
 <script>
+// 发请求按钮防抖节流
 const mockNavList = [
   { label: '防抖', path: '/code/debThro/debounce' },
   { label: '节流', path: '/code/debThro/throttle' }

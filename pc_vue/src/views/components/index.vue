@@ -34,7 +34,8 @@ const mockNavList = [
   { label: 'virtalList', path: '/components/virtalList' },
   { label: 'jsDom', path: '/components/jsDom' },
   { label: '请求', path: '/components/request' },
-  { label: '钩子函数和路由守卫', path: '/components/hookRouter' }
+  { label: '钩子函数和路由守卫', path: '/components/hookRouter' },
+  { label: '表单分离', path: '/components/formLeave' }
 ]
 
 export default {

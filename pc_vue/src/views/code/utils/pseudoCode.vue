@@ -9,6 +9,7 @@
 <script>
 // code封装计算属性 code、name
 // 监听计算属性code，赋值this.page.idTypeName
+// Object.freeze
 export default {
   data () {
     return {
@@ -72,7 +73,7 @@ export default {
         if (newVal.idTypeCode) this.page.idTypeName = newVal.idTypeCode // code list转name
       },
       deep: true
-    },
+    }
     // nameNew: { // code name转code-name
     //   handler (newVal) {
     //     if (newVal.sexName) this.page.sexCodeName = this.page.sexCode + '-' + newVal.sexName
