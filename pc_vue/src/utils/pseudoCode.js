@@ -28,6 +28,11 @@
  * 切换 对每一个数据影响 新增数据 对原来数据的影响 原来数据对它的影响
  * Watch SettimeOut(0) idtype birthday
  * code name 标识位 写注释
+ * 下载文件请求返回都要加跨域
+ * 分页不重置 total
+ * 组件清空
+ * loading 0无数据 1加载中 2有数据 3初始化 4失败
+ * 保存请求参数 参数格式化同一处理 
  * 
  * @return {listHtml} 列表
  * @return {countDown} 验证码倒计时

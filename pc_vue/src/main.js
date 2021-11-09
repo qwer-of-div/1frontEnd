@@ -7,7 +7,7 @@ import BaiduMap from 'vue-baidu-map'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 // 导入组件库
-import EleTwoUI from 'ele-two-ui2'
+// import EleTwoUI from 'ele-two-ui2'
 import Vant from 'vant'
 import 'vant/lib/index.css'
 import 'animate.css'
@@ -41,7 +41,7 @@ Vue.mixin(mixin)
 const uses = {
   directives,
   ElementUI,
-  EleTwoUI,
+  // EleTwoUI,
   Vant
 }
 for (const key in uses) {
