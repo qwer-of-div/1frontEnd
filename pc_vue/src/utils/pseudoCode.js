@@ -32,7 +32,13 @@
  * 分页不重置 total
  * 组件清空
  * loading 0无数据 1加载中 2有数据 3初始化 4失败
- * 保存请求参数 参数格式化同一处理 
+ * 保存请求参数 参数格式化同一处理
+ * Api对象参数由外界传入，传功能type，类别type，提示信息不同(params,type) 
+ *  @click.native.stop="onInput"
+ * 
+ * 增加为空判断，增加重复判断
+ * 修改为空判断，修改重复判断,对子级标识位影响
+ * 关闭前清空，type
  * 
  * @return {listHtml} 列表
  * @return {countDown} 验证码倒计时
