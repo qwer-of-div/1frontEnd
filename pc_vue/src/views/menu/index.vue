@@ -19,6 +19,10 @@
 </template>
 
 <script>
+// Vue点到子路由，父级，无法高亮问题解决
+// 重定向
+// 把子路由的router-link的to属性里链接写完整
+
 const navList = [
   { label: '组件', path: '/components' },
   { label: '代码', path: '/code' },

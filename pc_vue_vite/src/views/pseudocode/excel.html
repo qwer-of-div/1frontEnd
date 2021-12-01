@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  #down_btn {
+    width: 100px;
+    line-height: 30px;
+    background-color: bisque;
+    color: brown;
+    font-size: 18px;
+    border-color: cadetblue;
+    margin: 0 auto;
+  }
+</style>
+
+<body>
+  <button id="down_btn">下载</button>
+</body>
+<script>
+  var downloadBtn = document.querySelector("#down_btn")
+  console.log(downloadBtn)
+  let tableData = [{
+    dishName: "番茄炒蛋",
+    price: '15元'
+  }, {
+    dishName: "酸菜鱼",
+    price: '35元'
+  }, {
+    dishName: "水煮肉片",
+    price: '30元'
+  }, {
+    dishName: "麻婆豆腐",
+    price: '12元'
+  }, {
+    dishName: "麻婆豆腐麻婆豆腐麻婆豆腐麻婆豆腐麻婆豆腐麻婆豆腐麻婆豆腐麻婆豆腐麻婆豆腐麻婆豆腐",
+    price: '12元'
+  }]
+  let str = ""
+  str += "序号,菜名,价格\n"
+  tableData.forEach((element, index) => {
+    str += `${index + 1},${element.dishName},${element.price}\n`
+  });
+  var title = "元权小店菜单"
+  downloadBtn.onclick = function () {
+    console.log(1)
+    let blob = new Blob([str], { type: 'text/plain;charset=utf-8' })
+    blob = new Blob([String.fromCharCode(0xfeff), blob], { type: blob.type })
+    const url = window.URL.createObjectURL(blob)
+    const link = document.createElement('a')
+    link.href = url
+    link.download = `${title}.csv`
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  } 
+</script>
+
+</html>

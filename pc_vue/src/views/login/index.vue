@@ -67,6 +67,7 @@ export default {
   },
   methods: {
     // 登录
+    // Api和参数想关判断
     async onLogin (role) {
       if (role === 'no') {
         this.$router.push('/menu')
