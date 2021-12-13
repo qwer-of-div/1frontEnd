@@ -1,0 +1,207 @@
+<template>
+  <div id="app1">
+    <button @click="returnToA">跳转到A</button>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>a</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>b</div>
+    <div>c</div>
+    <div>c</div>
+    <div>c</div>
+    <div>c</div>
+    <div>c</div>
+    <div>c</div>
+    <div>c</div>
+    <div>c</div>
+    <div>c</div>
+    <div>c</div>
+    <div>c</div>
+    <div>c</div>
+    <div>c</div>
+    <div>c</div>
+    <div>c</div>
+    <div>c</div>
+    <div>c</div>
+    <div>c</div>
+    <div>c</div>
+    <div>c</div>
+    <div>c</div>
+    <div>c</div>
+    <div>c</div>
+    <div>c</div>
+    <div>c</div>
+    <div>c</div>
+    <div>c</div>
+    <div>c</div>
+    <div>c</div>
+    <div>c</div>
+    <div>c</div>
+    <div>c</div>
+    <div>c</div>
+    <div>c</div>
+    <div>c</div>
+    <div>c</div>
+    <div>c</div>
+    <div id="header">cheader</div>
+    <div>c</div>
+    <div>c</div>
+    <div>c</div>
+    <div>c</div>
+    <div>c</div>
+    <div>c</div>
+  </div>
+</template>
+
+<script>
+// 锚点跳转
+
+export default {
+  data () {
+    return {
+
+    }
+  },
+  methods: {
+    returnToA () {
+      console.log("点击成功");
+      document.querySelector("#header").scrollIntoView();
+    }
+  }
+};
+</script>
+
+<style lang="less" scoped>
+button {
+  font-size: 16px;
+}
+</style>
