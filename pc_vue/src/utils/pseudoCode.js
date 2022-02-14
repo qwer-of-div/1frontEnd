@@ -32,6 +32,18 @@
  * 保存请求参数 参数格式化同一处理
  * Api对象参数由外界传入，传功能type，类别type，提示信息不同(params,type) 
  *  @click.native.stop="onInput"
+ * Function和undefined 无法拷贝
+ * publicPath: "/admin",
+ * Id label
+ * 一件事只有一个入口
+ * // 1 添加子路由，第一个参数是父路由的name名，后面是子路由的数据
+ * router.addRoute({ name: 'admin', path: '/admin', component: Admin })//1 父路由
+ * router.addRoute('admin', { path: 'settings', component: AdminSettings })//1 子路由
+ * 如果上面添加的路由页面没有变化，那么就添加这行代码
+ * router.replace(router.currentRoute.value.fullPath)//替换当前路由页面的路由
+ * 上下左右相邻布局
+ * 初始和后面分开
+ * for (let item of list || []) {上
  * 
  * 增加为空判断，增加重复判断
  * 修改为空判断，修改重复判断,对子级标识位影响
@@ -42,7 +54,12 @@
  * 接口权限
  * 
  * 有前端筛选的 要 保存原始数据
- * preNow.setMonth(preNow.getMonth() - 11);
+ * preNow.setMonth(preNow.getMonth() - 11); date.getTime() 比较大小
+ * 1.	列表提交-详情页为组件，详情页修改，表单验证，保存至列表数据，返回列表验证，进行提交
+ * 2.	分页、导出-保存请求参数，使用保存过的请求参数进行分页或者导出查询
+ * 不同环境：本地、beta、蓝区、正式，不同服务名
+ * 后续加入功能对之前功能的影响
+ * Copilot
  * 
  * @return {listHtml} 列表
  * @return {countDown} 验证码倒计时
@@ -150,6 +167,10 @@ export const nextPage = () => {
   // 判断localstorage,vuex是否可进入路径
   // 是否进入下一个页面，由上一个页面获取数据决定，带返回功能请赋值
   // 页面数据，是当前页面决定
+  // beforeRouteLeave (to, from, next) {
+  //   this.page.scrollTop = document.querySelector('.patch-delivery-page').scrollTop
+  //   next()
+  // }
 }
 
 /**
@@ -192,6 +213,14 @@ export const listSubmit = () => {
   // 发请求的才分页面 列表提交使用body遮罩层 注意清空body遮罩层内的数据
   // 列表提交校验
 }
+// 循环找数组中某一项
+export const findItem = (list = [], id = 'test', key = 'path') => {
+  for (let item of list || []) {
+    if (item[key] == id) return item
+    const item1 = this.findItem(item.children, id)
+    if (item1) return item1
+  }
+},
 
 
 

@@ -1,0 +1,7 @@
+lin-xin/vue-manage-system tabs上传 后台管理系统
+newbee-ltd/vue3-admin 新峰商城
+zhaotoday/element-plus vite切回vue-cli
+hu-snail/vue3-admin-element-template侧菜单和顶菜单切换、刷新、全屏、主题、请求顶部进度条 nprogress
+HammCn/MacOS-Web-UI 苹果UI
+zhangbin1010/acp-admin tabs与菜单联动 服务前缀
+zhoufanglu/vue3-dynamic-router 动态路由

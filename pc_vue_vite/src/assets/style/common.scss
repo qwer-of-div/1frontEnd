@@ -69,14 +69,13 @@ display: flex
 display: flex;
 flex-direction: column;
 }
-// 横向使用hide 纵向使用flex1
 .flex1 {
-flex: 1;
-}
-.flex1-hide {
   flex: 1;
   overflow: hidden;
-  }
+}
+.flx1 {
+  flex: 1;
+}
 .flex2 {
 flex: 2;
 }

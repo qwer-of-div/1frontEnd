@@ -28,6 +28,12 @@ export default {
     window.removeEventListener('resize', this.listen)
   },
   methods: {
+    // 查询 防抖
+    searchDebounce: debounce(function () {
+      this.form.pageNum = 1
+      this.form.pageSize = 15
+      this.getOrderHeadInfo(this.form)
+    }),
     listen () {
       console.log('resize')
       this.handleDebounce(this.page.label) // 2调用callback this args

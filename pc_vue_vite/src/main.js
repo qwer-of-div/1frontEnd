@@ -25,3 +25,8 @@ Object.values(componentFiles).forEach(item => {
 })
 
 app.mount('#app');
+
+// Power mode、 vetur、 eslint、 open in browser、 Auto Rename Tag、 Auto Close Tag、GitLens、Path Intellisense、Bracket Pair Colorizer
+// "powermode.enabled": true,
+// "powermode.presets": "flames",
+// "powermode.enableShake": false,

@@ -6,7 +6,27 @@
  * @return {myDoubleAlert} 双确认框
  */
 
+import others from "@/router/modules/others.js"
+
+const menu = {
+  others: others[0].children
+}
+
 export default {
+
+  getMenuList (key) {
+    return menu[key].map(item => {
+      if (item.path.indexOf(":") !== -1) {
+        const id = item.path.replace(/:/g, "")
+        return { label: item.meta.label, id }
+      } else {
+        return {
+          label: item.meta.label,
+          id: `/${key}/${item.path}`
+        }
+      }
+    })
+  },
   /**
  * 对象赋值
  * @param {Object} newObj 目标对象

@@ -15,3 +15,26 @@
 export const myPopup = ({ title = '温馨提示', message = '请确认', confirmLabel = '确定', confirmColor = '#69f', callback }) => {
   return alert({ title, message, confirmLabel, confirmColor }).then(callback)
 }
+
+// 菜单列表
+import others from "@/router/modules/others.js"
+
+const menu = {
+  others: others[0].children
+}
+
+export default {
+  getMenuList (key) {
+    return menu[key].map(item => {
+      if (item.path.indexOf(":") !== -1) {
+        const id = item.path.replace(/:/g, "")
+        return { label: item.meta.label, id }
+      } else {
+        return {
+          label: item.meta.label,
+          id: `/${key}/${item.path}`
+        }
+      }
+    })
+  }
+}
