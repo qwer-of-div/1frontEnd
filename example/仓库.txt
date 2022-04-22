@@ -5,3 +5,9 @@ hu-snail/vue3-admin-element-template侧菜单和顶菜单切换、刷新、全屏、主题、请求顶
 HammCn/MacOS-Web-UI 苹果UI
 zhangbin1010/acp-admin tabs与菜单联动 服务前缀
 zhoufanglu/vue3-dynamic-router 动态路由
+RainManGO/vue3-composition-admin富文本、addRoutes、粘贴板、权限、数字动态、前端下载、上传
+zhoufanglu/dynamic-vue-router
+chuzhixin/vue-admin-better放大镜、图形验证码、视频播放器、markdown、富文本编辑器、封装组件、websocket、错误列表
+NLRX-WJC/react-antd-admin-template react
+guodonglw/vue3.0-admin 前端zip导出、excel导出、mockjs、addRoutes、前端权限
+https://github.com/au1996/vue3-element-admin-ts vue3指令 scss全局变量 v-bind-style

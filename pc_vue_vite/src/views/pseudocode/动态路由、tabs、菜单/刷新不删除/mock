@@ -1,0 +1,125 @@
+const mockjs= require('mockjs');
+
+export default [
+  {
+    url: "/api/common/login",
+    method: "post",
+    response: () => {
+      return {
+        code: 200,
+        message: "ok",
+        data: {
+          name: '李华',
+          token: '123456',
+          addr: mockjs.mock('@county(true)'),
+          routerList: [
+            {
+              path: '/home/admin', // 路由
+              name: 'admin',
+              label: '管理员可见',
+              component: 'others/admin/index' // 组件
+            },
+            {
+              path: '/home/user',
+              name: 'user',
+              label: '所有人可见',
+              component: 'others/user/index'
+            },
+            {
+              path: "/home/menu1",
+              name: 'menu1',
+              label: "菜单1",
+              component: 'others/menu/menu1/index',
+              children: [
+                {
+                  path: "/home/menu1/menu1-1",
+                  name: 'menu1-1',
+                  component: 'others/menu/menu1/menu1-1',
+                  label:
+                    "菜单1-1----------------------------------------------------------"
+                },
+                {
+                  path: "/home/menu1/menu1-2",
+                  name: 'menu1-2',
+                  component: 'others/menu/menu1/menu1-2',
+                  label: "菜单1-2",
+                  children: [
+                    {
+                      path: "/home/menu1/menu1-2/menu1-2-1",
+                      name: 'menu1-2-1',
+                      component: 'others/menu/menu1/menu1-2-1',
+                      label:
+                        "菜单1-2-1------------------------------------------------------------------------------"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              path: "/home/menu2",
+              name: "menu2",
+              label: "菜单2",
+              component: 'others/menu/menu2/index',
+              children: [
+                {
+                  path: "/home/menu2/menu2-1",
+                  name: "menu2-1",
+                  label: "菜单2-1",
+                  component: 'others/menu/menu2/menu2-1',
+                },
+                {
+                  path: "/home/menu2/menu2-2",
+                  name: "menu2-2",
+                  label: "菜单2-2",
+                  component: 'others/menu/menu2/menu2-2',
+                }
+              ]
+            },
+            {
+              path: "/home/menu3",
+              name: "menu3",
+              label: "菜单3",
+              component: 'others/menu/menu3',
+            },
+            {
+              path: "/home/menu4",
+              name: "menu4",
+              label: "菜单4",
+              component: 'others/menu/menu4',
+            },
+            {
+              path: "/home/menu5",
+              name: "menu5",
+              label: "菜单5",
+              component: 'others/menu/menu5',
+            },
+            {
+              path: "/home/menu6",
+              name: "menu6",
+              label: "菜单6",
+              component: 'others/menu/menu6',
+            },
+            {
+              path: "/home/menu7",
+              name: "menu7",
+              label: "菜单7",
+              component: 'others/menu/menu7',
+            },
+            {
+              path: "/home/menu8",
+              name: "menu8",
+              label: "菜单8",
+              component: 'others/menu/menu8',
+            },
+            {
+              path: "/home/menu9",
+              name: "menu9",
+              label: "菜单9",
+              component: 'others/menu/menu9',
+            }
+          ]
+        }
+      };
+    }
+  }
+];

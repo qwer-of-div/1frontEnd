@@ -1,9 +1,9 @@
 
 /**
  * 伪代码
- * 
+ *
  * 个数 新需求时 多方案可采用时 更要仔细斟酌 一个页面至少三个入口 首次进入 返回 刷新
- * 
+ *
  * 修改 赤橙黄绿青蓝紫 时间节点
  * 应用场景-->兼容性-->浏览器窗口缩放事件-->宽高适配（自适应）
  * 登录-->手机号一键登录-->第三方-->小程序授权-->账号密码
@@ -16,8 +16,6 @@
  * 每个页面都可独立存在-->前端缓存输入数据 实时请求的字典返显 需要后台存储name Code判断 name语言为中文 英文
  * Pc划不动手机划不动
  * 需求、测试、更多时间
- * 循环定时器发请求
- * 中文、英文、符号以前面为准
  * 赋值不会触发input事件
  * Radio字符串
  * 前端不接受null
@@ -28,9 +26,9 @@
  * 下载文件请求返回都要加跨域
  * 分页不重置 total
  * 组件清空
- * loading 0无数据 1加载中 2有数据 3初始化 4失败
+ * loading 0无数据 || 1加载中 || 2有数据 || 3初始化 || 4失败
  * 保存请求参数 参数格式化同一处理
- * Api对象参数由外界传入，传功能type，类别type，提示信息不同(params,type) 
+ * Api对象参数由外界传入，传功能type，类别type，提示信息不同(params,type)
  *  @click.native.stop="onInput"
  * Function和undefined 无法拷贝
  * publicPath: "/admin",
@@ -44,7 +42,10 @@
  * 上下左右相邻布局
  * 初始和后面分开
  * for (let item of list || []) {上
- * 
+ * 熊猫钓鱼 最后什么情况下能得到结果xx.push(...win);
+ * 全局对局部无影响时请求放全局
+ *exportJson2Excel(data, dataMap.filename !== '' ? dataMap.filename : undefined, undefined)
+ *
  * 增加为空判断，增加重复判断
  * 修改为空判断，修改重复判断,对子级标识位影响
  * 关闭前清空，type
@@ -52,15 +53,15 @@
  * 菜单权限
  * 路由权限
  * 接口权限
- * 
+ *
  * 有前端筛选的 要 保存原始数据
  * preNow.setMonth(preNow.getMonth() - 11); date.getTime() 比较大小
- * 1.	列表提交-详情页为组件，详情页修改，表单验证，保存至列表数据，返回列表验证，进行提交
- * 2.	分页、导出-保存请求参数，使用保存过的请求参数进行分页或者导出查询
+ * 1.列表提交-详情页为组件，详情页修改，表单验证，保存至列表数据，返回列表验证，进行提交
+ * 2.分页、导出-保存请求参数，使用保存过的请求参数进行分页或者导出查询
  * 不同环境：本地、beta、蓝区、正式，不同服务名
  * 后续加入功能对之前功能的影响
  * Copilot
- * 
+ *
  * @return {listHtml} 列表
  * @return {countDown} 验证码倒计时
  * @return {queryList} 查询 保留查询参数 重置 恢复到初始页面
@@ -161,7 +162,7 @@ export const backList = () => {
  * 下一页
  */
 export const nextPage = () => {
-  // localStorage 
+  // localStorage
   // 返回是否在当前页 tabs,scroll
   // 后台数据返回判断下一页是否存在，使用localstorage,vuex
   // 判断localstorage,vuex是否可进入路径
@@ -215,12 +216,32 @@ export const listSubmit = () => {
 }
 // 循环找数组中某一项
 export const findItem = (list = [], id = 'test', key = 'path') => {
-  for (let item of list || []) {
+  for (const item of list || []) {
     if (item[key] == id) return item
     const item1 = this.findItem(item.children, id)
     if (item1) return item1
   }
-},
+}
 
+// "dev": "cross-env NODE_ENV=dev vue-cli-service serve --open --hot",
+//     "build:alpha": "cross-env NODE_ENV=alpha  vue-cli-service build  --mode alpha",
+//     "build:beta": "cross-env NODE_ENV=beta  vue-cli-service build  --mode beta",
+//     "build:prod": "cross-env NODE_ENV=prod vue-cli-service build --mode prod",
+//     "build:report": "vue-cli-service build --open --report",
+//     "fix": "vue-cli-service lint"
+// "dev": "concurrently \"npm run mock\" \"npm run serve:dev\"",
+//     "serve:dev": "cross-env NODE_ENV=development dotenv -e .env.dev.serve vue-cli-service serve",
+//     "build:dev": "cross-env NODE_ENV=production  dotenv -e .env.dev.build vue-cli-service build",
+//     "serve:prod": "cross-env NODE_ENV=development dotenv -e .env.prod.serve vue-cli-service serve",
+//     "build:prod": "cross-env NODE_ENV=production  dotenv -e .env.prod.build vue-cli-service build",
+//     "mock": "cd mock && ts-node-dev mock.ts"
 
-
+// v-for form放不下的使用对象id
+// [
+// {id:'name',class:'input-wrap',type:'input',label:'姓名',placeholder:'',optionId:''},
+// {id:'empty',class:'empty-wrap',type:'input',label:'',optionId:''}
+// ]
+// option:{
+// name:[]
+// }
+// rules:{}

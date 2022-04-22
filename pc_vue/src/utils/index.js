@@ -45,6 +45,10 @@ export const dateFormat = (date = '1997-12-29' || new Date()) => {
  * @param {Date or DateStr} date 日期
  * @param {Number} delay 多少天
  */
+// 前几天 后几天
+// day 传-1表始前一天，传1表始后一天
+// let pervDate = new Date().setDate(new Date().getDate() - 5)
+// console.log(new Date(pervDate).getDate())
 export const prevNextDate = (date = '1997-12-29' || new Date(), delay = 7 || -7) => {
   const tempDate = typeof (date) === 'object' ? date : new Date(date.replace(/-/g, '/'))
   return new Date(tempDate.getFullYear(), tempDate.getMonth(), tempDate.getDate() + delay)

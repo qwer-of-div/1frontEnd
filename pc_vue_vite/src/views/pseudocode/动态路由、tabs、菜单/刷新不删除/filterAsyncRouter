@@ -1,0 +1,63 @@
+// import others from "@/router/modules/others.js"
+// import typeScript from "@/router/modules/typeScript.js"
+
+// const menu = {
+//   others: others[0].children,
+//   typeScript: typeScript[0].children
+// }
+const moudels = import.meta.glob(`../views/**/*.vue`)
+
+export default {
+  //为权限路由异步添加组件
+  filterAsyncRouter: function (routeList,parentPath)  {
+    return routeList.filter((route) => {
+      if (route.component) {
+        // 如果不是布局组件就只能是页面的引用了
+        // 利用懒加载函数将实际页面赋值给它
+        route.component = moudels[`../views/${route.component}.vue`]
+        // 判断是否存在子路由，并递归调用自己
+        if (route.children && route.children.length) {
+          route.children = this.filterAsyncRouter(route.children, route.path)
+        }
+        return true
+      }
+    })
+  },
+  // 对象数组多层判断是否有值
+  parseJson: function(jsonObj, key, value){
+    // 循环所有键
+    let array = []
+    for (let v in jsonObj) {
+      let element = jsonObj[v]
+      // 1.判断是对象或者数组
+      if (typeof (element) === 'object') {
+        let result =  this.parseJson(element, key, value)
+        if(result.length) {
+          array = array.concat(result)
+        }
+      } else {
+        if (v === key) {
+          if (element === value){
+            array.push(jsonObj)
+          } 
+        }
+      }
+    }
+    return array
+  }
+  
+  // getMenuList(key) {
+  //   return menu[key].map(item => {
+  //     if (item.path.indexOf(":") !== -1) {
+  //       const id = item.path.replace(/:/g, "")
+  //       return { label: item.meta.label, id }
+  //     } else {
+  //       return {
+  //         label: item.meta.label,
+  //         id: `/${key}/${item.path}`
+  //       }
+  //     }
+  //   })
+  // }
+}
+
