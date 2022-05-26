@@ -11,3 +11,7 @@ chuzhixin/vue-admin-better放大镜、图形验证码、视频播放器、markdown、富文本编辑器
 NLRX-WJC/react-antd-admin-template react
 guodonglw/vue3.0-admin 前端zip导出、excel导出、mockjs、addRoutes、前端权限
 https://github.com/au1996/vue3-element-admin-ts vue3指令 scss全局变量 v-bind-style
+https://github.com/ZANJIAHAO1008/Admin-Frame-Vue3 弹窗拖拽指令 水印 指令复制 二维码 无限滚动scroll 电脑信息 流程图 Markdown
+https://github.com/yimijianfang/vue-drag-verify 图形验证码
+https://github.com/BosenY/vue-drag 拖动
+https://github.com/ZhiJieZhang1/vue-drag-select 拖拽多项选择

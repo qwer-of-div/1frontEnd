@@ -9,7 +9,7 @@
  * 登录-->手机号一键登录-->第三方-->小程序授权-->账号密码
  * 用户类型-->同一类型级别 eg:高级 低级 用户角色权限重叠
  * html-->body--header--content--footer 自上而下（整体） 自左到右（局部） 找到所有存在处 找出区别 增加多余项 设为传参 html使用是否
- * css components api mixin-->全局 局部
+ * css components api mixin-->全局 局部 option.js、column.js
  * vuex-->全局变量 localstorage缓存 dic字典
  * utils 优先弹框样式:纯提示(提示语)、一个按钮带操作、两个按钮带操作 功能区分：删除、确认 数量区分：1、2、3、提示文字居中还是靠左，单行/多行
  * js-->多情况时，先分析有几种情况
@@ -22,7 +22,6 @@
  * 路由传参自动修改为字符串类型
  * 切换 对每一个数据影响 新增数据 对原来数据的影响 原来数据对它的影响
  * Watch SettimeOut(0) idtype birthday
- * code name 标识位 写注释
  * 下载文件请求返回都要加跨域
  * 分页不重置 total
  * 组件清空
@@ -60,6 +59,7 @@
  * 2.分页、导出-保存请求参数，使用保存过的请求参数进行分页或者导出查询
  * 不同环境：本地、beta、蓝区、正式，不同服务名
  * 后续加入功能对之前功能的影响
+ * fileUrl: "D:\\\\riskclean\\\\", // 文件下载路径
  * Copilot
  *
  * @return {listHtml} 列表
@@ -71,6 +71,7 @@
  * @return {formInput} 表单输入
  * @return {formLeave} 表单分离
  * @return {listSubmit} 列表提交
+ * @return {formatParams} get请求参数格式化
  */
 
 /**
@@ -79,7 +80,7 @@
  */
 export const listHtml = () => {
   // watch记录下上次数组长度，下拉进行长度比较
-  <div class="page-contatiner">
+  return (<div class="page-contatiner">
     <div class="page-content">
       <div class="search-wrap"></div>
       <div class="list-wrap">
@@ -92,7 +93,7 @@ export const listHtml = () => {
         <my-loading></my-loading>
       </div>
     </div>
-  </div>
+  </div>)
 }
 
 /**
@@ -113,12 +114,32 @@ export const countDown = () => {
  * 查询 保留查询参数 重置 恢复到初始页面
  */
 export const queryList = () => {
+  return {
+    code: 200,
+    msg: '获取数据成功！',
+    data: {}
+  }
   // 各个查询条件的组合，每个查询条件选项值是否可以手动赋空
   // 在发请求方法内,保存请求参数，后面刷新保存
   // 刷新保存请求参数
   // 首页清除请求参数
   // 每存在一个查询页面，每有一个查询对象相对应
   // vuex+localStorage
+}
+
+/**
+ * get请求参数格式化
+ * @param {obj} params
+ */
+export const formatParams = (params) => {
+  let resParams = '?'
+  for (const key in params) {
+    const val = params[key]
+    if (val) {
+      resParams += key + '=' + params[key] + '&'
+    }
+  }
+  return resParams.slice(0, resParams.length - 1)
 }
 
 /**
@@ -131,13 +152,12 @@ export const backList = () => {
   // 数据、scroll、tabs、单选、多选
   // 刷新是否保存数据？
   // this.$router.go(-1) 返回和首次进入相同 使用路由传参params eg：title
-  return function beforeRouteEnter (to, from, next) {
+  const beforeRouteEnter = function (to, from, next) {
     // 返回和首次不同
 
     // 不！能！获取组件实例 `this`
     // 因为当守卫执行前，组件实例还没被创建
     // created之前
-    console.log('beforeRouteEnter')
     next(vm => {
       vm.page.from = 'back'
       // created之后 mounted获取
