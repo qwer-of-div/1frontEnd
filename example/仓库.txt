@@ -15,3 +15,6 @@ https://github.com/ZANJIAHAO1008/Admin-Frame-Vue3 µ¯´°ÍÏ×§Ö¸Áî Ë®Ó¡ Ö¸Áî¸´ÖÆ ¶şÎ
 https://github.com/yimijianfang/vue-drag-verify Í¼ĞÎÑéÖ¤Âë
 https://github.com/BosenY/vue-drag ÍÏ¶¯
 https://github.com/ZhiJieZhang1/vue-drag-select ÍÏ×§¶àÏîÑ¡Ôñ
+https://github.com/GeekQiaQia/vue3.0-template-admin aes¼ÓÃÜ fuse.jsÄ£ºıËÑË÷ driver.jsÒıµ¼ sortable.jsÍÏ×§×é¼ş FullCalendarÈÕÀú clipboard¸´ÖÆÖ¸Áî jszip jszip-utilsÑ¹Ëõ°ü file-saver xlsx´¿Ç°¶Ëµ¼³ö
+ qrcode.vue qrcode.js¶şÎ¬Âë wangeditor¸»ÎÄ±¾±à¼­Æ÷ codemirror.js json±à¼­Æ÷ vue-cropperjsÍ¼Æ¬²Ã¼ô
+https://github.com/pipipi-pikachu/PPTist ppt

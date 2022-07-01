@@ -61,7 +61,13 @@
  * 后续加入功能对之前功能的影响
  * fileUrl: "D:\\\\riskclean\\\\", // 文件下载路径
  * Copilot
+ * 分区块 使用不同的form
+ * 组件自己发请求、销毁还原数据
+ * 页面与页面传参只需要最终需要的结果
+ * 保存请求参数在调接口之前
+ * statisticEcharts(params, type) {
  *
+
  * @return {listHtml} 列表
  * @return {countDown} 验证码倒计时
  * @return {queryList} 查询 保留查询参数 重置 恢复到初始页面
