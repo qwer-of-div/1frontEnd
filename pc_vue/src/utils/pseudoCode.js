@@ -11,7 +11,7 @@
  * html-->body--header--content--footer 自上而下（整体） 自左到右（局部） 找到所有存在处 找出区别 增加多余项 设为传参 html使用是否
  * css components api mixin-->全局 局部 option.js、column.js
  * vuex-->全局变量 localstorage缓存 dic字典
- * utils 优先弹框样式:纯提示(提示语)、一个按钮带操作、两个按钮带操作 功能区分：删除、确认 数量区分：1、2、3、提示文字居中还是靠左，单行/多行
+ * utils 优先弹框样式:纯提示(提示语)、一个按钮带操作、两个按钮带操作 功能 区分：删除、确认 数量区分：1、2、3、提示文字居中还是靠左，单行/多行
  * js-->多情况时，先分析有几种情况
  * 每个页面都可独立存在-->前端缓存输入数据 实时请求的字典返显 需要后台存储name Code判断 name语言为中文 英文
  * Pc划不动手机划不动
@@ -66,9 +66,14 @@
  * 页面与页面传参只需要最终需要的结果
  * 保存请求参数在调接口之前
  * statisticEcharts(params, type) {
+ * 自测：正向验证、反向验证
+ * 成功 失败 等待 失效 自定义
+ * // 要转义
+ * 参数的先后顺序，前面参数修改要初始化后面参数
+ * 设置api请求参数apiParams(无法改变)
  *
 
- * @return {listHtml} 列表
+ * @return {listHtml} 列表 div
  * @return {countDown} 验证码倒计时
  * @return {queryList} 查询 保留查询参数 重置 恢复到初始页面
  * @return {backList} 返回列表
@@ -78,13 +83,27 @@
  * @return {formLeave} 表单分离
  * @return {listSubmit} 列表提交
  * @return {formatParams} get请求参数格式化
+ * @return {optionFormat} 数据格式化
  */
 
 /**
- * 列表
+ * 列表 div
  * 分页 拆分组件
  */
 export const listHtml = () => {
+  const firstClass = 'firstClass'
+  const cellValue = []
+  const resLi = (li) => {
+    return (<li>{li.fileName}</li>)
+  }
+  const repOfficeKlTable = this.$refs.repOffice_KlTable
+  repOfficeKlTable.initTableData()
+  // 以功能区分 close open
+  const childClose = ({ type: 'oneSelf', data: { } = {} }) => {
+    if (type === '') {
+    }
+    this.page.siteInventoryDetailShow = false
+  }
   // watch记录下上次数组长度，下拉进行长度比较
   return (<div class="page-contatiner">
     <div class="page-content">
@@ -100,6 +119,18 @@ export const listHtml = () => {
       </div>
     </div>
   </div>)
+
+  return (<ul
+    class={firstClass}
+    onClick={() => { }}
+  >
+    {
+      cellValue.map(item => {
+        return resLi(item)
+      })
+    }
+  </ul>
+  )
 }
 
 /**
@@ -138,6 +169,9 @@ export const queryList = () => {
  * @param {obj} params
  */
 export const formatParams = (params) => {
+  let _payload = JSON.stringify(payload)
+  _payload = _payload.replace(/id/g, 'value')
+
   let resParams = '?'
   for (const key in params) {
     const val = params[key]
@@ -146,6 +180,16 @@ export const formatParams = (params) => {
     }
   }
   return resParams.slice(0, resParams.length - 1)
+}
+
+// 数据格式化
+export const optionFormat = (list) => {
+  list.forEach(item => {
+    item.value = item.id
+    item.label = item.text
+    if (item.children) this.optionFormat(item.children)
+  })
+  return list
 }
 
 /**
