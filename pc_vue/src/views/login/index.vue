@@ -117,11 +117,12 @@ export default {
       console.log('调用async/await函数后', '第二步')
     },
     // api
-    // 登录
-    async localLogin () {
+    // api 登录
+    async localLogin (type, param) {
+      const params = this.mixApiParams
       console.log('async/await前', '第一步')
       try {
-        const res = await this.$api.localLogin(this.mixApiParams)
+        const res = await this.$api.localLogin(params)
         console.log('res后台返回信息', 'params', res)
         console.log('async/await后', '第三步')
         // 数据本地存储

@@ -71,6 +71,11 @@
  * // 要转义
  * 参数的先后顺序，前面参数修改要初始化后面参数
  * 设置api请求参数apiParams(无法改变)
+ * App - /login 不写组件首页函数不会触发 写组件触发组件内方法
+ * 初始赋form的值--关闭form后继续使用form的值
+ * 笔记本 最外层要有一个最小高度和宽度
+ * 全局接口写在'/'的component内，redirect
+ * echarts在哪些页面使用了 便于之后组件版本升级检查
  *
 
  * @return {listHtml} 列表 div
@@ -104,6 +109,12 @@ export const listHtml = () => {
     }
     this.page.siteInventoryDetailShow = false
   }
+
+  // ref改变值
+  if (this.$refs.deliverTableRef) {
+    this.$refs.deliverTableRef.toget = 'togeted'
+  }
+
   // watch记录下上次数组长度，下拉进行长度比较
   return (<div class="page-contatiner">
     <div class="page-content">
