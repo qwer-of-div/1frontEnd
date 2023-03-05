@@ -4,12 +4,11 @@
  *
  * 个数 新需求时 多方案可采用时 更要仔细斟酌 一个页面至少三个入口 首次进入 返回 刷新
  *
- * 修改 赤橙黄绿青蓝紫 时间节点
  * 应用场景-->兼容性-->浏览器窗口缩放事件-->宽高适配（自适应）
  * 登录-->手机号一键登录-->第三方-->小程序授权-->账号密码
  * 用户类型-->同一类型级别 eg:高级 低级 用户角色权限重叠
  * html-->body--header--content--footer 自上而下（整体） 自左到右（局部） 找到所有存在处 找出区别 增加多余项 设为传参 html使用是否
- * css components api mixin-->全局 局部 option.js、column.js
+ * css components api mixin-->全局 局部 staticData.js
  * vuex-->全局变量 localstorage缓存 dic字典
  * utils 优先弹框样式:纯提示(提示语)、一个按钮带操作、两个按钮带操作 功能 区分：删除、确认 数量区分：1、2、3、提示文字居中还是靠左，单行/多行
  * js-->多情况时，先分析有几种情况
@@ -18,33 +17,26 @@
  * 需求、测试、更多时间
  * 赋值不会触发input事件
  * Radio字符串
- * 前端不接受null
  * 路由传参自动修改为字符串类型
- * 切换 对每一个数据影响 新增数据 对原来数据的影响 原来数据对它的影响
- * Watch SettimeOut(0) idtype birthday
  * 下载文件请求返回都要加跨域
  * 分页不重置 total
  * 组件清空
  * loading 0无数据 || 1加载中 || 2有数据 || 3初始化 || 4失败
- * 保存请求参数 参数格式化同一处理
- * Api对象参数由外界传入，传功能type，类别type，提示信息不同(params,type)
+ * 全页面loading 禁止加载期间的其他操作
+ * 传功能type，类别type，提示信息不同(type, params)
  *  @click.native.stop="onInput"
  * Function和undefined 无法拷贝
  * publicPath: "/admin",
  * Id label
- * 一件事只有一个入口
  * // 1 添加子路由，第一个参数是父路由的name名，后面是子路由的数据
  * router.addRoute({ name: 'admin', path: '/admin', component: Admin })//1 父路由
  * router.addRoute('admin', { path: 'settings', component: AdminSettings })//1 子路由
  * 如果上面添加的路由页面没有变化，那么就添加这行代码
  * router.replace(router.currentRoute.value.fullPath)//替换当前路由页面的路由
- * 上下左右相邻布局
  * 初始和后面分开
  * for (let item of list || []) {上
- * 熊猫钓鱼 最后什么情况下能得到结果xx.push(...win);
  * 全局对局部无影响时请求放全局
- *exportJson2Excel(data, dataMap.filename !== '' ? dataMap.filename : undefined, undefined)
- *
+ * console.dir(err)错误打印
  * 增加为空判断，增加重复判断
  * 修改为空判断，修改重复判断,对子级标识位影响
  * 关闭前清空，type
@@ -54,7 +46,7 @@
  * 接口权限
  *
  * 有前端筛选的 要 保存原始数据
- * preNow.setMonth(preNow.getMonth() - 11); date.getTime() 比较大小
+ * date.getTime() 比较大小
  * 1.列表提交-详情页为组件，详情页修改，表单验证，保存至列表数据，返回列表验证，进行提交
  * 2.分页、导出-保存请求参数，使用保存过的请求参数进行分页或者导出查询
  * 不同环境：本地、beta、蓝区、正式，不同服务名
@@ -62,6 +54,7 @@
  * fileUrl: "D:\\\\riskclean\\\\", // 文件下载路径
  * Copilot
  * 分区块 使用不同的form
+ * console.dir(err)错误打印
  * 组件自己发请求、销毁还原数据
  * 页面与页面传参只需要最终需要的结果
  * 保存请求参数在调接口之前
@@ -70,7 +63,7 @@
  * 成功 失败 等待 失效 自定义
  * // 要转义
  * 参数的先后顺序，前面参数修改要初始化后面参数
- * 设置api请求参数apiParams(无法改变)
+ * 设置api请求参数apiParams(无法改变) 保存请求参数 参数格式化同一处理
  * App - /login 不写组件首页函数不会触发 写组件触发组件内方法
  * 初始赋form的值--关闭form后继续使用form的值
  * 笔记本 最外层要有一个最小高度和宽度
@@ -103,12 +96,6 @@ export const listHtml = () => {
   }
   const repOfficeKlTable = this.$refs.repOffice_KlTable
   repOfficeKlTable.initTableData()
-  // 以功能区分 close open
-  const childClose = ({ type: 'oneSelf', data: { } = {} }) => {
-    if (type === '') {
-    }
-    this.page.siteInventoryDetailShow = false
-  }
 
   // ref改变值
   if (this.$refs.deliverTableRef) {
@@ -142,6 +129,13 @@ export const listHtml = () => {
     }
   </ul>
   )
+}
+
+// 以功能区分 close open type 有一点不同赋值就不同
+export const childClose = ({ type = 'oneSelf', data: { } = {} }) => {
+  if (type === '') {
+  }
+  this.page.siteInventoryDetailShow = false
 }
 
 /**
@@ -201,6 +195,19 @@ export const optionFormat = (list) => {
     if (item.children) this.optionFormat(item.children)
   })
   return list
+}
+
+// format数据
+export const formatData = (item, row) => {
+  let res = '--'
+  if (item.options) {
+    for (const it of item.options) {
+      if (it.value === row[item.value]) res = it.label
+    }
+  } else {
+    res = row[item.value] || '--'
+  }
+  return res
 }
 
 /**
@@ -316,13 +323,3 @@ export const findItem = (list = [], id = 'test', key = 'path') => {
 //     "serve:prod": "cross-env NODE_ENV=development dotenv -e .env.prod.serve vue-cli-service serve",
 //     "build:prod": "cross-env NODE_ENV=production  dotenv -e .env.prod.build vue-cli-service build",
 //     "mock": "cd mock && ts-node-dev mock.ts"
-
-// v-for form放不下的使用对象id
-// [
-// {id:'name',class:'input-wrap',type:'input',label:'姓名',placeholder:'',optionId:''},
-// {id:'empty',class:'empty-wrap',type:'input',label:'',optionId:''}
-// ]
-// option:{
-// name:[]
-// }
-// rules:{}

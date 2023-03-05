@@ -4,6 +4,7 @@
  * 是否必输、字段长度、数字、汉字、英文、特殊字符
  * 合理性：数据来源正确、数据写入正确、数据进出范围一致（员工—>如何确定为员工）
  *
+ * @return {isEmpty} 字符串为空验证
  * @return {isNotEmpty} 字符串非空验证 validator1
  * @return {isId} 身份证校验、生日、性别提取
  * @return {isPhone} 手机号验证
@@ -16,6 +17,14 @@
  */
 
 export default {
+  /**
+   * trim修饰符对后端传过来的值无效
+   * 字符串非空验证 后台返的值前后不能有空格
+   * @param {String} str 字符串
+   */
+  isEmpty (str) {
+    if (str == null || str.trim() === '') return true
+  },
   /**
    * trim修饰符对后端传过来的值无效
    * 字符串非空验证 后台返的值前后不能有空格
