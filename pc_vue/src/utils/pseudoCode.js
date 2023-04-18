@@ -37,7 +37,6 @@
  * for (let item of list || []) {上
  * 全局对局部无影响时请求放全局
  * console.dir(err)错误打印
- * 增加为空判断，增加重复判断
  * 修改为空判断，修改重复判断,对子级标识位影响
  * 关闭前清空，type
  * 按钮权限
@@ -58,7 +57,6 @@
  * 组件自己发请求、销毁还原数据
  * 页面与页面传参只需要最终需要的结果
  * 保存请求参数在调接口之前
- * statisticEcharts(params, type) {
  * 自测：正向验证、反向验证
  * 成功 失败 等待 失效 自定义
  * // 要转义
@@ -69,6 +67,8 @@
  * 笔记本 最外层要有一个最小高度和宽度
  * 全局接口写在'/'的component内，redirect
  * echarts在哪些页面使用了 便于之后组件版本升级检查
+ * 一个接口1天--1.5天
+ * commonStatic.js queryParams 非实时的查询保存请求参数
  *
 
  * @return {listHtml} 列表 div
@@ -102,21 +102,18 @@ export const listHtml = () => {
     this.$refs.deliverTableRef.toget = 'togeted'
   }
 
-  // watch记录下上次数组长度，下拉进行长度比较
-  return (<div class="page-contatiner">
-    <div class="page-content">
-      <div class="search-wrap"></div>
-      <div class="list-wrap">
-        <div class="list">
-          <div class="item" v-for="item in list"></div>
-        </div>
-        {/* <div class="initData"></div>
-        <div class="empty"></div>
-        <div class="error"></div> */}
+  return (
+    <span class="custom-tree-node">
+      <span>{node.label}</span>
+      <span>
+        <div class="item" v-for="item in list"></div>
         <my-loading></my-loading>
-      </div>
-    </div>
-  </div>)
+        <el-button size="mini" type="text" on-click={() => this.append(data)}>Append</el-button>
+        <el-button size="mini" type="text" on-click={() => this.remove(node, data)}>Delete</el-button>
+      </span>
+    </span>)
+
+  // watch记录下上次数组长度，下拉进行长度比较
 
   return (<ul
     class={firstClass}
@@ -310,6 +307,33 @@ export const findItem = (list = [], id = 'test', key = 'path') => {
     if (item1) return item1
   }
 }
+
+// api 分支申请/管理查询接口
+export const getba = async (type) => {
+  let params = null
+  if (type === 'page') {
+    params = { ...this.searchParams }
+  } else {
+    params = { ...this.form, status: '0' }
+  }
+  // 只要变就会查询表格数据的参数
+  params.current = this.table.current
+  params.size = this.table.size
+  this.searchParams = this.$clone(params)
+  this.table.loading = true
+  try {
+    const res = await this.$axios.post('getba', params)
+    if (res.message === 'success') {
+      if (res.data) {
+        this.table.data = res.data.list || []
+        this.table.total = res.data.total
+      }
+    }
+  } catch (e) {
+    console.error(e)
+  }
+  this.table.loading = false
+},
 
 // "dev": "cross-env NODE_ENV=dev vue-cli-service serve --open --hot",
 //     "build:alpha": "cross-env NODE_ENV=alpha  vue-cli-service build  --mode alpha",
