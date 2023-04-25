@@ -8,7 +8,7 @@
  * 登录-->手机号一键登录-->第三方-->小程序授权-->账号密码
  * 用户类型-->同一类型级别 eg:高级 低级 用户角色权限重叠
  * html-->body--header--content--footer 自上而下（整体） 自左到右（局部） 找到所有存在处 找出区别 增加多余项 设为传参 html使用是否
- * css components api mixin-->全局 局部 staticData.js
+ * css components api mixin-->全局 局部 staticData.js commonStatic.js queryParams 非实时的查询保存请求参数
  * vuex-->全局变量 localstorage缓存 dic字典
  * utils 优先弹框样式:纯提示(提示语)、一个按钮带操作、两个按钮带操作 功能 区分：删除、确认 数量区分：1、2、3、提示文字居中还是靠左，单行/多行
  * js-->多情况时，先分析有几种情况
@@ -36,6 +36,7 @@
  * 初始和后面分开
  * for (let item of list || []) {上
  * 全局对局部无影响时请求放全局
+ * 一个整个流程使用一个路由
  * console.dir(err)错误打印
  * 修改为空判断，修改重复判断,对子级标识位影响
  * 关闭前清空，type
@@ -44,7 +45,6 @@
  * 路由权限
  * 接口权限
  *
- * 有前端筛选的 要 保存原始数据
  * date.getTime() 比较大小
  * 1.列表提交-详情页为组件，详情页修改，表单验证，保存至列表数据，返回列表验证，进行提交
  * 2.分页、导出-保存请求参数，使用保存过的请求参数进行分页或者导出查询
@@ -68,7 +68,6 @@
  * 全局接口写在'/'的component内，redirect
  * echarts在哪些页面使用了 便于之后组件版本升级检查
  * 一个接口1天--1.5天
- * commonStatic.js queryParams 非实时的查询保存请求参数
  *
 
  * @return {listHtml} 列表 div
