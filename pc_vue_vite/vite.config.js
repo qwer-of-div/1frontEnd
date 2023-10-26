@@ -32,6 +32,21 @@ module.exports = {
       target: 'https://blog.csdn.net/weixin_45292658',
       changeOrigin: true,
       rewrite: path => path.replace(/^\/api/, '')
-    }
+    },
+    '/ms/serverComputingGetdata': {
+      target:
+        'http://10.235.46.153:8824',
+      changeOrigin: true,
+      pathRewrite: {
+        '^/ms/serverComputingGetdata': '/'
+      }
+    },
+    '/ms': {
+      target: 'https://smartde.libing-beta.rnd.huawei.com/smartdm/ms', // ms
+      changeOrigin: true,
+      pathRewrite: {
+        '^/ms': '/'
+      }
+    },
   }
 }

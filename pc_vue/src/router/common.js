@@ -1,3 +1,16 @@
+// {
+//   path: '/',
+//   name: 'home',
+//   redirect: 'collect',
+//   component: () =>
+//     import(/*webpackChunkName:'home'*/ '@/components/home/index'),
+//   children: [
+//     ...otherRouter,
+//     ...patchRouter,
+
+//   ]
+// }
+
 export default [
   {
     path: '/',

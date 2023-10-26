@@ -1,5 +1,4 @@
 /**
- * 跳转同一路由报错处理
  * 使用动态路由传参 'input/:id'
  * 全局路由守卫（vue-router4.0中将next取消了，可写可不写，return false取消导航，undefined或者是return true验证导航通过）
  * Path与params不能同时使用

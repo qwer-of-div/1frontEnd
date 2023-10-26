@@ -22,9 +22,10 @@ const mockNavList = [
 ]
 
 export default {
-  data () {
+  data (vm) {
     return {
-      navList: []
+      navList: [],
+      columns: columns(vm),
     }
   },
   created () {
