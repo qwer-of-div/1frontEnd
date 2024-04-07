@@ -1,0 +1,41 @@
+{
+  "manifest_version": 2,
+  "name": "网点综合",
+  "version": "1.0.0",
+  "description": "",
+	"icons":
+	{
+		"16": "img/icon.png",
+		"48": "img/icon.png",
+		"128": "img/icon.png"
+	},
+  "permissions": [
+		"contextMenus", 
+		"tabs", 
+		"storage",
+		"http://*/*", 
+		"https://*/*" 
+  ],
+  "browser_action": {
+    "default_icon": "img/icon.png",
+    "default_popup": "gitlab_content.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "js/inject.js"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    "js/inject.js"
+  ],
+  "background":
+	{
+		"page": "psbc_background.html"
+	}
+}

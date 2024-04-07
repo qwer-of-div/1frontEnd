@@ -10,7 +10,12 @@
           <el-col v-for="item in formList"
                   :span="item.span || 12"
                   :key="item.id">
-            <el-form-item :prop="item.id"
+            <template v-if="item.type === 'slot'">
+              <slot :name="item.id">
+              </slot>
+            </template>
+            <el-form-item v-else
+                          :prop="item.id"
                           :label="item.label"
                           :key="item.id">
               <el-input v-if="item.type === 'input'"
@@ -25,10 +30,6 @@
                            v-for="item in item.options"
                            :key="item.id"></el-option>
               </el-select>
-              <template v-if="item.type === 'slot'">
-                <slot :name="item.id">
-                </slot>
-              </template>
             </el-form-item>
           </el-col>
         </el-row>
