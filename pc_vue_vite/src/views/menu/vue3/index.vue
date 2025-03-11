@@ -10,12 +10,14 @@
 
 <script>
 const navList = [
-  { label: 'ref变量定义', name: 'ref' },
+  { label: "ref变量定义", name: 'ref' },
   { label: 'reactive变量定义', name: 'reactive' },
   { label: '计算属性', name: 'computed' },
   { label: '监听', name: 'watch' },
   { label: '钩子函数', name: 'hook' },
-  { label: 'refs元素', name: 'refs' }
+  { label: 'refs元素', name: 'refs' },
+  { label: 'hooks函数', name: 'hooks' },
+  { label: 'pinia', name: 'pinia' },
 ]
 
 export default {

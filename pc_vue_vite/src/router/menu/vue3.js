@@ -33,6 +33,14 @@ export default [
         path: 'refs',
         name: 'refs',
         component: () => import('@/views/menu/vue3/refs/index.vue')
+      }, {
+        path: 'hooks',
+        name: 'hooks',
+        component: () => import('@/views/menu/vue3/hooks/index.vue')
+      }, {
+        path: 'pinia',
+        name: 'pinia',
+        component: () => import('@/views/menu/vue3/pinia/index.vue')
       }
     ]
   }

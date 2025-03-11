@@ -6,10 +6,10 @@
  * @return {myDoubleAlert} 双确认框
  */
 
-import others from "@/router/modules/others.js"
+// import others from "@/router/modules/others.js"
 
 const menu = {
-  others: others[0].children
+  // others: others[0].children
 }
 
 export default {

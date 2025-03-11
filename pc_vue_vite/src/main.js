@@ -7,6 +7,9 @@ import 'element-plus/lib/theme-chalk/index.css'
 import mixin from './mixin/index.js'
 import common from './utils/common.js'
 
+import { createPinia } from 'pinia';
+const pinia = createPinia();
+
 const app = createApp(App)
 
 app.mixin(mixin)
@@ -14,7 +17,7 @@ app.mixin(mixin)
 // 全局方法
 app.config.globalProperties.$g = common
 
-const uses = { router, store, ElementPlus }
+const uses = { router, store, ElementPlus, pinia }
 for (const key in uses) {
   app.use(uses[key]);
 }

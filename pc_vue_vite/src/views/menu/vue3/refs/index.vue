@@ -8,9 +8,7 @@
         <li>v-for 出来的ref</li>
         <li>可以写为表达式的形式, 可以推导出vue是如何实现的</li>
         <li>vue2.x的时候v-for不用这么麻烦, 直接写上去会被组装成数组</li>
-        <li :ref="el => { itemsEl[index] = el }"
-            v-for="(item,index) in 6"
-            :key="item">{{item}}</li>
+        <li :ref="el => { itemsEl[index] = el }" v-for="(item, index) in 6" :key="item">{{ item }}</li>
       </ul>
     </div>
   </div>

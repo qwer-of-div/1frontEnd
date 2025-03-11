@@ -1,20 +1,15 @@
 <template>
   <div class="page-container">
     <div class="page-content">
-      <div v-show="!page.componentName"
-           class="example">
+      <div v-show="!page.componentName" class="example">
         <h3>example</h3>
         <div class="btn-wrap">
-          <el-button v-for="item in init.navList"
-                     :key="item.name"
-                     type="primary"
-                     @click="onItem(item)">{{item.label}}</el-button>
+          <el-button v-for="item in init.navList" :key="item.name" type="primary"
+            @click="onItem(item)">{{ item.label }}</el-button>
         </div>
       </div>
-      <div v-show="page.componentName"
-           class="component-wrap">
-        <component :is="page.componentName"
-                   @fromChild="handleChild"></component>
+      <div v-show="page.componentName" class="component-wrap">
+        <component :is="page.componentName" @fromChild="handleChild"></component>
       </div>
     </div>
   </div>

@@ -40,22 +40,22 @@ module.exports = {
           '^/api': ''
         }
       },
-      '/test': { //测试
+      '/test': { // 测试
         target: 'xxx'
       },
-      '/pre': { //预发布
+      '/pre': { // 预发布
         target: 'xxx'
       }
     }
   },
   css: {
     extract: {
-      filename: "assets1/css/[name].min.css",
-      chunkFilename: "assets1/css/[name]1.min.css"
+      filename: 'assets1/css/[name].min.css',
+      chunkFilename: 'assets1/css/[name]1.min.css'
     },
     loaderOptions: {
       sass: {
-        prependData: `@import "@/assets/style/common.scss";`
+        prependData: '@import "@/assets/style/common.scss"'
       }
     }
   },
@@ -64,14 +64,14 @@ module.exports = {
       //   // 输出重构  打包编译后的 文件名称  【模块名称.版本号.时间戳】
       //   filename: `js/[name].${process.env.VUE_APP_Version}.${Timestamp}.js`,
       //   chunkFilename: `js/[name].${process.env.VUE_APP_Version}.${Timestamp}.js`
-      filename: `assets1/js/[name].min.js`,
+      filename: 'assets1/js/[name].min.js',
       chunkFilename: 'assets1/js/[name]1.min.js'
     },
     plugins: [
       // 下面是下载的插件的配置
       new CompressionWebpackPlugin({
-        algorithm: 'gzip', //使用gzip压缩
-        test: new RegExp('\\.(' + productionGzipExtensions.join('|') + ')$'),// 哪些文件要压缩
+        algorithm: 'gzip', // 使用gzip压缩
+        test: new RegExp('\\.(' + productionGzipExtensions.join('|') + ')$'), // 哪些文件要压缩
         threshold: 10240, // 10k
         minRatio: 0.8 // 压缩率小于0.8才会压缩
       }),
@@ -83,7 +83,7 @@ module.exports = {
         //   // 修改打包后css文件名
         //   filename: `css/[name].${Timestamp}.css`,
         //   chunkFilename: `css/[name].${Timestamp}.css`
-        filename: `assets1/css/[name].min.css`
+        filename: 'assets1/css/[name].min.css'
         // chunkFilename: 'assets1/css/[name].css'
       })
     ]

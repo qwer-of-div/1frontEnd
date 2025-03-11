@@ -1,7 +1,7 @@
 <template>
   <div>
-    <!-- <img alt="Vue logo"
-         src="./assets/logo.png" /> -->
+    <img alt="Vue logo"
+         src="./assets/logo.png" />
     1
   </div>
 </template>

@@ -21,6 +21,7 @@ module.exports = {
     'generator-star-spacing': 'off',
     // 禁止使用 var
     'no-var': 'error',
+    'quotes': [2, 'single'], //引号类型 `` "" ''
     // 函数名括号前不需要有空格
     'space-before-function-paren': 'off',
     // 代码块中避免多余留白

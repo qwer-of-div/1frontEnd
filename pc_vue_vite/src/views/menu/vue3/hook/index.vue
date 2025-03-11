@@ -2,7 +2,7 @@
   <div>
     <h3>hook</h3>
     <el-button @click="page.age++">增加</el-button>
-    <div>{{page.age}}</div>
+    <div>{{ page.age }}</div>
   </div>
 </template>
 

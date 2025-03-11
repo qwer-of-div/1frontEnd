@@ -2,10 +2,8 @@
   <div class="page-container">
     <div class="page-content">
       <div class="title-wrap">
-        <all-select placeholder="状态"
-                    :selectOptions="plan.options"
-                    :mulSelecteds="plan.mulSelecteds"
-                    @update:updateMultipleSelect="(val) => (plan.mulSelecteds = val)"></all-select>
+        <all-select placeholder="状态" :selectOptions="plan.options" :mulSelecteds="plan.mulSelecteds"
+          @update:updateMultipleSelect="(val) => (plan.mulSelecteds = val)"></all-select>
       </div>
     </div>
   </div>
@@ -48,7 +46,7 @@ const options = [
 
 export default {
   components: { allSelect },
-  data () {
+  data() {
     return {
       page: {
         apiParams: '', // 保留上级请求参数
@@ -62,7 +60,7 @@ export default {
     }
   },
   computed: {
-    pageNew () {
+    pageNew() {
       const planMulSelecteds = {
         apiParams: this.page.apiParams,
         mulSelecteds: this.plan.mulSelecteds
@@ -75,7 +73,7 @@ export default {
 
   watch: {
     'pageNew.planMulSelecteds': {
-      handler (newVal) {
+      handler(newVal) {
         newVal.apiParams && this.planLine(newVal.apiParams)
       },
       deep: true
@@ -83,7 +81,7 @@ export default {
   },
   methods: {
     // 预案 api
-    async planLine (params) {
+    async planLine(params) {
       let state = 'all'
       this.plan.mulSelectedslabel = []
       if (this.plan.mulSelecteds.length) {

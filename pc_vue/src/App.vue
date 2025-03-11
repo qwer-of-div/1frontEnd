@@ -34,7 +34,7 @@ export default {
 </script>
 
 <style lang="scss">
+@use "./assets/style/common.scss";
+@use "./assets/style/page.scss";
 @import "./assets/style/reset.css";
-@import "./assets/style/common.scss";
-@import "./assets/style/page.scss";
 </style>
