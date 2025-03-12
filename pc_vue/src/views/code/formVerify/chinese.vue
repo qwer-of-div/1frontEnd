@@ -4,28 +4,18 @@
       <h2>邮箱、中文</h2>
       <hr />
       <div class="form-wrap">
-        <el-form :model="form"
-                 :rules="rules"
-                 label-width="auto"
-                 ref="idVerify">
-          <el-form-item label="邮箱"
-                        prop="email">
-            <el-input v-model.trim="form.email"
-                      placeholder="请输入邮箱"></el-input>
+        <el-form :model="form" :rules="rules" label-width="auto" ref="idVerify">
+          <el-form-item label="邮箱" prop="email">
+            <el-input v-model.trim="form.email" placeholder="请输入邮箱"></el-input>
           </el-form-item>
-          <el-form-item label="请输入中、英文"
-                        prop="chinese">
-            <el-input v-model.trim="form.chinese"
-                      placeholder="请输入邮箱"></el-input>
+          <el-form-item label="请输入中、英文" prop="chinese">
+            <el-input v-model.trim="form.chinese" placeholder="请输入邮箱"></el-input>
           </el-form-item>
-          <el-form-item label="详细地址"
-                        prop="address">
-            <el-input v-model.trim="form.address"
-                      placeholder="请输入详细地址"></el-input>
+          <el-form-item label="详细地址" prop="address">
+            <el-input v-model.trim="form.address" placeholder="请输入详细地址"></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary"
-                       @click="onSubmit">提交</el-button>
+            <el-button type="primary" @click="onSubmit">提交</el-button>
           </el-form-item>
         </el-form>
       </div>
