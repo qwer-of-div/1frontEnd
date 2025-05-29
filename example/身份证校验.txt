@@ -1,0 +1,53 @@
+function validateIDCard(id) {
+    id = id.toUpperCase().trim();
+    if (id.length !== 18) return false;
+
+    const reg = /^\d{17}[\dX]$/;
+    if (!reg.test(id)) return false;
+
+    const provinceCode = id.substr(0, 2);
+    const validProvinceCodes = ['11','12','13','14','15','21','22','23','31','32','33','34','35','36','37','41','42','43','44','45','46','50','51','52','53','54','61','62','63','64','65','81','82'];
+    if (!validProvinceCodes.includes(provinceCode)) return false;
+
+    const year = id.substr(6, 4);
+    const month = id.substr(10, 2);
+    const day = id.substr(12, 2);
+    if (!isValidDate(year, month, day)) return false;
+
+    const checkCode = calculateCheckCode(id.substr(0, 17));
+    return checkCode === id.charAt(17);
+}
+
+function isValidDate(y, m, d) {
+    const year = parseInt(y), 
+          month = parseInt(m), 
+          day = parseInt(d),
+          currentYear = new Date().getFullYear();
+
+    // 新增年份限制
+    if (year < 1900 || year > currentYear - 1) return false;
+
+    if (month < 1 || month > 12) return false;
+
+    let maxDay;
+    if ([4, 6, 9, 11].includes(month)) {
+        maxDay = 30;
+    } else if (month === 2) {
+        const isLeap = (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+        maxDay = isLeap ? 29 : 28;
+    } else {
+        maxDay = 31;
+    }
+
+    return day >= 1 && day <= maxDay;
+}
+
+function calculateCheckCode(前17位) {
+    const weights = [7,9,10,5,8,4,2,1,6,3,7,9,10,5,8,4,2];
+    const checkCodes = ['1','0','X','9','8','7','6','5','4','3','2'];
+    let sum = 0;
+    for (let i=0; i<17; i++) {
+        sum += parseInt(前17位.charAt(i)) * weights[i];
+    }
+    return checkCodes[sum % 11];
+}
