@@ -3,11 +3,8 @@
     <div class="page-content page-home">
       <h2>首页</h2>
       <hr />
-      <img :src="imgSrc"
-           alt=""
-           class="img-content">
-      <el-button type="primary"
-                 @click="$router.push('/login')">登录</el-button>
+      <img :src="imgSrc" alt="" class="img-content">
+      <el-button type="primary" @click="$router.push('/login')">登录</el-button>
       <div class="sass-scoped">sass局部变量</div>
       <div class="sass-common">sass全局变量</div>
     </div>
@@ -58,15 +55,18 @@ export default {
 
 <style lang="scss" scoped>
 $scopedColor: #096;
+
 .page-home {
   .img-content {
     margin: 0 auto;
     width: 200px;
     height: 200px;
   }
+
   .sass-common {
     background-color: $myColor;
   }
+
   .sass-scoped {
     background-color: $scopedColor;
   }

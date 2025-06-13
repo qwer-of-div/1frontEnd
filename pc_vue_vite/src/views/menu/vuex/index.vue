@@ -1,8 +1,7 @@
 <template>
   <div class="page-container">
     <div class="page-content">
-      <el-button @click="onBack"
-                 type="primary">common</el-button>
+      <el-button @click="onBack" type="primary">common</el-button>
       <div class="header">header</div>
       <div class="main">
         main

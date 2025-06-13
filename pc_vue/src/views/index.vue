@@ -9,6 +9,12 @@
 
 <script>
 export default {
-
+  data () {
+    return {
+    }
+  },
+  mounted () {
+    console.log('不会触发')
+  }
 }
 </script>
