@@ -106,12 +106,3 @@ export default {
   }
 }
 
-
-
-
-
-
-
-
- bind(el) {
-      Vue.nextTick(() => {
