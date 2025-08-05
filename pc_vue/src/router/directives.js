@@ -11,6 +11,14 @@ export default [
         path: 'delayOutput',
         name: 'delayOutput',
         component: () => import('@/views/directives/delayOutput')
+      }, {
+        path: 'throttle',
+        name: 'throttle',
+        component: () => import('@/views/directives/throttle')
+      }, {
+        path: 'formInput',
+        name: 'formInput',
+        component: () => import('@/views/directives/formInput')
       }
     ]
   }

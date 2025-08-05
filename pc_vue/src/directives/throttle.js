@@ -1,3 +1,5 @@
+import Vue from 'vue'
+
 // 自定义指令防抖
 Vue.directive('throttle', {
   inserted: function (el, binding) {

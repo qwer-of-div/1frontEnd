@@ -1,10 +1,10 @@
 <template>
   <div class="page-container">
     <div class="page-content code">
-      <h2>延迟输出</h2>
+      <h2>节流</h2>
       <hr />
       <div class="longPress-wrap">
-        <el-button v-delayOutput="{ name: '延迟输出' }">延迟输出</el-button>
+        <el-button v-throttle:[args]="[handleThrottle, 'click', 1000]">节流</el-button>
       </div>
       <router-view />
     </div>
@@ -16,15 +16,15 @@
 export default {
   data () {
     return {
-      navList: []
+      navList: [],
+      args: '节流参数'
     }
   },
   created () {
-    this.handleMock()
   },
   methods: {
-    // mock数据
-    handleMock () {
+    handleThrottle (args) {
+      console.log(args)
     }
   }
 }

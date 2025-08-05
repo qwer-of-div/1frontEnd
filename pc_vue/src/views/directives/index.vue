@@ -13,7 +13,9 @@
 
 <script>
 const mockNavList = [
-  { label: '延迟输出', path: '/directives/delayOutput' }
+  { label: '延迟输出', path: '/directives/delayOutput' },
+  { label: '节流', path: '/directives/throttle' },
+  { label: '表单输入', path: '/directives/formInput' }
 ]
 
 export default {
