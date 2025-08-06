@@ -53,15 +53,36 @@ export default {
     el.onfocus = function () {
       el.isFocus = true
       console.log(el.value)
-      el.value = el.value.replace(thousandsReg, '') / 100
+      el.value = el.value.replace(thousandsReg, '')
     }
     el.onblur = function () {
       el.isFocus = false
       el.value = moneyFormat(el.value, opt.precision, opt.thousands)
     }
+
+    let lock = false // 标记是否需要锁定输入框
     el.oninput = function () {
+      if (lock) return // 如果当前为锁定状态，则不进行处理
+      let value = el.value
       const reg = new RegExp('^\\D*(\\d*(?:\\.\\d{0,' + opt.precision + '})?).*$', 'g')
-      el.value = el.value.replace(thousandsReg, '').replace(reg, '$1').replace(/^(0)[^.]/g, '$1')
+      value = value.replace(thousandsReg, '').replace(reg, '$1').replace(/^(0)[^.]/g, '$1')
+
+      // if (value) {
+      //   // 整数、小数
+      //   const arr = value.split('.')
+      //   // const regex = /\.!$/ // 注意 $ 表示字符串的结尾
+      //   // console.log(regex.test(value)) // 输出: true
+      //   const int = Number(arr[0]).toString() // 去掉开头多个0
+      //   value = arr.length > 1 ? int + '.' + arr[1] : int
+      // }
+      el.value = value
     }
+    el.addEventListener('compositionstart', () => {
+      lock = true
+    })
+    el.addEventListener('compositionend', () => {
+      lock = false
+      el.dispatchEvent(new Event('input'))
+    })
   }
 }

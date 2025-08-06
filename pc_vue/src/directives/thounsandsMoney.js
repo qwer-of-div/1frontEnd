@@ -1,51 +1,8 @@
-/*
-  限制输入框只能输入数字、字母、中文等规则
-
-  使用指令：v-input
-
-  修饰符参数说明：
-    v-input.num 只能输入数字，默认不传修饰符，会自动限制只能输入数字
-    v-input.intp 只能输入正整数
-    v-input.numAlp 只能输入数字和字母
-    v-input.numAlpBlank 只能输入数字、字母、空格
-    v-input.numAlpSym 只能输入数字和字母、英文符号、空格
-    v-input.float 只能输入数字和小数点  v-input.float="2" 表示小数位数为2，默认小数位数为2，v-input.float="2"可以简写为v-input.float
-    v-input.noEmoji 不能输入表情符号
-
-*/
-// 只能输入数字
-function num (el) {
-  el.value = el.value.replace(/\D+/g, '')
-}
-
-// 只能输入正整数
-function intp (el) {
-  const value = el.value.replace(/\D+/g, '') // 去掉非数字字符
-  el.value = /^[1-9][0-9]*$/.test(value) ? value : value.replace(/^0+/, '') // 确保为正整数，去掉前导零
-}
-
-// 只能输入数字和字母
-function numAlp (el) {
-  el.value = el.value.replace(/[^A-Za-z0-9]/g, '')
-}
-
-// 只能输入数字、字母、空格
-function numAlpBlank (el) {
-  const regex = /[^a-zA-Z0-9 ]/g
-  el.value = el.value.replace(regex, '')
-}
-
-// 只能输入数字、字母、英文符号、空格
-function numAlpSym (el) {
-  // const regex = /[^a-zA-Z0-9`~!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/? ]/g
-  const regex = /[^a-zA-Z0-9`~!@#$%^&*()_+\-=[\]{};':"\\|,.<>/? ]/g
-  el.value = el.value.replace(regex, '')
-}
 
 // 只能输入数字和小数点，n表示小数位数
 function float (el, n) {
   let value = el.value
-  value = value.replace(/[^\d.]/g, '') // 能数字和小数点
+  value = value.replace(/[^\d.]/g, '') // 只允许输入能数字和小数点
   value = value.replace(/^\./g, '') // 去掉开头的点
   value = value.replace('.', '$#$').replace(/\./g, '').replace('$#$', '.') // 处理多个点的情况
   if (n && Number(n) > 0) {
@@ -54,25 +11,18 @@ function float (el, n) {
     value = value.replace(reg, '$1$2.$3') // 限制小数位数
   }
   if (value) {
-    // 整数、小数
-    const arr = value.split('.')
-    // const regex = /\.!$/ // 注意 $ 表示字符串的结尾
-    // console.log(regex.test(value)) // 输出: true
-    const int = Number(arr[0]).toString() // 去掉开头多个0
-    value = arr.length > 1 ? int + '.' + arr[1] : int
+    value = value.replace(/^(-?)0+(?=\d)/, '$1') // 去除整数部分前导零
+
+    // // 整数、小数
+    // const arr = value.split('.')
+    // const int = Number(arr[0]).toString() // 去掉开头多个0
+    // value = arr.length > 1 ? int + '.' + arr[1] : int
   }
   el.value = value
 }
 
-// 限制表情：😀😂❤️🌟🎉🌍🐶☺
-function noEmoji (el) {
-  const regex =
-    /[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F1E6}-\u{1F1FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F900}-\u{1F9FF}\u{263A}]+/gu
-  el.value = el.value.replace(regex, '')
-}
-
 // 这里扩展限制的类型
-const map = { num, intp, numAlp, numAlpBlank, numAlpSym, float, noEmoji }
+const map = { float }
 
 export default {
   bind (el, binding, vnode) {
@@ -97,6 +47,7 @@ export default {
       isHandling = false // 处理完毕后设置标记为非处理状态
     }
     el.addEventListener('input', handler)
+
     // compositionstart和compositionend事件解决的bug场景：限制只能输入数字的输入框，先输入数字，再切换为中文输入法，输入字母时，会将原来的数字删掉
     el.addEventListener('compositionstart', () => {
       lock = true
@@ -105,6 +56,18 @@ export default {
       lock = false
       el.dispatchEvent(new Event('input'))
     })
+
+    const handleFocus = () => {
+      el.value = el.value && el.value.replaceAll(',', '')
+    }
+    el.addEventListener('focus', handleFocus)
+
+    const handleBlur = () => {
+      // let value = el.value.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+      el.value = el.value && el.value.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    }
+    el.addEventListener('blur', handleBlur)
+
     // 当指令与元素解绑时，移除事件监听器
     vnode.context.$once('hook:destroyed', () => {
       el.removeEventListener('input', handler)

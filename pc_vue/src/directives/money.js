@@ -10,10 +10,13 @@ function float (el, n) {
     const reg = new RegExp(`^(\\-)*(\\d+)\\.(${d}).*$`, 'ig')
     value = value.replace(reg, '$1$2.$3') // 限制小数位数
   }
-  if (value && !value.endsWith('.')) {
-    // const regex = /\.!$/ // 注意 $ 表示字符串的结尾
-    // console.log(regex.test(value)) // 输出: true
-    value = Number(value).toString() // 去掉开头多个0
+  if (value) {
+    // 整数、小数
+    // const arr = value.split('.')
+    // const int = Number(arr[0]).toString() // 去掉开头多个0
+    // value = arr.length > 1 ? int + '.' + arr[1] : int
+
+    value = value.replace(/^(-?)0+(?=\d)/, '$1') // 去除整数部分前导零
   }
   el.value = value
 }

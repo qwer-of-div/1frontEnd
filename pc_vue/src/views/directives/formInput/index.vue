@@ -9,8 +9,11 @@
         <el-input v-input.float="2" placeholder="浮点数（2位小数）" v-model="floatVal" />
         <br><br>
         <el-input v-money.float="2" placeholder="金额" v-model="moneyVal" />
+        {{ moneyVal }}
+        <br><br>
+        <el-input v-thounsandsMoney.float="2" placeholder="千分位" v-model="thounsandsMoneyVal" />
+        {{ thounsandsMoneyVal }}
       </div>
-      {{ moneyVal }}
       <router-view />
     </div>
   </div>
@@ -24,6 +27,7 @@ export default {
       numVal: '',
       floatVal: '',
       moneyVal: '',
+      thounsandsMoneyVal: '',
       args: '表单输入'
     }
   },
