@@ -9,8 +9,8 @@ import common from './utils/common.js'
 
 // 版本更新
 // import '@/utils/versionUpdate/updater'
-// import '@/utils/versionUpdate/auto-update'
-import '@/utils/versionUpdate/httpUpdate'
+import '@/utils/versionUpdate/auto-update'
+// import '@/utils/versionUpdate/httpUpdate'
 
 import { createPinia } from 'pinia';
 const pinia = createPinia();

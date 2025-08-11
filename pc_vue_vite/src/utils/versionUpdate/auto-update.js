@@ -38,7 +38,7 @@ async function needUpdate () {
   return result;
 }
 
-const DURATION = 1000;
+const DURATION = 10000;
 function autoRefresh () {
   setTimeout(async () => {
     try {
