@@ -6,8 +6,11 @@ import ElementPlus from 'element-plus'
 import 'element-plus/lib/theme-chalk/index.css'
 import mixin from './mixin/index.js'
 import common from './utils/common.js'
-import '@/utils/versionUpdate/updater'
 
+// 版本更新
+// import '@/utils/versionUpdate/updater'
+// import '@/utils/versionUpdate/auto-update'
+import '@/utils/versionUpdate/httpUpdate'
 
 import { createPinia } from 'pinia';
 const pinia = createPinia();

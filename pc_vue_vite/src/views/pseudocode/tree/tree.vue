@@ -1,21 +1,14 @@
 <template>
   <li>
     <span @click="toggle">
-      <em v-if="hasGrandson && hasChild"
-          class="icon">{{
+      <em v-if="hasGrandson && hasChild" class="icon">{{
         open ? "-" : "+"
       }}</em>
-      <em v-if="hasGrandson && !hasChild"
-          class="icon file-text"></em>
+      <em v-if="hasGrandson && !hasChild" class="icon file-text"></em>
       {{ data.name }}
     </span>
-    <ul v-show="open"
-        v-if="hasChild"
-        style="padding-left: 15px">
-      <tree-item v-for="(item, index) in data.children"
-                 :data="item"
-                 :hasGrandson="grandson"
-                 :key="index"></tree-item>
+    <ul v-show="open" v-if="hasChild" style="padding-left: 15px">
+      <tree-item v-for="(item, index) in data.children" :data="item" :hasGrandson="grandson" :key="index"></tree-item>
     </ul>
   </li>
 </template>
@@ -56,7 +49,7 @@ export default {
     },
   },
   created () {
-    console.log(this.hasGrandson, 777)
+    console.log(this.hasGrandson, 9999)
   },
   methods: {
     toggle () {
@@ -74,17 +67,21 @@ ul {
   margin: 10px 0;
   text-align: left;
 }
+
 li {
   padding: 3px 0;
 }
-li > span {
+
+li>span {
   cursor: pointer;
   font-size: 14px;
   line-height: 20px;
 }
-li > span:visited {
+
+li>span:visited {
   background: #fff;
 }
+
 em.icon {
   display: inline-block;
   width: 10px;
@@ -92,6 +89,7 @@ em.icon {
   background-repeat: no-repeat;
   vertical-align: middle;
 }
+
 .tree-menu li {
   line-height: 1.5;
 }

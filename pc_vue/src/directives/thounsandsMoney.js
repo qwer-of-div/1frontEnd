@@ -59,11 +59,11 @@ export default {
 
     const handleFocus = () => {
       el.value = el.value && el.value.replaceAll(',', '')
+      // el.dispatchEvent(new Event('input'))
     }
     el.addEventListener('focus', handleFocus)
 
     const handleBlur = () => {
-      // let value = el.value.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
       el.value = el.value && el.value.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
     }
     el.addEventListener('blur', handleBlur)

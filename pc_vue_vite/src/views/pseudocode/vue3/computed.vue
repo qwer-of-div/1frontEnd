@@ -52,7 +52,7 @@ export default {
       if (page.age) {
         console.log('watchEffect立即监听,无旧值')
       }
-      console.log('watchEffect立即监听1111')
+      console.log('watchEffect立即监听333')
     })
 
     setTimeout(() => {
