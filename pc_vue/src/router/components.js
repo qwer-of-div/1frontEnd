@@ -36,13 +36,6 @@ export default [
         name: 'webview',
         component: () => import('@/views/components/webview')
       }, {
-        path: 'keepAlive',
-        name: 'keepAlive',
-        component: () => import('@/views/components/keepAlive'),
-        meta: {
-          keepAlive: true
-        }
-      }, {
         path: 'virtalList',
         name: 'virtalList',
         component: () => import('@/views/components/virtalList')
