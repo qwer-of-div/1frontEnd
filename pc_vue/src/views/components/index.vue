@@ -30,7 +30,6 @@ const mockNavList = [
   { label: '百度地图', path: '/components/map' },
   { label: 'pdf', path: '/components/pdf' },
   { label: 'webview', path: '/components/webview' },
-  { label: 'keepAlive', path: '/components/keepAlive' },
   { label: 'virtalList', path: '/components/virtalList' },
   { label: 'jsDom', path: '/components/jsDom' },
   { label: '请求', path: '/components/request' },
