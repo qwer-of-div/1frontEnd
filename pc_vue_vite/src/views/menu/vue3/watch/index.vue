@@ -5,12 +5,12 @@
     <el-button @click="addObj">增加</el-button>
     <el-button @click="addNormal">正常增加</el-button>
     <el-button @click="addList">数组增加</el-button>
-    <div>{{newPage.age}}</div>
+    <div>计算属性:{{ newPage.age }}</div>
   </div>
 </template>
 
 <script>
-import { watch, computed, reactive, toRefs } from "vue";
+import { watch, computed, reactive, toRefs, watchEffect } from "vue";
 
 export default {
   setup () {
@@ -43,6 +43,10 @@ export default {
     )
     watch([() => page.name, () => page.age], ([name, age], [preName, prevAge]) => {
       console.log(preName, name, prevAge, age, "监听多属性name或age改变了");
+    })
+
+    const stop = watchEffect(() => {
+      console.log(`watchEffect-age: ${page.age}`)
     })
 
     // 方法
