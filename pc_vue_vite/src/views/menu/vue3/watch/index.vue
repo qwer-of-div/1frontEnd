@@ -19,7 +19,8 @@ export default {
     const page = reactive({
       name: "金毛",
       age: 4,
-      list: []
+      list: [],
+      a: new Date('2014-12-10')
     })
     const flag = reactive({
       isShow: false,
@@ -47,6 +48,7 @@ export default {
 
     const stop = watchEffect(() => {
       console.log(`watchEffect-age: ${page.age}`)
+      console.log(`watchEffect-page: ${JSON.stringify(page) === JSON.stringify(page)}`, page)
     })
 
     // 方法
