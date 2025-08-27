@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>视频上传</title>
+
+  <script src="assets/js/jquery-1.6.4.min.js"></script>
+  <script src="assets/js/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+
+  <!-- 引入element-ui -->
+  <script src="assets/js/element-ui-index.js"></script>
+  <script src="assets/js/element-ui-index-lib.js"></script>
+  <link rel="stylesheet" href="assets/css/element-ui-index.css">
+
+  <link rel="stylesheet" href="assets/css/common.css">
+
+  <style>
+    #app {
+      height: 100vh;
+      overflow: hidden;
+      overflow-y: auto;
+      padding: 50px 0;
+      background: url('../assets/image/bg.jpeg') no-repeat;
+      background-size: cover;
+    }
+
+    .desc {
+      text-align: center;
+    }
+
+    .desc h1 {
+      font-size: 34px;
+      margin: 0;
+      line-height: 48px;
+      color: #303133;
+    }
+
+    .desc p {
+      font-size: 18px;
+      color: #606266;
+      margin: 20px 0 35px;
+    }
+
+    .main {
+      width: 1000px;
+      margin: 0 auto;
+    }
+
+    .el-upload,
+    .el-upload-dragger {
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="desc">
+      <h1>视频上传</h1>
+      <p>用于活动回放视频上传，仅支持 mp4 格式</p>
+    </div>
+    <el-card class="main">
+      <el-upload drag :action="uploadUrl" :http-request="upload" :before-upload="handleBeforeUpload"
+        :show-file-list="false">
+        <i class="el-icon-upload"></i>
+        <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em>，只能上传.mp4文件</div>
+      </el-upload>
+
+      <div class="file-detail">
+        <el-table class="fileTab" :data="fileList" stripe border height="300">
+          <el-table-column type="index" width="50">
+          </el-table-column>
+          <el-table-column prop="name" label="文件名">
+            <template slot-scope="scope">
+              <div>
+                <el-link type="primary" :href="scope.row.url" target="_blank" v-text="scope.row.name"></el-link>
+              </div>
+            </template>
+          </el-table-column>
+          <el-table-column prop="size" label="大小">
+            <template slot-scope="scope">
+              <div>
+                <span v-text="scope.row.speed?(scope.row.speed+'  '+scope.row.size):scope.row.size"></span>
+              </div>
+            </template>
+          </el-table-column>
+          <el-table-column prop="upload_status" label="状态">
+            <template slot-scope="scope">
+              <div>
+                <el-progress :percentage="scope.row.progress" color="#22be4e"
+                  v-if="scope.row.progress<100"></el-progress>
+                <span :style="{'color': scope.row.upload_status !=='等待上传' ? '#22be4e' : ''}"
+                  v-text="scope.row.upload_status" v-else></span>
+              </div>
+            </template>
+          </el-table-column>
+          <el-table-column label="操作" width="100">
+            <template slot-scope="scope">
+              <div class="study-btn">
+                <el-button type="text" @click="cancelUpload(scope.$index)"
+                  v-if="scope.row.progress<100">取消上传</el-button>
+                <el-button type="text" @click="reUpload(scope.$index)" icon="el-icon-refresh" v-else>重新上传</el-button>
+              </div>
+            </template>
+          </el-table-column>
+        </el-table>
+      </div>
+    </el-card>
+  </div>
+</body>
+<script src="https://cdn.bootcdn.net/ajax/libs/spark-md5/3.0.2/spark-md5.min.js"></script>
+<script>
+  let app = new Vue({
+    el: '#app',
+    data () {
+      const chunkSize = 2 * 1024 * 1024, // 每个切片的大小，2M
+        // 使用Blob.slice方法来对文件进行分割，兼容不同的浏览器
+        blobSliceFn = File.prototype.slice || File.prototype.mozSlice || File.prototype.webkitSlice;
+      return {
+        uploadUrl: '/upload',
+        fileList: [],
+        currentIndex: 0, // 当前正在上传的文件
+        formValidate: null,
+
+        isSlice: false, // 判断是否切片上传
+        chunkSize,
+        blobSliceFn,
+        blockCount: 0, // 分片总数
+        indexArr: []
+      };
+    },
+    methods: {
+      handleBeforeUpload (file) {
+        console.log('file===', file)
+        this.isSlice = file.size > this.chunkSize;
+        const extname = file.name.substring(file.name.lastIndexOf('.') + 1)
+        // if (extname !== 'mp4') {
+        // this.$message({
+        //     message: '上传文件只能是.mp4格式!',
+        //     type: 'warning'
+        // })
+        // return false
+        // } else {
+        let size = '';
+        if (file.size / 1024 < 1024) {
+          size = (file.size / 1024).toFixed(2) + "KB";
+        } else if (file.size / 1024 / 1024 < 1024) {
+          size = (file.size / 1024 / 1024).toFixed(2) + "M";
+        } else {
+          size = (file.size / 1024 / 1024 / 1024).toFixed(2) + "G";
+        }
+        const obj = {
+          name: file.name,
+          url: '',
+          file,
+          size,
+          upload_status: '等待上传',
+          progress: 0,
+          speed: '',
+          Cancel: axios.CancelToken.source()
+        }
+        this.fileList.unshift(obj)
+        this.currentIndex = 0
+        return true
+        // }
+      },
+      upload (options) {
+        this.indexArr = []
+        if (this.isSlice) {
+          this.sliceUpload()
+        } else {
+          this.normalUpload()
+        }
+      },
+      normalUpload () {
+        let formValidate = this.fileList[this.currentIndex]
+        const formData = new FormData();
+        formData.append("file", formValidate.file);
+        let t0 = new Date(); // 文件开始上传时间
+        axios.post(this.uploadUrl, formData, {
+          onUploadProgress: (progressEvent) => {
+            this.uploadProgress(progressEvent, formValidate)
+          },
+
+        }).then((res, reject) => {
+          console.log(res)
+          const { code } = res.data;
+          if (code === 0) {
+            this.handleUploadSuccess(formValidate, res.data)
+          } else {
+            reject(res.data)
+          }
+        }).catch((error) => {
+          this.$message.warning(error.message);
+        });
+      },
+      reUpload (index) {
+        this.currentIndex = index
+        this.fileList[this.currentIndex].progress = 0
+        this.upload();
+      },
+      cancelUpload (index) {
+        const delFile = this.fileList[index]
+        console.log(delFile)
+        this.$confirm('确定取消上传吗？', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning',
+          closeOnClickModal: false,
+          showClose: false
+        }).then(() => {
+          delFile.Cancel.cancel();
+          if (delFile.file.size > this.chunkSize) {
+            axios.post('/file/cancelUpload', delFile).then(res => {
+              console.log('取消上传————', res)
+              this.fileList.splice(index, 1)
+            }).catch(error => {
+              console.error(error)
+              this.$message.warning('网络不稳定，请重试');
+            })
+          }
+
+        })
+      },
+      uploadProgress (progressEvent, formValidate) {
+        console.log('进度条————————', progressEvent)
+        const maxPercent = 100
+        if (this.isSlice) {
+          this.indexArr.push(progressEvent.index);
+          const maxIndex = Math.max(...this.indexArr)
+          formValidate.progress = Math.round(
+            progressEvent.loaded / progressEvent.total * (maxPercent / this.blockCount * maxIndex)
+          );
+        } else {
+          formValidate.progress = Math.round(
+            progressEvent.loaded / progressEvent.total * maxPercent
+          );
+        }
+
+        formValidate.progress = formValidate.progress >= maxPercent ? maxPercent - 1 : formValidate.progress
+        formValidate.upload_status = formValidate.progress + "%";
+        // debugger
+        // let t1 = new Date(); // 已上传文件大小时间
+        // // 计算出当前上传为多少kb/s
+        // let s = Math.round(
+        //     progressEvent.loaded / 1024 / ((t1 - t0) / 1000)
+        // );
+        // if (s > 1024) {
+        //     formValidate.speed = (s / 1024).toFixed(2) + "M/s";
+        // } else {
+        //     formValidate.speed = s + "kb/s";
+        // }
+      },
+      // 分片上传————————————————————————
+      // 获取文件MD5值
+      hashFile (file) {
+        return new Promise((resolve, reject) => {
+          try {
+            let currentChunkIndex = 0;
+            const spark = new SparkMD5.ArrayBuffer();
+            const fileReader = new FileReader();
+            const loadNext = () => {
+              const start = currentChunkIndex * this.chunkSize;
+              const end = start + this.chunkSize >= file.size ? file.size : start + this.chunkSize;
+              fileReader.readAsArrayBuffer(this.blobSliceFn.call(file, start, end));
+            }
+            fileReader.onload = e => {
+              spark.append(e.target.result); // Append array buffer
+              currentChunkIndex += 1;
+              if (currentChunkIndex < this.blobSliceFn) {
+                loadNext();
+              } else {
+                console.log('finished loading');
+                const result = spark.end();
+                // 如果单纯的使用result 作为hash值的时候, 如果文件内容相同，而名称不同的时候
+                // 想保留两个文件无法保留。所以把文件名称加上。
+                const sparkMd5 = new SparkMD5();
+                sparkMd5.append(result);
+                sparkMd5.append(file.name);
+                resolve(sparkMd5.end());
+              }
+            };
+            loadNext();
+          } catch (error) {
+            console.warn(error, '获取文件MD5异常');
+            reject('获取文件MD5异常')
+          }
+
+        }).catch(err => {
+          console.log(err);
+        });
+      },
+      async sliceUpload () {
+        let formValidate = this.fileList[this.currentIndex]
+        const file = formValidate.file
+        if (!file) {
+          alert('没有获取文件');
+          return;
+        }
+        this.blockCount = Math.ceil(file.size / this.chunkSize); // 分片总数
+        const axiosPromiseArray = []; // axiosPromise数组
+        const hash = await this.hashFile(file); //文件 hash 
+        // 获取文件hash之后，如果需要做断点续传，可以根据hash值去后台进行校验。
+        // 看看是否已经上传过该文件，并且是否已经传送完成以及已经上传的切片。
+        console.log(22222, hash, this.blockCount);
+        formValidate.hash = hash
+        formValidate.total = this.blockCount
+
+        for (let i = 0; i < this.blockCount; i++) {
+          const start = i * this.chunkSize;
+          const end = Math.min(file.size, start + this.chunkSize);
+          // 构建表单
+          const form = new FormData();
+          form.append('file', this.blobSliceFn.call(file, start, end));
+          form.append('name', file.name);
+          form.append('total', this.blockCount);
+          form.append('index', i);
+          form.append('size', file.size);
+          form.append('hash', hash);
+          // ajax提交 分片，此时 content-type 为 multipart/form-data
+          // 加入到 Promise 数组中
+          axiosPromiseArray.push(axios.post('/file/sliceUpload', form, {
+            onUploadProgress: (progressEvent) => {
+              progressEvent.index = i + 1
+              this.uploadProgress(progressEvent, formValidate)
+            },
+            cancelToken: formValidate.Cancel.token
+          }));
+        }
+        // 所有分片上传后，请求合并分片文件
+        this.mergeUpload(file, hash, axiosPromiseArray)
+      },
+      async mergeUpload (file, hash, axiosPromiseArray) {
+        let formValidate = this.fileList[this.currentIndex]
+        await axios.all(axiosPromiseArray).then(() => {
+          // 合并chunks
+          const params = {
+            file,
+            size: file.size,
+            name: file.name,
+            total: this.blockCount,
+            hash
+          };
+          axios.post('/file/merge_chunks', params).then((res, reject) => {
+            console.log(res)
+            const { code } = res.data;
+            if (code === 0) {
+              this.handleUploadSuccess(formValidate, res.data)
+            } else {
+              reject(res.data)
+            }
+          }).catch(err => {
+            this.handleUploadFail(formValidate, error)
+          });
+        }).catch((error) => {
+          this.handleUploadFail(formValidate, error)
+        });
+      },
+      handleUploadSuccess (formValidate, response) {
+        formValidate.progress = 100;
+        formValidate.upload_status = formValidate.progress + "%";
+        formValidate.speed = '';
+        formValidate.name = response.data.filename || response.data.name;
+        formValidate.url = response.data.url;
+      },
+      handleUploadFail (formValidate, error) {
+        formValidate.upload_status = '上传失败'
+        formValidate.speed = '';
+      }
+    }
+  })
+</script>
+
+</html>
