@@ -25,13 +25,13 @@ import Bus from '/vue-simple-uploader/js/bus'
 export default {
   name: 'home',
 
-  data() {
+  data () {
     return {
       fileList: []
     }
   },
 
-  mounted() {
+  mounted () {
     // 文件选择后的回调
     Bus.$on('fileAdded', () => {
       console.log('文件已选择')
@@ -43,13 +43,13 @@ export default {
     })
   },
 
-  beforeDestroy() {
+  beforeDestroy () {
     Bus.$off('fileAdded')
     Bus.$off('fileSuccess')
   },
 
   methods: {
-    upload() {
+    upload () {
       // 打开文件选择框
       Bus.$emit('openUploader', {
         // 给服务端的额外参数
