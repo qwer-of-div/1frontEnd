@@ -18,6 +18,7 @@ const navList = [
   { label: 'refs元素', name: 'refs' },
   { label: 'hooks函数', name: 'hooks' },
   { label: 'pinia', name: 'pinia' },
+  { label: '自定义指令', name: 'directive' },
 ]
 
 export default {

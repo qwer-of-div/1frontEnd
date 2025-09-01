@@ -41,6 +41,10 @@ export default [
         path: 'pinia',
         name: 'pinia',
         component: () => import('@/views/menu/vue3/pinia/index.vue')
+      }, {
+        path: 'directive',
+        name: 'directive',
+        component: () => import('@/views/menu/vue3/directive/index.vue')
       }
     ]
   }

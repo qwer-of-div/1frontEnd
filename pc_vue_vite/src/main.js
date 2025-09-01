@@ -6,6 +6,7 @@ import ElementPlus from 'element-plus'
 import 'element-plus/lib/theme-chalk/index.css'
 import mixin from './mixin/index.js'
 import common from './utils/common.js'
+import directive from '@/directive/index.js'
 
 // 版本更新
 // import '@/utils/versionUpdate/updater'
@@ -22,7 +23,7 @@ app.mixin(mixin)
 // 全局方法
 app.config.globalProperties.$g = common
 
-const uses = { router, store, ElementPlus, pinia }
+const uses = { router, store, ElementPlus, pinia, directive }
 for (const key in uses) {
   app.use(uses[key]);
 }

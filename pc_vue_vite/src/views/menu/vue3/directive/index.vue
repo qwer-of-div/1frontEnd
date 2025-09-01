@@ -1,18 +1,14 @@
 <template>
   <div class="page-container">
     <div class="page-content">
-      <el-button v-debounce="directive">自定义指令</el-button>
-      <el-button v-longPress="directive">多自定义指令</el-button>
+      <el-button v-debounce="directive">防抖</el-button>
+      <p v-tooltip="3" style="width:100px;">vue 自定义指令实现指定文本行数溢出自动 Tooltip | vue 自定义指令实现指定文本行数溢出自动 Tooltip</p>
     </div>
   </div>
 </template>
 
 <script>
 import { reactive, toRefs } from "vue";
-
-const list = [
-  { label: '变量定义', path: '/vue3/variate' },
-]
 
 export default {
   setup (props, context) {
