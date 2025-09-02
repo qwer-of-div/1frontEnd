@@ -177,6 +177,7 @@ export default {
     },
 
     onFileAdded (file) {
+      console.log('fileAdded', file)
       this.panelShow = true
       this.emit('fileAdded')
 
@@ -197,7 +198,7 @@ export default {
       let time = new Date().getTime()
       let blobSlice = File.prototype.slice || File.prototype.mozSlice || File.prototype.webkitSlice
       let currentChunk = 0
-      const chunkSize = 10 * 1024 * 1000
+      const chunkSize = 2 * 1024 * 1000
       let chunks = Math.ceil(file.size / chunkSize)
       let spark = new SparkMD5.ArrayBuffer()
 
@@ -212,6 +213,7 @@ export default {
           spark.append(e.target.result)
 
           if (currentChunk < chunks) {
+            console.log('循环读取文件', currentChunk, chunks)
             currentChunk++
             loadNext()
 

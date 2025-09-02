@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "server": "node app.js"
+    "dev": "node app.js"
   },
   "dependencies": {
     "connect-multiparty": "^2.2.0",

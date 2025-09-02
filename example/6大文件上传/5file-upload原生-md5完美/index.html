@@ -137,7 +137,7 @@
         },
         async handleUpload () {
           if (!this.file) return;
-
+          console.log(this.file, '文件')
           const fileHash = await this.calculateHash(this.file);
           console.log(fileHash, 444);
           const chunkCount = Math.ceil(this.file.size / this.CHUNK_SIZE);
@@ -184,36 +184,40 @@
         },
         // 计算文件哈希
         calculateHash (file) {
+          let fileReader = new FileReader()
+          let blobSlice = File.prototype.slice || File.prototype.mozSlice || File.prototype.webkitSlice
+          let currentChunk = 0
+          const chunkSize = 2 * 1024 * 1000
+          let chunks = Math.ceil(file.size / chunkSize)
+          let spark = new SparkMD5.ArrayBuffer()
+
+          loadNext()
+
+          function loadNext () {
+            let start = currentChunk * chunkSize
+            let end = start + chunkSize >= file.size ? file.size : start + chunkSize
+
+            fileReader.readAsArrayBuffer(blobSlice.call(file, start, end))
+          }
+
           return new Promise(resolve => {
-            const spark = new SparkMD5.ArrayBuffer();
-            const reader = new FileReader();
-            const size = file.size;
-            const offset = 2 * 1024 * 1024; // 抽样2MB计算哈希
-
-            // 文件头尾各取2MB
-            const chunks = [file.slice(0, offset)];
-            let current = offset;
-
-            while (current < size) {
-              if (current + offset >= size) {
-                chunks.push(file.slice(size - offset, size));
-                break;
-              }
-              const mid = current + offset / 2;
-              chunks.push(file.slice(mid, mid + 2));
-              current += offset;
-            }
-
-            reader.onload = e => {
+            fileReader.onload = e => {
               spark.append(e.target.result);
-              if (chunks.length) {
-                reader.readAsArrayBuffer(chunks.pop());
+              if (currentChunk < chunks) {
+                console.log('循环读取文件', currentChunk, chunks)
+                currentChunk++
+                loadNext()
               } else {
-                console.log(chunks, spark, e.target.result, spark.end(), 333);
-                resolve(spark.end());
+                const result = spark.end();
+                // 如果单纯的使用result 作为hash值的时候, 如果文件内容相同，而名称不同的时候
+                // 想保留两个文件无法保留。所以把文件名称加上。
+                const sparkMd5 = new SparkMD5();
+                sparkMd5.append(result);
+                sparkMd5.append(file.name);
+                console.log('finished loading', sparkMd5, spark, e.target.result);
+                resolve(sparkMd5.end());
               }
             };
-            reader.readAsArrayBuffer(chunks.pop());
           });
         }
       }
