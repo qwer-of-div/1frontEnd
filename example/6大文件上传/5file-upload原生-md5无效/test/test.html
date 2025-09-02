@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+  <!-- 存储已成功上传第几个，第几个的进度条 把他们赋给初始化-->
+  <input type="file" id="fileInput" />
+  <!-- 设置一个进度条 -->
+  <progress value="0" max="100" id="progress"></progress>
+  <button onclick="upload()">上传文件</button>
+  <script>
+    async function upload () {
+      const fileInput = document.getElementById("fileInput"); //获取input框
+      const file = fileInput.files[0]; // 对input的文件进行获取
+      const chunkSize = 1 * 1024 * 1024; //初始化分块的尺寸 每块分块文件大小为1MB（1兆）
+      const totalChunks = Math.ceil(file.size / chunkSize); //通过文件尺寸计算出所有的块数
+      let currentChunk = 0; //设置块的初始值
+      const resumeKey = file.name + "-currentChunk"; // 用于断点续传的本地存储键名
+      const resumeIndex = localStorage.getItem(resumeKey); // 当前的索引值
+      if (resumeIndex != null) {
+        currentChunk = parseInt(resumeIndex); // 如果存在已处理的分片索引，则更新currentChunk
+      } else {
+        localStorage.removeItem(resumeKey); // 否则移除本地存储的键值对
+      }
+      // 通过while循环处理
+      while (currentChunk < totalChunks) {
+        console.log('currentChunk', currentChunk);
+
+        const start = currentChunk * chunkSize; // 计算当前块的起始位置
+        const end = Math.min(start + chunkSize, file.size); // 计算当前块的结束  Math.min：返回一组数值中的最小值
+        const chunk = file.slice(start, end); // 切割文件获取当前块
+
+        const formData = new FormData();
+        formData.append("file", chunk); // 添加当前块到 FormData 对象
+        formData.append("filename", file.name); // 添加文件名到 FormData 对象
+        formData.append("totalChunks", totalChunks); // 添加总块数到 FormData 对象
+        formData.append("currentChunk", currentChunk); // 添加当前块数到 FormData 对象
+        try {
+          const res = await axios.post(
+            "http://localhost:3000/upload",
+            formData,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            }
+          ); //发送当前块的上传请求
+          const { progress } = res.data; // 获取当前块的上传进度
+          document.getElementById("progress").value = progress; // 更新进度
+          // 保存当前分块的索引
+          localStorage.setItem(resumeKey, currentChunk);
+
+        } catch (error) {
+          console.error(error);
+          return;
+        }
+        currentChunk++; //增加当前块数，继续下一块的上传（实现循环操作）
+      }
+      // 上传完成后，移除localstorage中的分块索引
+      localStorage.removeItem(resumeKey);
+      // 当所有分块文件发送完毕，发起合并请求操作
+      try {
+        const postData = { filename: file.name, totalChunks: totalChunks }; //构造合并请求的数据
+        await axios.post("http://localhost:3000/merge", postData, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }); //发送合并请求
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  </script>
+</body>
+
+</html>

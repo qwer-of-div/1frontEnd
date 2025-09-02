@@ -12,20 +12,20 @@ module.exports = function (temporaryFolder) {
 
   try {
     fs.mkdirSync($.temporaryFolder)
-  } catch (e) {}
+  } catch (e) { }
 
-  function cleanIdentifier(identifier) {
+  function cleanIdentifier (identifier) {
     return identifier.replace(/[^0-9A-Za-z_-]/g, '')
   }
 
-  function getChunkFilename(chunkNumber, identifier) {
+  function getChunkFilename (chunkNumber, identifier) {
     // Clean up the identifier
     identifier = cleanIdentifier(identifier)
     // What would the file name be?
     return path.resolve($.temporaryFolder, './uploader-' + identifier + '.' + chunkNumber)
   }
 
-  function validateRequest(chunkNumber, chunkSize, totalSize, identifier, filename, fileSize) {
+  function validateRequest (chunkNumber, chunkSize, totalSize, identifier, filename, fileSize) {
     // Clean up the identifier
     identifier = cleanIdentifier(identifier)
 

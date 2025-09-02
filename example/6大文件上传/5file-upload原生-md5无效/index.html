@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://unpkg.com/spark-md5@3.0.2/spark-md5.js"></script>
+  <title>大文件上传</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: #f5f7fa;
+      color: #2c3e50;
+    }
+
+    #app {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 30px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #34495e;
+    }
+
+    .upload-container {
+      text-align: center;
+    }
+
+    .file-input-wrapper {
+      margin-bottom: 20px;
+    }
+
+    .custom-file-input {
+      display: inline-block;
+      padding: 8px 16px;
+      background: #e3e8ee;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-bottom: 15px;
+    }
+
+    .upload-btn {
+      background: #3498db;
+      color: white;
+      border: none;
+      padding: 10px 25px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s;
+    }
+
+    .upload-btn:hover {
+      background: #2980b9;
+    }
+
+    .upload-btn:disabled {
+      background: #bdc3c7;
+      cursor: not-allowed;
+    }
+
+    .progress-bar {
+      margin-top: 20px;
+      background: #eee;
+      height: 20px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: #2ecc71;
+      transition: width 0.3s ease;
+      width: 0%;
+    }
+
+    .progress-text {
+      margin-top: 10px;
+      color: #7f8c8d;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <h1>文件上传</h1>
+    <div class="upload-container">
+      <div class="file-input-wrapper">
+        <label class="custom-file-input">
+          选择文件
+          <input type="file" @change="handleFileChange" style="display: none" />
+        </label>
+        <div v-if="file">已选择: {{ file.name }}（{{ fileSize }}MB）</div>
+      </div>
+      <button class="upload-btn" @click="handleUpload" :disabled="!file">{{ file ? '开始上传' : '请选择文件' }}</button>
+      <div class="progress-bar">
+        <div class="progress-fill" :style="{ width: progress + '%' }"></div>
+      </div>
+      <div class="progress-text">上传进度：{{ progress }}%</div>
+    </div>
+  </div>
+
+  <script>
+    const { createApp } = Vue;
+    createApp({
+      data () {
+        return {
+          file: null,
+          progress: 0,
+          CHUNK_SIZE: 2 * 1024 * 1024, // 分片大小
+          fileSize: 0
+        };
+      },
+      methods: {
+        handleFileChange (e) {
+          this.file = e.target.files[0];
+          this.fileSize = (this.file.size / 1024 / 1024).toFixed(2); // 转换为 MB
+          this.progress = 0;
+          // 根据文件类型设置分片大小
+          const VIDEO_TYPES = ["video/mp4", "video/quicktime"];
+          const isVideo = VIDEO_TYPES.includes(this.file.type);
+          this.CHUNK_SIZE = isVideo ? 20 * 1024 * 1024 : 2 * 1024 * 1024; // 视频文件使用更大分片大小，视频文件使用更大分片
+        },
+        async handleUpload () {
+          if (!this.file) return;
+
+          const fileHash = await this.calculateHash(this.file);
+          console.log(fileHash, 444);
+          const chunkCount = Math.ceil(this.file.size / this.CHUNK_SIZE);
+
+          // 检查已上传分片
+          const { data } = await axios.get("http://localhost:3001/api/check", {
+            params: { fileHash }
+          });
+
+          // 创建分片上传任务
+          const uploadTasks = [];
+          for (let i = 0; i < chunkCount; i++) {
+            if (data.uploadedChunks?.includes(i.toString())) continue; // 跳过已传分片
+
+            const start = i * this.CHUNK_SIZE;
+            const end = Math.min(start + this.CHUNK_SIZE, this.file.size);
+            const chunk = this.file.slice(start, end);
+
+            const formData = new FormData();
+            formData.append("chunk", chunk);
+            formData.append("hash", fileHash);
+            formData.append("index", i);
+            uploadTasks.push(
+              axios.post("http://localhost:3001/api/upload", formData, {
+                onUploadProgress: e => {
+                  const percent = Math.round((e.loaded / e.total) * 100);
+                  this.progress = Math.max(this.progress, ((i * 100 + percent) / chunkCount).toFixed(2));
+                }
+              })
+            );
+          }
+
+          // 并行上传分片
+          await Promise.all(uploadTasks);
+
+          // 合并请求
+          await axios.post("http://localhost:3001/api/merge", {
+            fileName: this.file.name,
+            fileHash,
+            chunkSize: this.CHUNK_SIZE
+          });
+          this.progress = 100;
+          alert("上传成功");
+        },
+        // 计算文件哈希
+        calculateHash (file) {
+          return new Promise(resolve => {
+            const spark = new SparkMD5.ArrayBuffer();
+            const reader = new FileReader();
+            const size = file.size;
+            const offset = 2 * 1024 * 1024; // 抽样2MB计算哈希
+
+            // 文件头尾各取2MB
+            const chunks = [file.slice(0, offset)];
+            let current = offset;
+
+            while (current < size) {
+              if (current + offset >= size) {
+                chunks.push(file.slice(size - offset, size));
+                break;
+              }
+              const mid = current + offset / 2;
+              chunks.push(file.slice(mid, mid + 2));
+              current += offset;
+            }
+
+            reader.onload = e => {
+              spark.append(e.target.result);
+              if (chunks.length) {
+                reader.readAsArrayBuffer(chunks.pop());
+              } else {
+                console.log(chunks, spark, e.target.result, spark.end(), 333);
+                resolve(spark.end());
+              }
+            };
+            reader.readAsArrayBuffer(chunks.pop());
+          });
+        }
+      }
+    }).mount("#app");
+  </script>
+</body>
+
+</html>

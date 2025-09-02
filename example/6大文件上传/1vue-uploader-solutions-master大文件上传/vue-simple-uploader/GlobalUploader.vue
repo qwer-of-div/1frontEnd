@@ -1,17 +1,9 @@
 <template>
-  <div id="global-uploader" :class="{'global-uploader-single': !global}">
+  <div id="global-uploader" :class="{ 'global-uploader-single': !global }">
     <!-- 上传 -->
-    <uploader
-      ref="uploader"
-      :options="initOptions"
-      :fileStatusText="fileStatusText"
-      :autoStart="false"
-      @file-added="onFileAdded"
-      @file-success="onFileSuccess"
-      @file-progress="onFileProgress"
-      @file-error="onFileError"
-      class="uploader-app"
-    >
+    <uploader ref="uploader" :options="initOptions" :fileStatusText="fileStatusText" :autoStart="false"
+      @file-added="onFileAdded" @file-success="onFileSuccess" @file-progress="onFileProgress" @file-error="onFileError"
+      class="uploader-app">
       <uploader-unsupport></uploader-unsupport>
 
       <uploader-btn id="global-uploader-btn" ref="uploadBtn">选择文件</uploader-btn>
@@ -21,11 +13,7 @@
           <div class="file-title">
             <div class="title">文件列表</div>
             <div class="operate">
-              <el-button
-                @click="collapse = !collapse"
-                type="text"
-                :title="collapse ? '展开' : '折叠'"
-              >
+              <el-button @click="collapse = !collapse" type="text" :title="collapse ? '展开' : '折叠'">
                 <i class="iconfont" :class="collapse ? 'el-icon-full-screen' : 'el-icon-minus'"></i>
               </el-button>
               <el-button @click="close" type="text" title="关闭">
@@ -35,16 +23,9 @@
           </div>
 
           <ul class="file-list">
-            <li
-              class="file-item"
-              v-for="file in props.fileList"
-              :key="file.id">
-              <uploader-file
-                :class="['file_' + file.id, customStatus]"
-                ref="files"
-                :file="file"
-                :list="true"
-              ></uploader-file>
+            <li class="file-item" v-for="file in props.fileList" :key="file.id">
+              <uploader-file :class="['file_' + file.id, customStatus]" ref="files" :file="file"
+                :list="true"></uploader-file>
             </li>
             <div class="no-file" v-if="!props.fileList.length">
               <i class="iconfont icon-empty-file"></i> 暂无待上传文件
@@ -89,7 +70,7 @@ export default {
     }
   },
 
-  data() {
+  data () {
     return {
       initOptions: {
         target: 'http://localhost:3000/upload',
@@ -109,7 +90,7 @@ export default {
             } else {
               skip = (objMessage.uploaded || []).indexOf(chunk.offset + 1) >= 0
             }
-          } catch (e) {}
+          } catch (e) { }
 
           return skip
         },
@@ -135,7 +116,7 @@ export default {
 
   watch: {
     params: {
-      handler(data) {
+      handler (data) {
         if (data) {
           this.customParams = data
         }
@@ -143,7 +124,7 @@ export default {
       immediate: true
     },
     options: {
-      handler(data) {
+      handler (data) {
         if (data) {
           setTimeout(() => {
             this.customizeOptions(data)
@@ -154,8 +135,8 @@ export default {
     }
   },
 
-  mounted() {
-    Bus.$on('openUploader', ({params={}, options={}}) => {
+  mounted () {
+    Bus.$on('openUploader', ({ params = {}, options = {} }) => {
       this.customParams = params
 
       this.customizeOptions(options)
@@ -168,14 +149,14 @@ export default {
 
   computed: {
     // Uploader实例
-    uploader() {
+    uploader () {
       return this.$refs.uploader.uploader
     }
   },
 
   methods: {
     // 自定义options
-    customizeOptions(opts) {
+    customizeOptions (opts) {
       // 自定义上传url
       if (opts.target) {
         this.uploader.opts.target = opts.target
@@ -195,7 +176,7 @@ export default {
       input.setAttribute('accept', accept.join())
     },
 
-    onFileAdded(file) {
+    onFileAdded (file) {
       this.panelShow = true
       this.emit('fileAdded')
 
@@ -211,7 +192,7 @@ export default {
      * @param file
      * @returns Promise
      */
-    computeMD5(file) {
+    computeMD5 (file) {
       let fileReader = new FileReader()
       let time = new Date().getTime()
       let blobSlice = File.prototype.slice || File.prototype.mozSlice || File.prototype.webkitSlice
@@ -236,7 +217,7 @@ export default {
 
             // 实时展示MD5的计算进度
             this.$nextTick(() => {
-              const md5ProgressText ='校验MD5 '+ ((currentChunk/chunks)*100).toFixed(0)+'%'
+              const md5ProgressText = '校验MD5 ' + ((currentChunk / chunks) * 100).toFixed(0) + '%'
               document.querySelector(`.custom-status-${file.id}`).innerText = md5ProgressText
             })
 
@@ -244,11 +225,10 @@ export default {
             let md5 = spark.end()
 
             // md5计算完毕
-            resolve({md5, file})
+            resolve({ md5, file })
 
             console.log(
-              `MD5计算完毕：${file.name} \nMD5：${md5} \n分片：${chunks} 大小:${file.size} 用时：${
-                new Date().getTime() - time
+              `MD5计算完毕：${file.name} \nMD5：${md5} \n分片：${chunks} 大小:${file.size} 用时：${new Date().getTime() - time
               } ms`
             )
           }
@@ -261,7 +241,7 @@ export default {
         }
       })
 
-      function loadNext() {
+      function loadNext () {
         let start = currentChunk * chunkSize
         let end = start + chunkSize >= file.size ? file.size : start + chunkSize
 
@@ -270,13 +250,13 @@ export default {
     },
 
     // md5计算完毕，开始上传
-    startUpload({md5, file}) {
+    startUpload ({ md5, file }) {
       file.uniqueIdentifier = md5
       file.resume()
       this.statusRemove(file.id)
     },
 
-    onFileSuccess(rootFile, file, response, chunk) {
+    onFileSuccess (rootFile, file, response, chunk) {
       let res = JSON.parse(response)
 
       // 服务端自定义的错误（即http状态码为200，但是是错误的情况），这种错误是Uploader无法拦截的
@@ -303,7 +283,7 @@ export default {
 
             this.statusRemove(file.id)
           })
-          .catch((e) => {})
+          .catch((e) => { })
 
         // 不需要合并
       } else {
@@ -312,19 +292,18 @@ export default {
       }
     },
 
-    onFileProgress(rootFile, file, chunk) {
+    onFileProgress (rootFile, file, chunk) {
       console.log(
-        `上传中 ${file.name}，chunk：${chunk.startByte / 1024 / 1024} ~ ${
-          chunk.endByte / 1024 / 1024
+        `上传中 ${file.name}，chunk：${chunk.startByte / 1024 / 1024} ~ ${chunk.endByte / 1024 / 1024
         }`
       )
     },
 
-    onFileError(rootFile, file, response, chunk) {
+    onFileError (rootFile, file, response, chunk) {
       this.error(response)
     },
 
-    close() {
+    close () {
       this.uploader.cancel()
 
       this.panelShow = false
@@ -335,7 +314,7 @@ export default {
      * @param id
      * @param status
      */
-    statusSet(id, status) {
+    statusSet (id, status) {
       let statusMap = {
         md5: {
           text: '校验MD5',
@@ -367,7 +346,7 @@ export default {
       })
     },
 
-    statusRemove(id) {
+    statusRemove (id) {
       this.customStatus = ''
       this.$nextTick(() => {
         const statusTag = document.querySelector(`.custom-status-${id}`)
@@ -375,12 +354,12 @@ export default {
       })
     },
 
-    emit(e) {
+    emit (e) {
       Bus.$emit(e)
       this.$emit(e)
     },
 
-    error(msg) {
+    error (msg) {
       this.$notify({
         title: '错误',
         message: msg,
@@ -446,6 +425,7 @@ export default {
       .file-title {
         background-color: #e7ecf2;
       }
+
       .file-list {
         height: 0;
       }
@@ -476,23 +456,27 @@ export default {
     &[icon='image'] {
       background: url(./images/image-icon.png);
     }
+
     &[icon=audio] {
       background: url(./images/audio-icon.png);
       background-size: contain;
     }
+
     &[icon='video'] {
       background: url(./images/video-icon.png);
     }
+
     &[icon='document'] {
       background: url(./images/text-icon.png);
     }
+
     &[icon=unknown] {
       background: url(./images/zip.png) no-repeat center;
       background-size: contain;
     }
   }
 
-  .uploader-file-actions > span {
+  .uploader-file-actions>span {
     margin-right: 6px;
   }
 
