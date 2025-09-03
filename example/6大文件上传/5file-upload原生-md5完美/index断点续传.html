@@ -147,6 +147,9 @@
             params: { fileHash }
           });
 
+          this.speakChunk({ fileHash, chunkCount })
+          return
+
           // 创建分片上传任务
           const uploadTasks = [];
           for (let i = 0; i < chunkCount; i++) {
@@ -223,6 +226,47 @@
               }
             };
           });
+        },
+        speakChunk (params) {
+          const { fileHash, chunkCount } = params;
+          // 创建分片上传任务
+          const uploadTasks = [];
+          for (let i = 0; i < chunkCount; i++) {
+
+            const start = i * this.CHUNK_SIZE;
+            const end = Math.min(start + this.CHUNK_SIZE, this.file.size);
+            const chunk = this.file.slice(start, end);
+
+            const formData = new FormData();
+            formData.append("chunk", chunk);
+            formData.append("hash", fileHash);
+            formData.append("index", i);
+            uploadTasks.push({
+              formData
+            })
+          }
+          this.uploadTasksUpload(uploadTasks)
+
+        },
+        // 分片上传任务调用
+        async uploadTasksUpload (list) {
+          try {
+            for (let i = 0; i < list.length; i++) {
+              const res = await this.uploadApi(i, list)
+
+            }
+          } catch (error) {
+            console.log(error)
+          }
+        },
+        async uploadApi (i, list) {
+          try {
+            const res = await axios.post("http://localhost:3001/api/upload", list[i].formData)
+            list[i].isUpload = true
+            this.progress += 10
+          } catch (error) {
+            throw '文件上传失败'
+          }
         }
       }
     }).mount("#app");

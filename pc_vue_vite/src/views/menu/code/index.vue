@@ -11,7 +11,7 @@
 <script>
 const navList = [
   { label: '对象判断', name: 'judgeObj' },
-  { label: 'asyncAwait', name: 'asyncAwait' }
+  { label: 'asyncAwait', name: 'asyncAwait' },
 ]
 
 export default {
@@ -29,4 +29,3 @@ export default {
   }
 }
 </script>
-

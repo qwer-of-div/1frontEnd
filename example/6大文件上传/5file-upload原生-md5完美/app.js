@@ -67,6 +67,7 @@ app.post("/api/upload", upload.single("chunk"), (req, res) => {
   // 移动临时文件到分片目录
   const oldPath = req.file.path;
   const newPath = path.join(chunkDir, index);
+  console.log(newPath, 'newPath', hash, index)
   fs.renameSync(oldPath, newPath);
 
   res.send({ code: 0 });
@@ -98,6 +99,7 @@ app.post("/api/merge", async (req, res) => {
 
     readStream.pipe(writeStream, { end: false });
     readStream.on("end", () => {
+      // 删除文件
       fs.unlinkSync(chunkPath);
       mergeChunk(index + 1);
     });
