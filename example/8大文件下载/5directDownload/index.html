@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://unpkg.com/spark-md5@3.0.2/spark-md5.js"></script>
+  <title>直接下载</title>
+</head>
+
+<body>
+  <div id="app">
+    <h1>后端 API 下载</h1>
+    <button @click="downloadFile">下载文件</button>
+  </div>
+
+  <script>
+    const { createApp } = Vue;
+    createApp({
+      data () {
+        return {
+          fileName: "222.docx"
+        }
+      },
+      methods: {
+        async downloadFile () {
+          window.location.href = `http://localhost:3000/download?fileName=222.docx`
+          return
+          window.open(`http://localhost:3000/download?fileName=222.docx`)
+          return
+          try {
+            const response = await axios.get(`http://localhost:3000/download?fileName=${this.fileName}`, {
+              responseType: 'blob'
+            });
+            console.log(response, 3333)
+            // 从响应头里面获取文件名
+            let fileName = this.getFileName(response);
+
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = fileName;
+            a.click();
+            window.URL.revokeObjectURL(url);
+          } catch (error) {
+            console.error('下载失败:', error);
+          }
+        },
+        getFileName (res) {
+          // 获取响应头里的 content-disposition 值 例: attachment; filename=%E5%A4%A7%E6%96%87%E4%BB%B6.docx
+          const contentDisposition = res.headers.get('content-disposition');
+          if (!contentDisposition) return null;
+          // 获取编码后的文件名
+          let fileName = contentDisposition.split('attachment; filename=')[1]
+          // 解码文件名
+          return decodeURIComponent(fileName)
+        },
+      }
+    }).mount("#app");
+  </script>
+</body>
+
+</html>

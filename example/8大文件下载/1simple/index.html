@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script src="https://www.unpkg.com/axios@1.3.5/dist/axios.min.js"></script>
+</head>
+
+<body>
+  <img id="img" />
+  <script>
+    async function concurrencyDownload (path, size, chunkSize) {
+      let chunkNum = Math.ceil(size / chunkSize);
+
+      const downloadTask = [];
+      for (let i = 1; i <= chunkNum; i++) {
+        const rangeStart = chunkSize * (i - 1);
+        const rangeEnd = chunkSize * i - 1;
+
+        downloadTask.push(axios.get(path, {
+          headers: {
+            Range: `bytes=${rangeStart}-${rangeEnd}`,
+          },
+          responseType: 'arraybuffer'
+        }))
+      }
+      // map 返回新数组
+      const arrayBuffers = await Promise.all(downloadTask.map(task => {
+        return task.then(res => res.data)
+      }))
+      return mergeArrayBuffer(arrayBuffers);
+    }
+
+    function mergeArrayBuffer (arrays) {
+      let totalLen = 0;
+      for (let arr of arrays) {
+        totalLen += arr.byteLength;
+      }
+      let offset = 0
+      let res = new Uint8Array(totalLen)
+      for (let arr of arrays) {
+        let uint8Arr = new Uint8Array(arr)
+        console.log(uint8Arr)
+        //在类型化数组中储存多个值，从特定数组中读取输入。
+        //移量参数 offset 指定从什么地方开始使用源数组 array 的值进行写入操作。
+        // ES2017 最新语法  创建初始化为 0 的，包含 length 个元素的无符号整型数组
+        res.set(uint8Arr, offset)
+        offset += arr.byteLength
+      }
+      return res.buffer
+    }
+
+    (async function () {
+      // 请求文件大小
+      const { data: len } = await axios.get('http://localhost:3006/length');
+      // 下载文件
+      const res = await concurrencyDownload('http://localhost:3006', len, 300000);
+      // 转为blob数据
+      const blob = new Blob([res]);
+      // 拿到最终数据后，创建链接
+      const url = URL.createObjectURL(blob);
+      const el = document.createElement("a") // 转换完成，创建一个a标签用于下载
+      el.download = decodeURI('daa.docx') // 下载的文件名
+      el.href = url
+      document.body.appendChild(el)
+      el.click()
+      document.body.removeChild(el) // 下载完成移除元素
+      window.URL.revokeObjectURL(url) // 释放掉blob
+    })();
+
+  </script>
+</body>
+
+</html>
+AI生成项目
+html
