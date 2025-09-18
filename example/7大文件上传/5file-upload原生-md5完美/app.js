@@ -31,7 +31,7 @@ app.get("/", (req, res) => {
     // httpOnly: true,
     // maxAge: 30 * 1000
   });
-  res.send("Hello");
+  res.send("Hello1");
 });
 
 app.get("/api/check", (req, res) => {

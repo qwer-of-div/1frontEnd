@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.3.4/vue.global.prod.js"></script> -->
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://unpkg.com/spark-md5@3.0.2/spark-md5.js"></script>
+
+
+  <title>大文件上传</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: #f5f7fa;
+      color: #2c3e50;
+    }
+
+    #app {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 30px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #34495e;
+    }
+
+    .upload-container {
+      text-align: center;
+    }
+
+    .file-input-wrapper {
+      margin-bottom: 20px;
+    }
+
+    .custom-file-input {
+      display: inline-block;
+      padding: 8px 16px;
+      background: #e3e8ee;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-bottom: 15px;
+    }
+
+    .upload-btn {
+      background: #3498db;
+      color: white;
+      border: none;
+      padding: 10px 25px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s;
+    }
+
+    .upload-btn:hover {
+      background: #2980b9;
+    }
+
+    .upload-btn:disabled {
+      background: #bdc3c7;
+      cursor: not-allowed;
+    }
+
+    .progress-bar {
+      margin-top: 20px;
+      background: #eee;
+      height: 20px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: #2ecc71;
+      transition: width 0.3s ease;
+      width: 0%;
+    }
+
+    .progress-text {
+      margin-top: 10px;
+      color: #7f8c8d;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <h1>文件上传-并发上传</h1>
+    <div class="upload-container">
+      <div class="file-input-wrapper">
+        <label class="custom-file-input">
+          选择文件
+          <input type="file" @change="handleFileChange" style="display: none" />
+        </label>
+        <div v-if="file">已选择: {{ file.name }}（{{ fileSize }}MB）</div>
+      </div>
+      <button class="upload-btn" @click="handleUpload" :disabled="!file">{{ file ? '开始上传' : '请选择文件' }}</button>
+      &nbsp;
+      <button class="upload-btn" @click="breakUpload">并发上传</button>
+      <div class="progress-bar">
+        <div class="progress-fill" :style="{ width: progress + '%' }"></div>
+      </div>
+      <div class="progress-text">上传进度：{{ progress }}%</div>
+    </div>
+  </div>
+
+  <script>
+    const { createApp } = Vue;
+    createApp({
+      data () {
+        return {
+          file: null,
+          progress: 0,
+          CHUNK_SIZE: 2 * 1024 * 1024, // 分片大小
+          fileSize: 0,
+          // 断点续传新增
+          uploadTasks: [],
+          fileHash: '',
+          chunkCount: 0,
+          uploadChunkCount: 3, // 并发数量
+          fitstCount: 1, // 第一次调用 测试失败
+        };
+      },
+      methods: {
+        handleFileChange (e) {
+          this.file = e.target.files[0];
+          this.fileSize = (this.file.size / 1024 / 1024).toFixed(2); // 转换为 MB
+          this.progress = 0;
+          // 根据文件类型设置分片大小
+          const VIDEO_TYPES = ["video/mp4", "video/quicktime"];
+          const isVideo = VIDEO_TYPES.includes(this.file.type);
+          this.CHUNK_SIZE = isVideo ? 20 * 1024 * 1024 : 2 * 1024 * 1024; // 视频文件使用更大分片大小，视频文件使用更大分片
+        },
+        async handleUpload () {
+          if (!this.file) return;
+          console.log(this.file, '文件')
+          const fileHash = await this.calculateHash(this.file);
+          this.fileHash = fileHash
+          console.log(fileHash, 444);
+          const chunkCount = Math.ceil(this.file.size / this.CHUNK_SIZE);
+          this.chunkCount = chunkCount;
+
+          // 检查已上传分片 是否已存在整个文件 删除存在部分分片文件
+          const { data } = await axios.get("http://localhost:3001/api/check", {
+            params: { fileHash }
+          });
+
+          this.speakChunk({ fileHash, chunkCount })
+        },
+        // 计算文件哈希
+        calculateHash (file) {
+          let fileReader = new FileReader()
+          let blobSlice = File.prototype.slice || File.prototype.mozSlice || File.prototype.webkitSlice
+          let currentChunk = 0
+          const chunkSize = 2 * 1024 * 1000
+          let chunks = Math.ceil(file.size / chunkSize)
+          let spark = new SparkMD5.ArrayBuffer()
+
+          // 1首次
+          loadNext()
+
+          function loadNext () {
+            let start = currentChunk * chunkSize
+            let end = start + chunkSize >= file.size ? file.size : start + chunkSize
+            // 2分片读取文件
+            fileReader.readAsArrayBuffer(blobSlice.call(file, start, end))
+          }
+
+          return new Promise(resolve => {
+            // 3文件读取完成
+            fileReader.onload = e => {
+              // 4循环读取文件hash增量添加
+              spark.append(e.target.result);
+              if (currentChunk < chunks) {
+                console.log('循环读取文件', currentChunk, chunks)
+                currentChunk++
+                loadNext()
+              } else {
+                // 5所有切片读取完成，文件hash计算完成
+                const result = spark.end();
+                // 如果单纯的使用result 作为hash值的时候, 如果文件内容相同，而名称不同的时候
+                // 想保留两个文件无法保留。所以把文件名称加上。
+                const sparkMd5 = new SparkMD5();
+                sparkMd5.append(result);
+                sparkMd5.append(file.name);
+                console.log('finished loading', sparkMd5, spark, e.target.result);
+                resolve(sparkMd5.end());
+              }
+            };
+          });
+        },
+        // 断点续传
+        breakUpload () {
+          this.fitstCount++
+          this.uploadTasks = this.uploadTasks.filter(item => !item.isUpload)
+          this.uploadTasksUpload(this.uploadTasks)
+        },
+        speakChunk (params) {
+          const { fileHash, chunkCount } = params;
+          // 创建分片上传任务
+          const uploadTasks = [];
+          for (let i = 0; i < chunkCount; i++) {
+
+            const start = i * this.CHUNK_SIZE;
+            const end = Math.min(start + this.CHUNK_SIZE, this.file.size);
+            const chunk = this.file.slice(start, end);
+
+            const formData = new FormData();
+            formData.append("chunk", chunk);
+            formData.append("hash", fileHash);
+            formData.append("index", i);
+            uploadTasks.push({
+              formData,
+              i
+            })
+          }
+          this.uploadTasks = uploadTasks
+          this.uploadTasksUpload(uploadTasks)
+
+        },
+        // 分片上传任务调用
+        async uploadTasksUpload (list) {
+          try {
+            if (list.length) {
+              const res = await this.uploadAll(list)
+            } else {
+              // 合并请求
+              await axios.post("http://localhost:3001/api/merge", {
+                fileName: this.file.name,
+                fileHash: this.fileHash,
+                chunkSize: this.CHUNK_SIZE
+              });
+              this.progress = 100;
+              console.log("上传成功");
+            }
+          } catch (error) {
+            console.log(error)
+          }
+        },
+        // 全站共享，双重数组存储上传数据, App.vue清除历史上传数据
+        async uploadAll (list) {
+          try {
+            const apiList = []
+            for (let i = 0; i < this.uploadChunkCount; i++) {
+              if (list[i]) apiList.push(this.uploadApi(list[i].formData, i))
+            }
+
+            const res = await Promise.all(apiList)
+            this.uploadTasks.splice(0, this.uploadChunkCount)
+            this.progress += parseFloat((100 / this.chunkCount * this.uploadChunkCount).toFixed(2))
+            this.uploadTasksUpload(this.uploadTasks)
+          } catch (error) {
+            throw error
+            // this.uploadTasksUpload(this.uploadTasks)
+          }
+        },
+        async uploadApi (params, i) {
+          const index = parseInt(params.get("index"))
+          try {
+            console.log(index, 'index', i, this.uploadTasks)
+            if (index === 5 && this.fitstCount === 1) { // 模拟失败
+              throw '文件上传失败!'
+            }
+            const res = await axios.post("http://localhost:3001/api/upload", params)
+            if (this.uploadTasks[i]) this.uploadTasks[i].isUpload = true
+          } catch (error) {
+            throw error
+            // throw '文件上传失败!'
+          }
+        }
+      }
+    }).mount("#app");
+  </script>
+</body>
+
+</html>

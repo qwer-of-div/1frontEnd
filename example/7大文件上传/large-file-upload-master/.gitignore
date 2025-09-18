@@ -1,0 +1,51 @@
+# 依赖目录
+**/node_modules/
+jspm_packages/
+
+# 测试和构建产物
+coverage/
+dist/
+build/
+out/
+.next/
+.nuxt/
+
+# 日志文件
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# 环境变量文件
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# 缓存目录
+.cache/
+.temp/
+.idea/
+.vscode/
+.history/
+
+# 系统文件
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# 编辑器目录和文件
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
