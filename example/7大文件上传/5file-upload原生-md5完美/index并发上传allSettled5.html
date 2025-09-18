@@ -283,7 +283,7 @@
         async uploadApi (params, i) {
           const index = parseInt(params.get("index"))
           try {
-            if (index === 5 && this.fitstCount === 1) { // 模拟失败
+            if (index === 5 && this.fitstCount === 1) { // 模拟失败 失败 存在hash文件夹 下次从index-0开始传输文件后端报错
               throw '文件上传失败!'
             }
             const res = await axios.post("http://localhost:3001/api/upload", params)
