@@ -106,7 +106,7 @@ export default {
       }
       return this.propertyRestrictions(file)
     },
-    // 属性限制
+    // 图片属性限制
     async propertyRestrictions (file) {
       let isVerifyResolution
       if (this.uploadType === 'image') {
@@ -126,7 +126,7 @@ export default {
         resolve(true)
       })
     },
-    // 分辨率校验
+    // 图片分辨率校验
     verifyResolution (file, maxWidth = 3840, maxHeight = 2160) {
       return new Promise((resolve, reject) => {
         const reader = new FileReader()

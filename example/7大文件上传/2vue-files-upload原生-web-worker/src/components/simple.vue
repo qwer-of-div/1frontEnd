@@ -130,6 +130,7 @@ export default {
       type: Boolean,
       default: false,
     },
+    // 文件上传前数据
     beforeUpload: {
       type: Function,
       default: null,
@@ -177,7 +178,7 @@ export default {
       // 设置切片大小
       chunkSize = this.chunkSize
     },
-    handleFileChange (e) {
+    handleFileChange (e) { // 一
       const files = e.target.files
       console.log('handleFileChange -> file', files)
       if (!files) return
@@ -191,15 +192,16 @@ export default {
       }
 
       this.status = Status.wait
-
+      // 运用input控件上传文件，判断文件后缀名和文件大小，也用到Array.prototype.slice.call()转化files为数组
+      // 类数组对象（array-like objects）或可迭代对象转换为真正数组
       const postFiles = Array.prototype.slice.call(files)
-      console.log('file -> postFiles', postFiles)
+      console.log('file -> postFiles', postFiles, files)
       postFiles.forEach((item) => {
         this.handleStart(item)
       })
     },
     // 格式化files、beforeUpload钩子处理、文件的追加也是通过此函数控制
-    handleStart (rawFile) {
+    handleStart (rawFile) { // 二
       // 初始化部分自定义属性
       rawFile.status = fileStatus.wait.code
       rawFile.chunkList = []
