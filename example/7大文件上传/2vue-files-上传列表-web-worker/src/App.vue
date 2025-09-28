@@ -7,12 +7,18 @@
           <i class="el-icon-info"></i>: 只能上传：{{ acceptDesc[uploadType] }}
         </div>
       </Simple>
+
+      <div>
+        <el-button @click="onWorker">worker</el-button>
+        <router-view></router-view>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import Simple from './components/simple'
+import router from './router'
 
 export default {
   name: 'app',
@@ -146,6 +152,11 @@ export default {
             }
           }
         }
+      })
+    },
+    onWorker () {
+      this.$router.push({
+        name: 'worker',
       })
     },
   },

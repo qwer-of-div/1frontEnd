@@ -2,6 +2,7 @@ self.importScripts("/spark-md5.min.js") // 导入脚本
 
 // 生成文件 hash
 self.onmessage = e => {
+  console.log('worker线程开始计算', e)
   const { fileChunkList } = e.data
   const spark = new self.SparkMD5.ArrayBuffer()
   let percentage = 0

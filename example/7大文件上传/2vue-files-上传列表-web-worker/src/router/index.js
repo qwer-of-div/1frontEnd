@@ -1,13 +1,20 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import home from '@/views/index.vue'
+import worker from '@/views/worker/index.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'home',
+    component: home
+  },
+  {
+    path: '/worker',
+    name: 'worker',
+    component: worker
   },
 ]
 

@@ -472,6 +472,7 @@ export default {
         this.worker = new Worker('./hash-worker.js')
         this.worker.postMessage({ fileChunkList })
         this.worker.onmessage = (e) => {
+          console.log('onmessage')
           const { percentage, hash } = e.data
           if (this.uploadFiles[fileIndex]) {
             this.uploadFiles[fileIndex].hashProgress = Number(
