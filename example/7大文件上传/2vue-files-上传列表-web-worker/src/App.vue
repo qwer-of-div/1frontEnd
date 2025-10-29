@@ -9,7 +9,9 @@
       </Simple>
 
       <div>
-        <el-button @click="onWorker">worker</el-button>
+        <el-button @click="onPush('worker')">worker</el-button>
+        <el-button @click="onPush('sameName')">sameName</el-button>
+        <hr>
         <router-view></router-view>
       </div>
     </div>
@@ -18,7 +20,6 @@
 
 <script>
 import Simple from './components/simple'
-import router from './router'
 
 export default {
   name: 'app',
@@ -154,9 +155,9 @@ export default {
         }
       })
     },
-    onWorker () {
+    onPush (name) {
       this.$router.push({
-        name: 'worker',
+        name,
       })
     },
   },

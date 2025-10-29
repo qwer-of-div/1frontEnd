@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import home from '@/views/index.vue'
 import worker from '@/views/worker/index.vue'
+import sameName from '@/views/sameName/index.vue'
 
 Vue.use(VueRouter)
 
@@ -15,6 +16,11 @@ const routes = [
     path: '/worker',
     name: 'worker',
     component: worker
+  },
+  {
+    path: '/sameName',
+    name: 'sameName',
+    component: sameName
   },
 ]
 
