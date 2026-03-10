@@ -19,7 +19,7 @@ export default {
     $route: {
       handler: function (to, from) {
         console.log(to, from, 'watch')
-        if (!from || !['keepAliveDetail', 'keepAlive'].includes(from.name)) { // keepAlive离开组件时触发
+        if (!from || !['keepAliveDetail', 'keepAlive'].includes(from.name)) { // keepAlive组件离开时触发
           // Object.assign(this.$data, this.$options.data.call(this));
           Object.assign(this.$data, this.$options.data());
           this.isKeepAlive = false
